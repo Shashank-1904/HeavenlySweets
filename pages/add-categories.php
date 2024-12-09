@@ -16,7 +16,7 @@ include('./../includes/header.php');
             <h1 class="h3 mb-0 text-gray-800"></h1>
         </div>
         <!-- Page Heading -->
-        <form action="../handler/add_collection_form_handle.php" method="POST" name="add_collection_form"
+        <form action="../handler/add_category_handle.php" method="POST" name="add_collection_form"
             id="add_collection_form" enctype="multipart/form-data">
             <input type="hidden" name="formname" value="add_collection_form">
             <div class="form-group">
