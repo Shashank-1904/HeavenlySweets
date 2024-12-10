@@ -2,7 +2,7 @@
 
 $dbHost     = "localhost"; 
 $dbUsername = "root"; 
-$dbPassword = " "; 
+$dbPassword = ""; 
 $dbName     = "heavenlysweets"; 
 
 // Create database connection 
