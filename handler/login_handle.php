@@ -10,14 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['loginbtn']))
     $password = md5($password);
 
     // Check if the user exists
-    $query = "SELECT * FROM admin WHERE email = '$email'";
+    $query = "SELECT * FROM admins WHERE admin_email = '$email'";
     $result = mysqli_query($conn, $query);
     $user = mysqli_fetch_assoc($result);
 
-    if ($user && $user[''] == $password)
+    if ($user && $user['admin_pass'] == $password)
     {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['user_email'] = $user['email'];
+        $_SESSION['user_id'] = $user['admin_id'];
+        $_SESSION['user_email'] = $user['admin_email'];
         header("Location: ./../index.php");
         exit();
     }

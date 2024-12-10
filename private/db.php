@@ -1,18 +1,16 @@
-<?php 
+<?php
+$dbHost     = "157.173.222.78";
+$dbUsername = "heavenlysweets-db-user";
+$dbPassword = "sWCowdoQTPFd9rWBxL4c";
+$dbName     = "heavenlysweets-db";
 
-$dbHost     = "localhost"; 
-$dbUsername = "root"; 
-$dbPassword = ""; 
-$dbName     = "heavenlysweets"; 
+// Create database connection
+$conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 
-// Create database connection 
-$conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName); 
-
-// Check connection 
-if ($conn->connect_error) { 
-    die("Connection failed: " .$db->connect_error); 
-}else{
-    die("Connection Successfull");
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else {
+    echo "Connection successful";
 }
-
 ?>
