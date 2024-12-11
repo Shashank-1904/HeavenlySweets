@@ -46,13 +46,13 @@ include('./../includes/header.php');
                                         <td><?php echo $row['catname']; ?></td>
                                         <td><?php echo $row['catdscr']; ?></td>
                                         <td class="row mx-auto text-center">
-                                            <form action="delete_category.php" method="POST" class="mr-2">
+                                            <form action="../handler/delete_category_handle.php" method="POST" class="mr-2">
                                                 <input type="hidden" name="catid" value="<?php echo $row['catid'];?>">
-                                                <button type="submit" class="btn btn-danger btn-circle">
+                                                <button type="submit" class="btn btn-danger btn-circle" name="deletecatbtn">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
-                                            <a href="edit_category.php?catid=<?php echo $row['catid']; ?>" class="btn btn-primary btn-circle">
+                                            <a href="edit-categories.php?catid=<?php echo $row['catid']; ?>" class="btn btn-primary btn-circle">
                                                 <i class="fas fa-pen"></i>
                                             </a>
                                         </td>
