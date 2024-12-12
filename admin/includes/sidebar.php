@@ -50,8 +50,8 @@
          </a>
          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
-                 <a class="collapse-item" href="./../pages/add-categories.php">Add Products</a>
-                 <a class="collapse-item" href="./../pages/all-categories.php">All Products</a>
+                 <a class="collapse-item" href="./../pages/add-products.php">Add Products</a>
+                 <a class="collapse-item" href="./../pages/all-products.php">All Products</a>
              </div>
          </div>
      </li>

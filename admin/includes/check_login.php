@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require('./../private/db.php');
+require('../private/db.php');
 if(isset($_SESSION['user_email']))
 {
     
