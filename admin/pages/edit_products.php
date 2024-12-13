@@ -91,4 +91,5 @@ $categoryResult = mysqli_query($conn, $categoryQuery);
     </div>
 </div>
 
-<?php include('./../includes/footer.php'); ?>
+<?php include('./../includes/footer.php'); 
+?>
