@@ -9,8 +9,7 @@ include('./../includes/header.php');
             <span class="toast-text"><?php echo $_SESSION['message']['text']; ?></span>
             <button class="toast-close" id="closeToast">×</button>
         </div>
-        <?php unset($_SESSION['message']); 
-         ?>
+        <?php unset($_SESSION['message']); ?>
     <?php endif; ?>
 
     <!-- Page Heading -->
@@ -54,12 +53,8 @@ include('./../includes/header.php');
                                         <td><?php echo $row['product_name']; ?></td>
                                         <td><?php echo $row['product_description']; ?></td>
                                         <td><?php echo $row['catname']; ?></td>
-<<<<<<< HEAD
-                                        <td><?php echo '$' . number_format($row['product_price'], 2); ?></td>
-                                        <td><?php echo $row['status']; ?></td>
-=======
                                         <td><?php echo 'Rs. ' . number_format($row['product_price'], 2); ?></td>
->>>>>>> f9b2f4ec418796683a74739af0b071a2a2220a1c
+                                        <td><?php echo $row['status']; ?></td>
                                         <td class="row mx-auto text-center">
                                             
                                             <!-- Delete Product Form -->
