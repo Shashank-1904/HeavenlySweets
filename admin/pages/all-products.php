@@ -53,7 +53,7 @@ include('./../includes/header.php');
                                         <td><?php echo $row['product_name']; ?></td>
                                         <td><?php echo $row['product_description']; ?></td>
                                         <td><?php echo $row['catname']; ?></td>
-                                        <td><?php echo '$' . number_format($row['product_price'], 2); ?></td>
+                                        <td><?php echo 'Rs. ' . number_format($row['product_price'], 2); ?></td>
                                         <td class="row mx-auto text-center">
                                             
                                             <!-- Delete Product Form -->
