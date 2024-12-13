@@ -44,9 +44,7 @@ $categoryResult = mysqli_query($conn, $categoryQuery);
             <div class="form-group">
                 <label for="product_description">Product Description</label>
                 <textarea type="text" class="form-control" id="product_description" 
-                          name="product_description" placeholder="Enter Product Description" required>
-                    <?php echo $product['product_description']; ?>
-                </textarea>
+                          name="product_description" placeholder="Enter Product Description" required><?php echo $product['product_description']; ?></textarea>
             </div>
             <div class="form-group">
                 <label for="product_image">Product Image</label>
@@ -77,6 +75,15 @@ $categoryResult = mysqli_query($conn, $categoryQuery);
                             <?php echo $category['catname']; ?>
                         </option>
                     <?php endwhile; ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" id="status" name="status" required>
+                    <option value="" disabled>Select Status</option>
+                    <option value="Normal" <?php echo ($product['status'] == 'Normal') ? 'selected' : ''; ?>>Normal</option>
+                    <option value="Best seller" <?php echo ($product['status'] == 'Best seller') ? 'selected' : ''; ?>>Best seller</option>
+                    <option value="New arrived" <?php echo ($product['status'] == 'New arrived') ? 'selected' : ''; ?>>New arrived</option>
                 </select>
             </div>
             <center><button type="submit" class="btn btn-success" name="editproductbtn">Update Product</button></center>

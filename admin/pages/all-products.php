@@ -26,16 +26,17 @@ include('./../includes/header.php');
                         <tr>
                             <th>Image</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Description</th>    
                             <th>Category</th>
                             <th>Price</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                             // Query to fetch all products along with their names
-                            $query = "SELECT p.product_id, p.product_name, p.product_description, p.product_image, p.product_qty, p.product_price, p.product_rating, c.catname 
+                            $query = "SELECT p.product_id, p.product_name, p.product_description, p.product_image, p.product_qty, p.product_price, p.product_rating, p.status, c.catname 
                                       FROM product p
                                       JOIN category c ON p.catid = c.catid";
                             $result = mysqli_query($conn, $query);
@@ -54,6 +55,7 @@ include('./../includes/header.php');
                                         <td><?php echo $row['product_description']; ?></td>
                                         <td><?php echo $row['catname']; ?></td>
                                         <td><?php echo '$' . number_format($row['product_price'], 2); ?></td>
+                                        <td><?php echo $row['status']; ?></td>
                                         <td class="row mx-auto text-center">
                                             
                                             <!-- Delete Product Form -->

@@ -10,6 +10,7 @@ if (isset($_POST['editproductbtn'])) {
     $product_price = $_POST['product_price'];
     $product_rating = $_POST['product_rating'];
     $catid = $_POST['catid'];
+    $status = $_POST['status'];
 
     $uploadDir = '../../common_images/product/';
     $productImage = $_FILES['product_image']['name'];
@@ -38,7 +39,7 @@ if (isset($_POST['editproductbtn'])) {
               SET product_name='$product_name', product_description='$product_description', 
                   product_image='$productImage', product_qty='$product_qty', 
                   product_price='$product_price', product_rating='$product_rating',
-                  catid='$catid'
+                  catid='$catid', status='$status'
               WHERE product_id='$product_id'";
     $result = mysqli_query($conn, $query);
 

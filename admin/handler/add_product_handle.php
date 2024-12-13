@@ -5,10 +5,11 @@ require('../private/db.php');
 if (isset($_POST['addprodbtn'])) {
     $catid = $_POST['catid'];
     $product_name = $_POST['product_name'];
-    $product_description = $_POST['product_description']; // Fixed the misspelled name
+    $product_description = $_POST['product_description'];
     $product_qty = $_POST['product_qty'];
     $product_price = $_POST['product_price'];
     $product_rating = $_POST['product_rating'];
+    $status = $_POST['status']; // Added status field
 
     // Directory for file uploads
     $uploadDir = '../../common_images/product/';
@@ -34,8 +35,8 @@ if (isset($_POST['addprodbtn'])) {
         }
 
         // Insert product into the database
-        $query = "INSERT INTO product (catid, product_name, product_description, product_image, product_qty, product_price, product_rating) 
-                  VALUES ('$catid', '$product_name', '$product_description', '$product_image', '$product_qty', '$product_price', '$product_rating')";
+        $query = "INSERT INTO product (catid, product_name, product_description, product_image, product_qty, product_price, product_rating, status) 
+                  VALUES ('$catid', '$product_name', '$product_description', '$product_image', '$product_qty', '$product_price', '$product_rating', '$status')";
         $result = mysqli_query($conn, $query);
 
         if ($result) {
