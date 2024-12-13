@@ -70,6 +70,15 @@ if ($result) {
                 <input type="number" step="0.01" class="form-control" id="product_price" name="product_price" placeholder="Enter Product Price" required>
             </div>
             <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" id="status" name="status" required>
+                    <option value="" disabled selected>Select Status</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Best seller">Best seller</option>
+                    <option value="New arrived">New arrived</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="product_rating">Product Rating</label>
                 <input type="number" step="0.1" max="5" class="form-control" id="product_rating" name="product_rating" placeholder="Enter Product Rating" required>
             </div>
