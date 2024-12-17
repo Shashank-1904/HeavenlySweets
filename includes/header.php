@@ -1,8 +1,11 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
 <head>
-    <title>Home 1 | IceDelights</title>
+    <title><?php echo $pageName; ?> | HeavenlySweets</title>
     <!-- /SEO Ultimate -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta charset="utf-8">
@@ -28,13 +31,16 @@
     <link rel="stylesheet" href="../assets/js/bootstrap.min.js">
     <!-- Font Awesome link -->
     <link rel="stylesheet" href="../assets/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- StyleSheet link CSS -->
     <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/responsive.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/owl.carousel.min.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/owl.theme.default.min.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/aos.css" rel="stylesheet">
+    
     <link href="../assets/css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="./../assets/css/custom.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!-- Back to top button -->

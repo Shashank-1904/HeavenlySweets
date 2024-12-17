@@ -1,9 +1,25 @@
-<?php include('../includes/header.php'); ?>
+<?php
+$pageName = "Home";
+include('../includes/header.php');
+include('../private/db.php');
+?>
 
 <div class="home1_banner_outer position-relative">
     <?php include('../includes/navbar.php'); ?>
     <!-- Banner -->
     <section class="banner-con position-relative">
+        <?php
+        //session_start();
+        if (isset($_SESSION['message'])):
+        ?>
+            <div class="toast <?php echo $_SESSION['message']['type']; ?>" id="toast">
+                <span class="toast-text"><?php echo $_SESSION['message']['text']; ?></span>
+                <button class="toast-close" id="closeToast">×</button>
+            </div>
+        <?php
+            unset($_SESSION['message']); // Clear the session message 
+        endif;
+        ?>
         <figure class="banner-lefttopimage mb-0">
             <img src="../assets/images/banner-lefttopimage.png" alt="image" class="img-fluid">
         </figure>
@@ -12,8 +28,8 @@
                 <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12 col-12">
                     <div class="banner_content" data-aos="fade-up">
                         <h3>Welcome to The</h3>
-                        <h1>Classic <span>Ice Cream</span> Parlor</h1>
-                        <p>Savor the taste of traditional ice cream made with love and quality ingredients.</p>
+                        <h1><span>Sweet Haven</span> for Your Taste Buds!</h1>
+                        <p>Where every bite is a celebration of tradition, taste, and timeless sweetness. Discover handcrafted delights made with love and the finest ingredients!</p>
                         <a href="about.html" class="text-decoration-none all_button">Browse Our Classic Flavors<i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -44,8 +60,8 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 col-12 order-lg-2 order-1">
                 <div class="relive_content" data-aos="fade-up">
-                    <h2>Relive the Sweet Memories of Classic <span>Ice Creams</span></h2>
-                    <p>From rich chocolate fudge to creamy vanilla sundaes, discover our menu of classic ice cream creations.</p>
+                    <h2>Crafting <span>Sweet Memories</span>, One Bite at a Time!</h2>
+                    <p>Rediscover the joy of traditional sweets, prepared to perfection for you and your loved ones.</p>
                     <a href="about.html" class="text-decoration-none all_button">Explore Our Menu<i class="fa-solid fa-arrow-right"></i></a>
                     <figure class="relive-triangle mb-0">
                         <img src="../assets/images/relive-triangle.png" alt="image" class="img-fluid">
@@ -79,294 +95,40 @@
             <div class="row">
                 <div class="col-12">
                     <div class="owl-carousel owl-theme">
-                        <div class="item">
-                            <div class="classic-box">
-                                <div class="classic_image_box box1">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/classic-image1.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="classic_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Classic Vanilla Ice Cream</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
+                        <?php
+                        $query = "SELECT * FROM product WHERE status='Normal'";
+                        $result = mysqli_query($conn, $query);
+
+                        while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                            <div class="item">
+                                <div class="classic-box">
+                                    <div class="classic_image_box box1">
+                                        <figure class="mb-0">
+                                            <img src="../common_images/product/<?php echo $row['product_image']; ?>" alt="image" class="img-fluid">
+                                        </figure>
+                                        <i class="fa-regular fa-heart"></i>
                                     </div>
-                                    <p class="text-size-16">Creamy vanilla ice cream topped with cherry.</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">4</span><span>.99</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
+                                    <div class="classic_box_content">
+                                        <div class="text_wrapper position-relative">
+                                            <h6><?php echo $row['product_name']; ?></h6>
+                                            <div class="rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <span>4.9/5</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-size-16"><?php echo $row['product_description']; ?></p>
+                                        <div class="price_wrapper position-relative">
+                                            <span class="dollar">Rs. <span class="counter"><?php echo $row['product_price']; ?></span></span>
+                                            <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="classic-box">
-                                <div class="classic_image_box box2">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/classic-image2.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="classic_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Chocolate Brownie Sundae</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Rich chocolate ice cream with chunks of brownie.</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.49</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="classic-box">
-                                <div class="classic_image_box box3">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/classic-image3.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="classic_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Strawberry Shortcake</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Strawberry ice cream layered with shortcake</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.29</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="classic-box">
-                                <div class="classic_image_box box4">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/classic-image4.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="classic_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Mint Chocolate Chip Cone</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Refreshing mint ice cream with chocolate chips.</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">3</span><span>.99</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="classic-box">
-                                <div class="classic_image_box box1">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/classic-image1.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="classic_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Classic Vanilla Ice Cream</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Creamy vanilla ice cream topped with cherry.</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">4</span><span>.99</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="classic-box">
-                                <div class="classic_image_box box2">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/classic-image2.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="classic_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Chocolate Brownie Sundae</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Rich chocolate ice cream with chunks of brownie.</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.49</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="classic-box">
-                                <div class="classic_image_box box3">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/classic-image3.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="classic_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Strawberry Shortcake</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Strawberry ice cream layered with shortcake</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.29</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="classic-box">
-                                <div class="classic_image_box box4">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/classic-image4.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="classic_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Mint Chocolate Chip Cone</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Refreshing mint ice cream with chocolate chips.</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">3</span><span>.99</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="classic-box">
-                                <div class="classic_image_box box1">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/classic-image1.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="classic_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Classic Vanilla Ice Cream</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Creamy vanilla ice cream topped with cherry.</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">4</span><span>.99</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="classic-box">
-                                <div class="classic_image_box box2">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/classic-image2.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="classic_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Chocolate Brownie Sundae</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Rich chocolate ice cream with chunks of brownie.</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.49</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="classic-box">
-                                <div class="classic_image_box box3">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/classic-image3.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="classic_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Strawberry Shortcake</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Strawberry ice cream layered with shortcake</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.29</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="classic-box">
-                                <div class="classic_image_box box4">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/classic-image4.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="classic_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Mint Chocolate Chip Cone</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Refreshing mint ice cream with chocolate chips.</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">3</span><span>.99</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                        }
+                        ?>
+
                     </div>
                 </div>
             </div>
@@ -380,56 +142,32 @@
             <div class="col-12">
                 <div class="categories_content text-center" data-aos="fade-up">
                     <h2>Explore Our <span>Categories</span></h2>
-                    <p>Browse through our different categories to find your favorite ice cream treats.</p>
+                    <p>Browse through our delectable categories and satisfy your sweet tooth.</p>
                 </div>
             </div>
         </div>
         <div class="categories_wrapper" data-aos="fade-up">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="categories-box">
-                        <figure class="image mb-0">
-                            <img src="../assets/images/categories-image1.jpg" alt="image" class="img-fluid">
-                        </figure>
-                        <div class="content">
-                            <h5 class="mb-0">Sundaes</h5>
-                            <a href="shop1.html"><i class="fa-solid fa-arrow-right"></i></a>
+                <?php
+                $query = "SELECT * FROM category";
+                $result = mysqli_query($conn, $query);
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="categories-box">
+                            <figure class="image mb-0">
+                                <img src="./../common_images/category/<?php echo $row['catimg'] ?>" alt="image" class="img-fluid" style="height : 250px">
+                            </figure>
+                            <div class="content">
+                                <h5 class="mb-0"><?php echo $row['catname'] ?></h5>
+                                <a href="shop1.html"><i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="categories-box">
-                        <figure class="image mb-0">
-                            <img src="../assets/images/categories-image2.jpg" alt="image" class="img-fluid">
-                        </figure>
-                        <div class="content">
-                            <h5 class="mb-0">Ice Cream Cones</h5>
-                            <a href="shop1.html"><i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="categories-box">
-                        <figure class="image mb-0">
-                            <img src="../assets/images/categories-image3.jpg" alt="image" class="img-fluid">
-                        </figure>
-                        <div class="content">
-                            <h5 class="mb-0">Milkshakes</h5>
-                            <a href="shop1.html"><i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="categories-box">
-                        <figure class="image mb-0">
-                            <img src="../assets/images/categories-image4.jpg" alt="image" class="img-fluid">
-                        </figure>
-                        <div class="content">
-                            <h5 class="mb-0">Seasonal Flavors</h5>
-                            <a href="shop1.html"><i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -491,294 +229,39 @@
             <div class="row">
                 <div class="col-12">
                     <div class="owl-carousel owl-theme">
-                        <div class="item">
-                            <div class="seller-box">
-                                <div class="seller_image_box box1">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/seller-image1.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="seller_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Strawberry Sundae</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
+                        <?php
+                        $query = "SELECT * FROM product WHERE status='Best seller'";
+                        $result = mysqli_query($conn, $query);
+
+                        while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                            <div class="item">
+                                <div class="seller-box">
+                                    <div class="seller_image_box box1">
+                                        <figure class="mb-0">
+                                            <img src="../common_images/product/<?php echo $row['product_image'] ?>" alt="image" class="img-fluid">
+                                        </figure>
+                                        <i class="fa-regular fa-heart"></i>
                                     </div>
-                                    <p class="text-size-16">Strawberry ice cream with fresh strawberries</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.99</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
+                                    <div class="seller_box_content">
+                                        <div class="text_wrapper position-relative">
+                                            <h6><?php echo $row['product_name'] ?></h6>
+                                            <div class="rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <span>4.9/5</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-size-16"><?php echo $row['product_description'] ?></p>
+                                        <div class="price_wrapper position-relative">
+                                            <span class="dollar">Rs. <span class="counter"><?php echo $row['product_price'] ?></span></span>
+                                            <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="seller-box">
-                                <div class="seller_image_box box2">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/seller-image2.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="seller_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Chocolate Chip Cookie Cone</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Chocolate chip cookie dough ice cream in a cone.</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">4</span><span>.49</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="seller-box">
-                                <div class="seller_image_box box3">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/seller-image3.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="seller_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Rocky Road Sundae</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Marshmallow and nutty rocky road ice cream</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.69</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="seller-box">
-                                <div class="seller_image_box box4">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/seller-image4.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="seller_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Peach Melba Sundae</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Peach ice cream topped with raspberry sauce </p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.39</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="seller-box">
-                                <div class="seller_image_box box1">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/seller-image1.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="seller_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Strawberry Sundae</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Strawberry ice cream with fresh strawberries</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.99</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="seller-box">
-                                <div class="seller_image_box box2">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/seller-image2.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="seller_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Chocolate Chip Cookie Cone</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Chocolate chip cookie dough ice cream in a cone.</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">4</span><span>.49</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="seller-box">
-                                <div class="seller_image_box box3">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/seller-image3.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="seller_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Rocky Road Sundae</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Marshmallow and nutty rocky road ice cream</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.69</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="seller-box">
-                                <div class="seller_image_box box4">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/seller-image4.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="seller_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Peach Melba Sundae</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Peach ice cream topped with raspberry sauce </p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.39</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="seller-box">
-                                <div class="seller_image_box box1">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/seller-image1.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="seller_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Strawberry Sundae</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Strawberry ice cream with fresh strawberries</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.99</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="seller-box">
-                                <div class="seller_image_box box2">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/seller-image2.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="seller_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Chocolate Chip Cookie Cone</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Chocolate chip cookie dough ice cream in a cone.</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">4</span><span>.49</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="seller-box">
-                                <div class="seller_image_box box3">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/seller-image3.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="seller_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Rocky Road Sundae</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Marshmallow and nutty rocky road ice cream</p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.69</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="seller-box">
-                                <div class="seller_image_box box4">
-                                    <figure class="mb-0">
-                                        <img src="../assets/images/seller-image4.png" alt="image" class="img-fluid">
-                                    </figure>
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="seller_box_content">
-                                    <div class="text_wrapper position-relative">
-                                        <h6>Peach Melba Sundae</h6>
-                                        <div class="rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>4.9/5</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-size-16">Peach ice cream topped with raspberry sauce </p>
-                                    <div class="price_wrapper position-relative">
-                                        <span class="dollar">$<span class="counter">5</span><span>.39</span></span>
-                                        <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -807,7 +290,7 @@
             </div>
             <div class="col-lg-10 col-md-10 col-sm-12 col-12" data-aos="fade-up">
                 <div class="testimonial_content_box position-relative">
-                    <h2 class="col-lg-8 mx-auto">Hear from Our <span>Happy Ice Cream</span> Lovers</h2>      
+                    <h2 class="col-lg-8 mx-auto">Hear from Our Happy <span>Sweet Lovers</span></h2>
                     <figure class="testimonial-quoteimage mb-0 position-absolute">
                         <img src="../assets/images/testimonial-quoteimage.png" alt="image" class="img-fluid">
                     </figure>
@@ -815,11 +298,8 @@
                 <div class="owl-carousel owl-theme">
                     <div class="item">
                         <div class="testimonial_content">
-                            <p class="paragraph">Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas as pernatur aut odit aut fugit,
-                                sed beatae vitae dicta ripiscing elit, sed do euismod tempor incidunt. Labore et dolore magna aliqua ut enim ad minim adipiscing elit,
-                                sed do euismod tempor incidunt aut labore.
-                            </p>
-                            <span class="name">Kevin Andrew</span>
+                            <p class="paragraph">I’ve tried sweets from so many places, but nothing beats the taste and quality here. Each bite takes me back to my childhood. Truly a gem!</p>
+                            <span class="name">Rina K.</span>
                             <span class="review">Happy Customer</span>
                             <ul class="list-unstyled mb-0">
                                 <li><i class="fa-solid fa-star"></i></li>
@@ -832,11 +312,8 @@
                     </div>
                     <div class="item">
                         <div class="testimonial_content">
-                            <p class="paragraph">Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas as pernatur aut odit aut fugit,
-                                sed beatae vitae dicta ripiscing elit, sed do euismod tempor incidunt. Labore et dolore magna aliqua ut enim ad minim adipiscing elit,
-                                sed do euismod tempor incidunt aut labore.
-                            </p>
-                            <span class="name">Kevin Andrew</span>
+                            <p class="paragraph">Every time I visit, it’s a new experience. The variety is amazing, and I’m always excited to try something new. You can taste the love and tradition in every sweet!</p>
+                            <span class="name">Vikram P.</span>
                             <span class="review">Happy Customer</span>
                             <ul class="list-unstyled mb-0">
                                 <li><i class="fa-solid fa-star"></i></li>
@@ -849,11 +326,8 @@
                     </div>
                     <div class="item">
                         <div class="testimonial_content">
-                            <p class="paragraph">Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas as pernatur aut odit aut fugit,
-                                sed beatae vitae dicta ripiscing elit, sed do euismod tempor incidunt. Labore et dolore magna aliqua ut enim ad minim adipiscing elit,
-                                sed do euismod tempor incidunt aut labore.
-                            </p>
-                            <span class="name">Kevin Andrew</span>
+                            <p class="paragraph">We always order from here for special occasions. The sweets are always fresh, delicious, and beautifully presented. Highly recommend it to anyone with a sweet tooth!</p>
+                            <span class="name">Nina J.</span>
                             <span class="review">Happy Customer</span>
                             <ul class="list-unstyled mb-0">
                                 <li><i class="fa-solid fa-star"></i></li>
@@ -886,7 +360,7 @@
     </div>
 </section>
 
-<?php 
-    include('../includes/footer.php');
-    include('../includes/script.php');
+<?php
+include('../includes/footer.php');
+include('../includes/script.php');
 ?>
