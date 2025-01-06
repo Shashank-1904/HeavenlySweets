@@ -63,7 +63,7 @@ if ($result) {
             </div>
             <div class="form-group">
                 <label for="product_qty">Product Quantity</label>
-                <input type="number" class="form-control" id="product_qty" name="product_qty" placeholder="Enter Quantity" required>
+                <input type="text" class="form-control" id="product_qty" name="product_qty" placeholder="Enter Quantity" required>
             </div>
             <div class="form-group">
                 <label for="product_price">Product Price</label>

@@ -105,7 +105,7 @@ include('../private/db.php');
                                 <div class="classic-box">
                                     <div class="classic_image_box box1">
                                         <figure class="mb-0">
-                                            <img src="../common_images/product/<?php echo $row['product_image']; ?>" alt="image" class="img-fluid">
+                                            <img src="../common_images/product/<?php echo $row['product_image']; ?>" alt="image" class="img-fluid" style="height:250px;width:400px">
                                         </figure>
                                         <i class="fa-regular fa-heart"></i>
                                     </div>
@@ -114,12 +114,11 @@ include('../private/db.php');
                                             <h6><?php echo $row['product_name']; ?></h6>
                                             <div class="rating">
                                                 <i class="fa-solid fa-star"></i>
-                                                <span>4.9/5</span>
+                                                <span><?php echo $row['product_rating']; ?>/5</span>
                                             </div>
                                         </div>
-                                        <p class="text-size-16"><?php echo $row['product_description']; ?></p>
                                         <div class="price_wrapper position-relative">
-                                            <span class="dollar">Rs. <span class="counter"><?php echo $row['product_price']; ?></span></span>
+                                            <span class="dollar">Rs. <span class="counter"><?php echo $row['product_price']; ?></span> / <?php echo $row['product_qty']; ?></span>
                                             <a href="cart.html"><img src="../assets/images/cart.png" alt="image" class="img-fluid"></a>
                                         </div>
                                     </div>
@@ -147,28 +146,38 @@ include('../private/db.php');
             </div>
         </div>
         <div class="categories_wrapper" data-aos="fade-up">
-            <div class="row">
                 <?php
-                $query = "SELECT * FROM category";
-                $result = mysqli_query($conn, $query);
+                    $count = 0;
+                    $query = "SELECT * FROM category";
+                    $result = mysqli_query($conn, $query);
 
-                while ($row = mysqli_fetch_assoc($result)) {
+                    while ($row = mysqli_fetch_assoc($result)) 
+                    {
+                        if($count % 4 == 0)
+                        {
+                            echo "<div class='row mt-3'>";
+                        }
+                        
+                        ?>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="categories-box">
+                                        <figure class="image mb-0">
+                                            <img src="./../common_images/category/<?php echo $row['catimg'] ?>" alt="image" class="img-fluid" style="height : 350px ; width : 380px">
+                                        </figure>
+                                        <div class="content">
+                                            <h5 class="mb-0"><?php echo $row['catname'] ?></h5>
+                                            <a href="shop1.html"><i class="fa-solid fa-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                            $count++;
+                            if($count % 4 == 0)
+                            {
+                                echo "</div>";
+                            }
+                    }
                 ?>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="categories-box">
-                            <figure class="image mb-0">
-                                <img src="./../common_images/category/<?php echo $row['catimg'] ?>" alt="image" class="img-fluid" style="height : 250px">
-                            </figure>
-                            <div class="content">
-                                <h5 class="mb-0"><?php echo $row['catname'] ?></h5>
-                                <a href="shop1.html"><i class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                <?php
-                }
-                ?>
-            </div>
         </div>
     </div>
 </section>
@@ -185,27 +194,32 @@ include('../private/db.php');
             <img src="../assets/images/special-doted.png" alt="image" class="img-fluid">
         </figure>
         <div class="row">
+            <?php 
+                $query = "SELECT * FROM offer";
+                $result = mysqli_query($conn, $query);
+                $offerrow = mysqli_fetch_assoc($result); 
+            ?>
             <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                 <div class="special_content" data-aos="fade-up">
-                    <h2 class="text-white">Summer Special!</h2>
-                    <p class="text-white">Buy One Sundae, Get One 50% Off!</p>
+                    <h2 class="text-white"><?php echo $offerrow['offerheading']; ?></h2>
+                    <p class="text-white"><?php echo $offerrow['offersubheading']; ?></p>
                     <div class="button">
                         <a href="special-offer.html" class="text-decoration-none all_button get_started">Get This Deal<i class="fa-solid fa-arrow-right"></i></a>
-                        <span class="text-white">Use code: SUMMER50 at checkout.</span>
+                        <span class="text-white">Use code: <?php echo $offerrow['offercode']; ?> at checkout.</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 col-12 text-lg-left text-center">
                 <div class="special_wrapper position-relative" data-aos="zoom-in">
                     <figure class="special-image mb-0">
-                        <img src="../assets/images/special-image.png" alt="image" class="img-fluid">
+                        <img src="./../common_images/offer/<?php echo $offerrow['offerimg']; ?>" alt="image" class="img-fluid" style="width: 500px; height:500px">
                     </figure>
                     <figure class="special-dotedarrow mb-0">
                         <img src="../assets/images/special-dotedarrow.png" alt="image" class="img-fluid">
                     </figure>
                     <div class="circle-text">
                         <div class="content">
-                            <span class="persent"><span class="">50</span>%</span>
+                            <span class="persent"><span class=""><?php echo $offerrow['offerpercentage']; ?></span>%</span>
                             <span class="text">OFF</span>
                         </div>
                     </div>
