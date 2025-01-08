@@ -1,24 +1,24 @@
 
         <!--footer section start-->
         <div class="footer-curve position-relative overflow-hidden">
-            <span class="position-absolute section-curve-wrapper top-0 h-100" data-background="assets/img/shapes/section-curve.png"></span>
+            <span class="position-absolute section-curve-wrapper top-0 h-100" data-background="../assets/img/shapes/section-curve.png"></span>
         </div>
         <footer class="gshop-footer position-relative pt-8 bg-dark z-1 overflow-hidden">
-            <img src="assets/img/shapes/tomato.svg" alt="tomato" class="position-absolute z--1 tomato vector-shape">
-            <img src="assets/img/shapes/pata-lg.svg" alt="pata" class="position-absolute z--1 pata-lg vector-shape">
-            <img src="assets/img/shapes/pata-xs.svg" alt="pata" class="position-absolute z--1 pata-xs vector-shape">
-            <img src="assets/img/shapes/frame-circle.svg" alt="frame" class="position-absolute z--1 frame-circle vector-shape">
-            <img src="assets/img/shapes/leaf.svg" alt="leaf" class="position-absolute z--1 leaf vector-shape">
+            <img src="../assets/img/shapes/tomato.svg" alt="tomato" class="position-absolute z--1 tomato vector-shape">
+            <img src="../assets/img/shapes/pata-lg.svg" alt="pata" class="position-absolute z--1 pata-lg vector-shape">
+            <img src="../assets/img/shapes/pata-xs.svg" alt="pata" class="position-absolute z--1 pata-xs vector-shape">
+            <img src="../assets/img/shapes/frame-circle.svg" alt="frame" class="position-absolute z--1 frame-circle vector-shape">
+            <img src="../assets/img/shapes/leaf.svg" alt="leaf" class="position-absolute z--1 leaf vector-shape">
             <!--shape right -->
-            <img src="assets/img/shapes/leaf.svg" alt="pata" class="position-absolute leaf-2 z--1 vector-shape">
-            <img src="assets/img/shapes/pata-xs.svg" alt="pata" class="position-absolute pata-xs-2 z--1 vector-shape">
-            <img src="assets/img/shapes/tomato-slice.svg" alt="tomato slice" class="position-absolute tomato-slice vector-shape z--1">
-            <img src="assets/img/shapes/tomato-half.svg" alt="tomato" class="position-absolute tomato-half z--1 vector-shape">
+            <img src="../assets/img/shapes/leaf.svg" alt="pata" class="position-absolute leaf-2 z--1 vector-shape">
+            <img src="../assets/img/shapes/pata-xs.svg" alt="pata" class="position-absolute pata-xs-2 z--1 vector-shape">
+            <img src="../assets/img/shapes/tomato-slice.svg" alt="tomato slice" class="position-absolute tomato-slice vector-shape z--1">
+            <img src="../assets/img/shapes/tomato-half.svg" alt="tomato" class="position-absolute tomato-half z--1 vector-shape">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-5 col-lg-6">
                         <div class="gshop_subscribe_form text-center">
-                            <h4 class="text-white gshop-title">Subscribe to the G-Shop <mark class="p-0 position-relative text-secondary bg-transparent">New Arrivals <img src="assets/img/shapes/border-line.svg" alt="border line" class="position-absolute border-line"></mark><br class="d-none d-sm-block">& Other Information.</h4>
+                            <h4 class="text-white gshop-title">Subscribe to the G-Shop <mark class="p-0 position-relative text-secondary bg-transparent">New Arrivals <img src="../assets/img/shapes/border-line.svg" alt="border line" class="position-absolute border-line"></mark><br class="d-none d-sm-block">& Other Information.</h4>
                             <form class="mt-5 d-flex align-items-center bg-white rounded subscribe_form">
                                 <input type="email" class="form-control" placeholder="Enter Email Address">
                                 <button type="submit" class="btn btn-primary flex-shrink-0">Subscribe Now</button>
@@ -93,22 +93,22 @@
                         </div>
                         <div class="col-lg-4 d-none d-lg-block">
                             <div class="logo-wrapper text-center">
-                                <a href="index.html" class="logo"><img src="assets/img/logo-white.png" alt="logo" class="img-fluid"></a>
+                                <a href="index.html" class="logo"><img src="../assets/img/logo-white.png" alt="logo" class="img-fluid"></a>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="footer-payments-info d-flex align-items-center justify-content-lg-end gap-2">
                                 <div class="supported-payment-box rounded-1 bg-dark-light d-inline-flex align-items-center justify-content-center p-2 flex-shrink-0">
-                                    <img src="assets/img/brands/visa.png" alt="visa" class="img-fluid">
+                                    <img src="../assets/img/brands/visa.png" alt="visa" class="img-fluid">
                                 </div>
                                 <div class="supported-payment-box rounded-1 bg-dark-light d-inline-flex align-items-center justify-content-center p-2 flex-shrink-0">
-                                    <img src="assets/img/brands/mastercard.png" alt="visa" class="img-fluid">
+                                    <img src="../assets/img/brands/mastercard.png" alt="visa" class="img-fluid">
                                 </div>
                                 <div class="supported-payment-box rounded-1 bg-dark-light d-inline-flex align-items-center justify-content-center p-2 flex-shrink-0">
-                                    <img src="assets/img/brands/payoneer.png" alt="visa" class="img-fluid">
+                                    <img src="../assets/img/brands/payoneer.png" alt="visa" class="img-fluid">
                                 </div>
                                 <div class="supported-payment-box rounded-1 bg-dark-light d-inline-flex align-items-center justify-content-center p-2 flex-shrink-0">
-                                    <img src="assets/img/brands/paypal.png" alt="visa" class="img-fluid">
+                                    <img src="../assets/img/brands/paypal.png" alt="visa" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -167,13 +167,13 @@
         <div class="offcanvas-left-menu position-fixed">
             <div class="mobile-menu">
                 <button class="offcanvas-close"><i class="fa-solid fa-xmark"></i></button>
-                <a href="#" class="d-inline-block mb-5"><img src="assets/img/logo.png" alt="logo"></a>
+                <a href="#" class="d-inline-block mb-5"><img src="../assets/img/logo.png" alt="logo"></a>
                 <nav class="mobile-menu-wrapper scrollbar">
                     <ul>
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/baby-care.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/baby-care.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Baby Care</span>
                             </a>
@@ -181,7 +181,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/cleaning.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/cleaning.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Cleaning</span>
                             </a>
@@ -189,7 +189,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/bakery-biscuits.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/bakery-biscuits.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Bakery & Biscuits</span>
                             </a>
@@ -197,7 +197,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/coffee-drinks.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/coffee-drinks.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Coffee & Drinks</span>
                             </a>
@@ -205,7 +205,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/beauty-health.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/beauty-health.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Beauty & Health</span>
                             </a>
@@ -213,7 +213,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/breakfast.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/breakfast.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Breakfast</span>
                             </a>
@@ -221,7 +221,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/cold-drinks.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/cold-drinks.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Cold Drinks</span>
                             </a>
@@ -229,7 +229,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/fresh-fruits.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/fresh-fruits.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Fresh Fruits</span>
                             </a>
@@ -237,7 +237,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/honey.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/honey.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Honey</span>
                             </a>
@@ -245,7 +245,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/fresh-organic.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/fresh-organic.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Fresh & Organic</span>
                             </a>
@@ -253,7 +253,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/jam-jelly.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/jam-jelly.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Jam & Jelly</span>
                             </a>
@@ -261,7 +261,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/sports-fitness.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/sports-fitness.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Sports & Fitness</span>
                             </a>
@@ -269,7 +269,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/sea-fish.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/sea-fish.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Sea Fish</span>
                             </a>
@@ -277,7 +277,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/pet-care.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/pet-care.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Pet Care</span>
                             </a>
@@ -285,7 +285,7 @@
                         <li>
                             <a href="shop-grid.html" class="d-flex align-items-center">
                                 <div class="me-2 avatar-icon">
-                                    <img src="assets/img/category/meat.png" alt="vegetables" class="w-100 h-100 rounded-circle">
+                                    <img src="../assets/img/category/meat.png" alt="vegetables" class="w-100 h-100 rounded-circle">
                                 </div>
                                 <span>Meat</span>
                             </a>
@@ -309,32 +309,32 @@
                                         <div class="quickview-product-slider swiper">
                                             <div class="swiper-wrapper">
                                                 <div class="swiper-slide text-center">
-                                                    <img src="assets/img/products/p-lg-1.png" alt="jam" class="img-fluid">
+                                                    <img src="../assets/img/products/p-lg-1.png" alt="jam" class="img-fluid">
                                                 </div>
                                                 <div class="swiper-slide text-center">
-                                                    <img src="assets/img/products/p-lg-2.png" alt="jam" class="img-fluid">
+                                                    <img src="../assets/img/products/p-lg-2.png" alt="jam" class="img-fluid">
                                                 </div>
                                                 <div class="swiper-slide text-center">
-                                                    <img src="assets/img/products/p-lg-3.png" alt="jam" class="img-fluid">
+                                                    <img src="../assets/img/products/p-lg-3.png" alt="jam" class="img-fluid">
                                                 </div>
                                                 <div class="swiper-slide text-center">
-                                                    <img src="assets/img/products/p-lg-4.png" alt="jam" class="img-fluid">
+                                                    <img src="../assets/img/products/p-lg-4.png" alt="jam" class="img-fluid">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="product-thumbnail-slider swiper mt-80">
                                             <div class="swiper-wrapper">
                                                 <div class="swiper-slide product-thumb-single rounded-2 d-flex align-items-center justify-content-center">
-                                                    <img src="assets/img/products/thumb-sm-1.png" alt="jam" class="img-fluid">
+                                                    <img src="../assets/img/products/thumb-sm-1.png" alt="jam" class="img-fluid">
                                                 </div>
                                                 <div class="swiper-slide product-thumb-single rounded-2 d-flex align-items-center justify-content-center">
-                                                    <img src="assets/img/products/thumb-sm-2.png" alt="jam" class="img-fluid">
+                                                    <img src="../assets/img/products/thumb-sm-2.png" alt="jam" class="img-fluid">
                                                 </div>
                                                 <div class="swiper-slide product-thumb-single rounded-2 d-flex align-items-center justify-content-center">
-                                                    <img src="assets/img/products/thumb-sm-3.png" alt="jam" class="img-fluid">
+                                                    <img src="../assets/img/products/thumb-sm-3.png" alt="jam" class="img-fluid">
                                                 </div>
                                                 <div class="swiper-slide product-thumb-single rounded-2 d-flex align-items-center justify-content-center">
-                                                    <img src="assets/img/products/thumb-sm-4.png" alt="jam" class="img-fluid">
+                                                    <img src="../assets/img/products/thumb-sm-4.png" alt="jam" class="img-fluid">
                                                 </div>
                                             </div>
                                         </div>
@@ -417,20 +417,20 @@
     </button>
     <!--scroll bottom to top button end-->
     <!--build:js-->
-    <script src="assets/js/vendors/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/vendors/jquery-ui.min.js"></script>
-    <script src="assets/js/vendors/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/vendors/swiper-bundle.min.js"></script>
-    <script src="assets/js/vendors/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/vendors/simplebar.min.js"></script>
-    <script src="assets/js/vendors/parallax-scroll.js"></script>
-    <script src="assets/js/vendors/isotop.pkgd.min.js"></script>
-    <script src="assets/js/vendors/countdown.min.js"></script>
-    <script src="assets/js/vendors/range-slider.js"></script>
-    <script src="assets/js/vendors/waypoints.js"></script>
-    <script src="assets/js/vendors/counterup.min.js"></script>
-    <script src="assets/js/vendors/typer.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="../assets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/vendors/jquery-ui.min.js"></script>
+    <script src="../assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/vendors/swiper-bundle.min.js"></script>
+    <script src="../assets/js/vendors/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/vendors/simplebar.min.js"></script>
+    <script src="../assets/js/vendors/parallax-scroll.js"></script>
+    <script src="../assets/js/vendors/isotop.pkgd.min.js"></script>
+    <script src="../assets/js/vendors/countdown.min.js"></script>
+    <script src="../assets/js/vendors/range-slider.js"></script>
+    <script src="../assets/js/vendors/waypoints.js"></script>
+    <script src="../assets/js/vendors/counterup.min.js"></script>
+    <script src="../assets/js/vendors/typer.js"></script>
+    <script src="../assets/js/app.js"></script>
     <!--endbuild-->
 </body>
 
