@@ -105,8 +105,24 @@ if (isset($_SESSION['useremail'])) {
                             </div>
                             <div class="row g-4 mt-4">
                                 <div class="col-sm-6">
-                                    <button type="submit" name="regtbn" class="btn btn-primary w-100">Sign Up</button>
+                                    <button type="submit" name="regbtn" class="btn btn-primary w-100">Sign Up</button>
                                 </div>
+
+                                <?php
+                                if (isset($_SESSION['message'])) {
+                                    // Retrieve the message and type
+                                    $messageType = $_SESSION['message']['type']; // 'success' or 'error'
+                                    $messageText = $_SESSION['message']['text'];
+                                
+                                    // Display the alert
+                                    echo "<script>
+                                        alert('$messageText');
+                                    </script>";
+                                
+                                    // Unset the session message to prevent repeated alerts
+                                    unset($_SESSION['message']);
+                                }
+                                ?>
                             </div>
                             <p class="mb-0 fs-xs mt-4">Already have an Account? <a href="./login.php">Sign In</a>
                             </p>
