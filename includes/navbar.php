@@ -95,7 +95,7 @@
                                         <li><a href="my-account.html">My Account</a></li>
                                         <li><a href="cart.php">Cart</a></li>
                                         <li><a href="wishlist.html">Wishlist</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="checkout.php">Checkout</a></li>
                                         <li><a href="login.html">Login</a></li>
                                         <li><a href="signup.html">Sign Up</a></li>
                                         <li><a href="404.html">404 Page</a></li>
@@ -190,7 +190,7 @@
                                         <h6 class="mb-0">Subtotal:</h6>
                                         <span class="fw-semibold text-primary">$1,247.00</span>
                                     </div>
-                                    <a href="checkout.html" class="btn btn-primary btn-md d-block mt-4"><span
+                                    <a href="checkout.php" class="btn btn-primary btn-md d-block mt-4"><span
                                             class="me-2"><i class="fa-solid fa-wallet"></i></span>Checkout</a>
                                 </div>
                             </div>
