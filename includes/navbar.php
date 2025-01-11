@@ -93,7 +93,7 @@
                                                 class="fa-solid fa-angle-down"></i></span></a>
                                     <ul class="submenu-double-line">
                                         <li><a href="my-account.html">My Account</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
+                                        <li><a href="cart.php">Cart</a></li>
                                         <li><a href="wishlist.html">Wishlist</a></li>
                                         <li><a href="checkout.html">Checkout</a></li>
                                         <li><a href="login.html">Login</a></li>
@@ -134,7 +134,7 @@
                                         <ul class="user-menu">
                                             <li><a href="my-account.html"><span class="me-2"><i
                                                             class="fa-solid fa-user"></i></span>My Account</a></li>
-                                            <li><a href="cart.html"><span class="me-2"><i
+                                            <li><a href="cart.php"><span class="me-2"><i
                                                             class="fa-solid fa-tags"></i></span>My Cart</a></li>
                                             <li><a href="wishlist.html"><span class="me-2"><i
                                                             class="fa-solid fa-heart"></i></span>My Wishlist</a></li>
@@ -307,7 +307,7 @@
                         <li><a href="services.html">Services</a></li>
                         <li><a href="service-details.html">Service Details</a></li>
                         <li><a href="my-account.html">My Account</a></li>
-                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="cart.php">Cart</a></li>
                         <li><a href="wishlist.html">Wishlist</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
                         <li><a href="invoice.html">Invoice</a></li>
