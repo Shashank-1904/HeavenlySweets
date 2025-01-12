@@ -99,20 +99,7 @@ if(isset($_SESSION['userid'])){
                                     <a href="about.php">About Us<span class="ms-1 fs-xs float-end"></a>
                                 </li>
                                 <li class="">
-                                    <a href="index.php">Contact Us<span class="ms-1 fs-xs float-end"></a>
-                                </li>
-                                <li class="has-submenu">
-                                    <a href="javascript:void(0)">Pages<span class="ms-1 fs-xs float-end"><i
-                                                class="fa-solid fa-angle-down"></i></span></a>
-                                    <ul class="submenu-double-line">
-                                        <li><a href="my-account.html">My Account</a></li>
-                                        <li><a href="cart.php">Cart</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                        <li><a href="checkout.php">Checkout</a></li>
-                                        <li><a href="login.html">Login</a></li>
-                                        <li><a href="signup.html">Sign Up</a></li>
-                                        <li><a href="404.html">404 Page</a></li>
-                                    </ul>
+                                    <a href="contact.php">Contact Us<span class="ms-1 fs-xs float-end"></a>
                                 </li>
                             </ul>
                         </nav>
