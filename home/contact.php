@@ -68,52 +68,52 @@ include('../includes/navbar.php');
                             </div>
                         </div>
                         <div class="col-xl-7">
-                            <form class="contact-form ps-5 ps-xl-4 py-6 pe-6" action="#">
+                            <form class="contact-form ps-5 ps-xl-4 py-6 pe-6" action="../handler/add_contact.php" method="post">
                                 <h3 class="mb-6">Need Help? Send Message</h3>
                                 <div class="row g-4">
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>First Name</label>
-                                            <input type="text" placeholder="Saiful">
+                                            <input type="text" placeholder="Saiful" name="fname">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>Last Name</label>
-                                            <input type="text" placeholder="Talukdar">
+                                            <input type="text" placeholder="Talukdar" name="lname">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>Email</label>
-                                            <input type="email" placeholder="You email">
+                                            <input type="email" placeholder="You email" name="email">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>Phone</label>
-                                            <input type="tel" placeholder="Your phone">
+                                            <input type="tel" placeholder="Your phone" name="phone">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="checkbox-fields d-flex align-items-center gap-3 flex-wrap my-2">
                                             <div class="single-field d-inline-flex align-items-center gap-2">
                                                 <div class="theme-checkbox">
-                                                    <input type="checkbox" id="delivery">
+                                                    <input type="Radio" id="delivery" name="reason" value="Delivery Problem">
                                                     <span class="checkbox-field"><i class="fas fa-check"></i></span>
                                                 </div>
                                                 <label for="delivery" class="text-dark fw-semibold">Delivery Problem</label>
                                             </div>
                                             <div class="single-field d-inline-flex align-items-center gap-2">
                                                 <div class="theme-checkbox">
-                                                    <input type="checkbox" id="service">
+                                                    <input type="Radio" id="service" name="reason" value="Customer Service">
                                                     <span class="checkbox-field"><i class="fas fa-check"></i></span>
                                                 </div>
                                                 <label for="service" class="text-dark fw-semibold">Customer Service</label>
                                             </div>
                                             <div class="single-field d-inline-flex align-items-center gap-2">
                                                 <div class="theme-checkbox">
-                                                    <input type="checkbox" id="others">
+                                                    <input type="Radio" id="others" name="reason" value="Others Service">
                                                     <span class="checkbox-field"><i class="fas fa-check"></i></span>
                                                 </div>
                                                 <label for="others" class="text-dark fw-semibold">Others Service</label>
@@ -123,11 +123,11 @@ include('../includes/navbar.php');
                                     <div class="col-12">
                                         <div class="label-input-field">
                                             <label>Messages</label>
-                                            <textarea placeholder="Write your message" rows="6"></textarea>
+                                            <textarea placeholder="Write your message" rows="6" name="message"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-md rounded-1 mt-6">Send Message</button>
+                                <button type="submit" name="messagebtn" class="btn btn-primary btn-md rounded-1 mt-6">Send Message</button>
                             </form>
                         </div>
                     </div>
