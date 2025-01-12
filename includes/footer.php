@@ -15,7 +15,7 @@
             <img src="../assets/img/shapes/tomato-slice.svg" alt="tomato slice" class="position-absolute tomato-slice vector-shape z--1">
             <img src="../assets/img/shapes/tomato-half.svg" alt="tomato" class="position-absolute tomato-half z--1 vector-shape">
             <div class="container">
-                <div class="row justify-content-center">
+                <!-- <div class="row justify-content-center">
                     <div class="col-xl-5 col-lg-6">
                         <div class="gshop_subscribe_form text-center">
                             <h4 class="text-white gshop-title">Subscribe to the G-Shop <mark class="p-0 position-relative text-secondary bg-transparent">New Arrivals <img src="../assets/img/shapes/border-line.svg" alt="border line" class="position-absolute border-line"></mark><br class="d-none d-sm-block">& Other Information.</h4>
@@ -25,49 +25,27 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <span class="gradient-spacer my-8 d-block"></span>
                 <div class="row g-5">
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
                         <div class="footer-widget">
-                            <h5 class="text-white mb-4">Category</h5>
-                            <ul class="footer-nav">
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">Location & Working Hours</a></li>
-                                <li><a href="#">Our Guarantee</a></li>
-                                <li><a href="#">Track Your Order</a></li>
-                                <li><a href="#">Help Page</a></li>
-                            </ul>
+                            <h5 class="text-white mb-4">About HeavenlySweets</h5>
+                            <p>At **HeavenlySweets**, we specialize in creating delicious, handcrafted sweets that bring joy to every occasion. Our commitment to quality, freshness, and authenticity makes us your trusted destination for all things sweet.</p>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
                         <div class="footer-widget">
                             <h5 class="text-white mb-4">Quick Links</h5>
                             <ul class="footer-nav">
-                                <li><a href="#">Your Account</a></li>
-                                <li><a href="#">Returns & Exchanges</a></li>
-                                <li><a href="#">Return Center</a></li>
-                                <li><a href="#">Purchase History</a></li>
-                                <li><a href="#">Latest News Blog</a></li>
-                                <li><a href="#">Shipping & Delivery</a></li>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Products</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="footer-widget">
-                            <h5 class="text-white mb-4">Contact Us</h5>
-                            <ul class="footer-nav">
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">Location & Working Hours</a></li>
-                                <li><a href="#">Our Guarantee</a></li>
-                                <li><a href="#">Track Your Order</a></li>
-                                <li><a href="#">Help Page</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
                         <div class="footer-widget">
                             <h5 class="text-white mb-4">Customer Support</h5>
                             <ul class="footer-nav">
