@@ -7,8 +7,9 @@ if(isset($_SESSION['userid'])){
     {
         $product_id = mysqli_real_escape_string($conn, $_POST['product_id']);
         $product_price = mysqli_real_escape_string($conn, $_POST['product_price']);
+        $product_qty = mysqli_real_escape_string($conn, $_POST['product_qty']);
         $user_id = $_SESSION['userid'];
-        $product_qty = 1;
+        // $product_qty = 1;
     
         
             $query = "INSERT INTO productCart (user_id,product_id, productqty, product_price) VALUES ('$user_id','$product_id', '$product_qty', '$product_price')";

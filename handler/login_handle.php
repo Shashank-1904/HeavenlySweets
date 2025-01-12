@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logbtn']))
     }
     else
     {
-        $_SESSION['message'] = ['type' => 'errorr', 'text' => 'Email or Password is Incorrect'];
+        $_SESSION['message'] = ['type' => 'error', 'text' => 'Email or Password is Incorrect'];
         echo "<script> window.location.replace('../Home/login.php'); </script>";
         exit;
     }

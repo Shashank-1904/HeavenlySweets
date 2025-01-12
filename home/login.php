@@ -35,6 +35,13 @@ if (isset($_SESSION['useremail'])) {
     <!--main content wrapper start-->
     <div class="main-wrapper">
 
+        <?php if (isset($_SESSION['message'])): ?>
+            <div class="toast <?php echo $_SESSION['message']['type']; ?>" id="toast">
+                <span class="toast-text"><?php echo $_SESSION['message']['text']; ?></span>
+                <button class="toast-close" id="closeToast">×</button>
+            </div>
+            <?php //unset($_SESSION['message']); // Clear the session message ?>
+        <?php endif;?>
         <!--login section start-->
         <section class="login-section py-5">
             <div class="container">

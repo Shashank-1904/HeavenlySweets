@@ -7,32 +7,50 @@ if (isset($_SESSION['userid'])) {
         $user_id = $_SESSION['userid'];
 
         if (isset($_POST['updatebtn'])) {
+            // Sanitize the inputs
             $product_id = mysqli_real_escape_string($conn, $_POST['product_id']);
-            $product_qty = mysqli_real_escape_string($conn, $_POST['qtyvalue']);
+            $product_qty = mysqli_real_escape_string($conn, $_POST['product_qty']);
+            $product_qty_unit = mysqli_real_escape_string($conn, $_POST['product_qty_unit']);
 
-            $query = "UPDATE productCart SET productqty = '$product_qty' WHERE user_id = '$user_id' AND product_id = '$product_id'";
-            echo$query;
-            // if (mysqli_query($conn, $query)) {
-            //     $_SESSION['message'] = ['type' => 'success', 'text' => 'Cart updated successfully'];
-            // } else {
-            //     $_SESSION['message'] = ['type' => 'error', 'text' => 'Failed to update cart'];
-            // }
-        } elseif (isset($_POST['deletebtn'])) {
+            if ($product_qty == floor($product_qty)) {
+                $product_qty = intval($product_qty); // Convert to integer if it's a whole number
+            }
+
+            $pqty = $product_qty . $product_qty_unit;
+
+            $query = "UPDATE productCart SET productqty = '$pqty' WHERE user_id = '$user_id' AND product_id = '$product_id'";
+            echo $query;
+            if (mysqli_query($conn, $query)) 
+            {
+                $_SESSION['message'] = ['type' => 'success', 'text' => 'Cart updated successfully'];
+            }
+            else
+            {
+                $_SESSION['message'] = ['type' => 'error', 'text' => 'Failed to update cart'];
+            }
+            header("Location: ../home/cart.php");
+            exit;
+        }
+
+        if (isset($_POST['deletebtn'])) {
+            // Sanitize the inputs
             $product_id = mysqli_real_escape_string($conn, $_POST['product_id']);
 
             $query = "DELETE FROM productCart WHERE user_id = '$user_id' AND product_id = '$product_id'";
-            if (mysqli_query($conn, $query)) {
-                $_SESSION['message'] = ['type' => 'success', 'text' => 'Product removed from cart'];
-            } else {
-                $_SESSION['message'] = ['type' => 'error', 'text' => 'Failed to remove product'];
+            if (mysqli_query($conn, $query)) 
+            {
+                $_SESSION['message'] = ['type' => 'success', 'text' => 'Cart updated successfully'];
             }
+            else
+            {
+                $_SESSION['message'] = ['type' => 'error', 'text' => 'Failed to update cart'];
+            }
+            header("Location: ../home/cart.php");
+            exit;
         }
-
-        // echo "<script> window.location.replace('../Home/index.php'); </script>";
-        // exit;
     }
 } else {
     $_SESSION['message'] = ['type' => 'error', 'text' => 'Login not found'];
-    echo "<script> window.location.replace('../Home/index.php'); </script>";
+    header("Location: ../Home/index.php");
     exit;
 }
