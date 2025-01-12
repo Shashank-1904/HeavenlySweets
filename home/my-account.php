@@ -3,6 +3,59 @@ $pageName = "My Account";
 include('../includes/header.php');
 include('../includes/navbar.php');
 include('../private/db.php');
+
+if(isset($_SESSION['userid'])){
+    $user_id = $_SESSION['userid'];
+
+    // fetch user detail start
+    $userquery = "SELECT * FROM users WHERE useruid = '$user_id'";
+    $userresult = mysqli_query($conn, $userquery);
+    if ($userresult) {
+        $user = mysqli_fetch_assoc($userresult);
+    }
+    // fetch user detail end
+    // fetch address start
+    $addressquery = "SELECT * FROM shippingaddress WHERE user_id = '$user_id'";
+    $addressresult = mysqli_query($conn, $addressquery);
+    if ($userresult) {
+        $address = mysqli_fetch_assoc($addressresult);
+    }
+
+    // fetch address end
+
+    // fetch order start
+    $orderquery = "SELECT * FROM orders WHERE user_id = '$user_id'";
+    $orderresult = mysqli_query($conn, $orderquery);
+    if ($orderresult) {
+        $orders = mysqli_fetch_all($orderresult,MYSQLI_ASSOC);
+        $totalorder = $orderresult->num_rows;
+    }
+
+    // fetch order end
+
+    // fetch order-image start
+    $orderimgquery = "SELECT p.product_image FROM product p JOIN productCart pc ON p.product_id = pc.product_id JOIN orders o ON pc.orderReference = o.referenceID WHERE o.user_id = '$user_id'";
+    $orderimgresult = mysqli_query($conn, $orderimgquery);
+    if ($orderresult) {
+        $imgorders = mysqli_fetch_all($orderimgresult,MYSQLI_ASSOC);
+    }
+
+    // fetch order-image end
+
+    // fetch pending order start
+    $pendingorderquery = "SELECT * FROM orders WHERE user_id = '$user_id' AND orderstatus ='Pending'";
+    $pendingorderresult = mysqli_query($conn, $pendingorderquery);
+    if ($pendingorderresult) {
+        $pendingorders = mysqli_fetch_all($pendingorderresult,MYSQLI_ASSOC);
+        $totalpendingorder = $pendingorderresult->num_rows;
+    }
+
+    // fetch pending order end
+
+
+    
+}
+
 ?>
 <!--my account section-->
 <section class="my-account pt-6 pb-120">
@@ -12,19 +65,19 @@ include('../private/db.php');
                 <img src="../assets/img/authors/avatar.jpg" alt="avatar" class="img-fluid" />
             </div>
             <div class="profile-inf-right">
-                <h4 class="mb-2">Fethawi Tesfalem</h4>
+                <h4 class="mb-2"><?=$user['userfname']," ",$user['userlname']?></h4>
                 <div class="info-meta d-flex align-items-center gap-2 gap-md-4 fs-xs flex-wrap">
                     <span>
                         <i class="fa-solid fa-location-pin me-2"></i>
-                        Ghunshe, Muksudpur Dhaka - Gopalganj
+                        <?= $address['aptno'],",",$address['address']," - ",$address['zipcode']?>
                     </span>
                     <span>
                         <i class="fa-solid fa-phone me-2"></i>
-                        +880 123456879
+                        +91 <?= $user['userphone']?>
                     </span>
                     <span>
                         <i class="fa-solid fa-envelope me-2"></i>
-                        saiful@gshop.com
+                        <?= $user['useremail']?>
                     </span>
                 </div>
                 <div class="profile-achievements d-flex align-items-center flex-wrap mt-4">
@@ -46,7 +99,7 @@ include('../private/db.php');
                             </svg>
                         </span>
                         <div>
-                            <h4 class="mb-1">4k+</h4>
+                            <h4 class="mb-1"><?= $totalorder?></h4>
                             <span>Total Order</span>
                         </div>
                     </div>
@@ -74,7 +127,7 @@ include('../private/db.php');
                             </svg>
                         </span>
                         <div>
-                            <h4 class="mb-1">10+</h4>
+                            <h4 class="mb-1"><?=$totalpendingorder?></h4>
                             <span>Order Processing</span>
                         </div>
                     </div>
@@ -118,7 +171,7 @@ include('../private/db.php');
                             </svg>
                         </span>
                         <div>
-                            <h4 class="mb-1">3.5k+</h4>
+                            <h4 class="mb-1"><?=$totalorder-$totalpendingorder?></h4>
                             <span>Total Delivered</span>
                         </div>
                     </div>
@@ -143,7 +196,7 @@ include('../private/db.php');
                             </svg>
                         </span>
                         <div>
-                            <h4 class="mb-1">25+</h4>
+                            <h4 class="mb-1"><?=$totalpendingorder?></h4>
                             <span>Pending Orders</span>
                         </div>
                     </div>
@@ -322,11 +375,11 @@ include('../private/db.php');
                                             Default Shipping Address
                                         </p>
                                         <div class="address">
-                                            <p class="text-dark fw-bold mb-1">Saiful Talukdar</p>
+                                            <p class="text-dark fw-bold mb-1"><?= $address['fname']," ",$address['lname']?></p>
                                             <p class="mb-0">
-                                                Ghunshe, Muksudpur Dhaka - Gopalganj.
+                                                <?= $address['aptno'],",",$address['address']," - ",$address['zipcode']?>
                                                 <br />
-                                                (+880) 1633082302
+                                                +91 <?= $user['userphone']?>
                                             </p>
                                         </div>
                                     </div>
@@ -337,11 +390,11 @@ include('../private/db.php');
                                             Default Billing Address
                                         </p>
                                         <div class="address">
-                                            <p class="text-dark fw-bold mb-1">Saiful Talukdar</p>
+                                            <p class="text-dark fw-bold mb-1"><?= $address['fname']," ",$address['lname']?></p>
                                             <p class="mb-0">
-                                                Ghunshe, Muksudpur Dhaka - Gopalganj.
+                                            <?= $address['aptno'],",",$address['address']," - ",$address['zipcode']?>
                                                 <br />
-                                                (+880) 1633082302
+                                                +91 <?= $user['userphone']?>
                                             </p>
                                         </div>
                                     </div>
@@ -362,132 +415,41 @@ include('../private/db.php');
                                         <th>Total</th>
                                         <th class="text-center">Action</th>
                                     </tr>
+
+                                    <?php
+                                        foreach($orders as $order){
+                                            // Extract the date part (first 8 characters)
+                                            $rawDate = substr($order['referenceID'], 0, 8);
+
+                                            // Reformat to DD/MM/YYYY
+                                            $day = substr($rawDate, 6, 2);
+                                            $month = substr($rawDate, 4, 2);
+                                            $year = substr($rawDate, 0, 4);
+                                            $formattedDate = "$day/$month/$year";
+
+                                    ?>
+
                                     <tr>
-                                        <td>635981586200289</td>
-                                        <td>03/12/2022</td>
-                                        <td>COD</td>
+                                        <td><?= $order['referenceID']?></td>
+                                        <td><?=$formattedDate ?></td>
+                                        <td><?= $order['payment_type']?></td>
                                         <td class="thumbnail">
                                             <img src="../assets/img/products/cauliflower-xs.png" alt="product" />
                                         </td>
-                                        <td class="text-secondary">$105.60</td>
+                                        <td class="text-secondary">₹<?= $order['total_price']?></td>
                                         <td class="text-center">
                                             <a href="#" class="view-invoice fs-xs">
                                                 <i class="fas fa-eye"></i>
                                             </a>
+                                        
+
+
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>635981586200289</td>
-                                        <td>03/12/2022</td>
-                                        <td>COD</td>
-                                        <td class="thumbnail">
-                                            <img src="../assets/img/products/cauliflower-xs.png" alt="product" />
-                                        </td>
-                                        <td class="text-secondary">$105.60</td>
-                                        <td class="text-center">
-                                            <a href="#" class="view-invoice fs-xs">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>635981586200289</td>
-                                        <td>03/12/2022</td>
-                                        <td>COD</td>
-                                        <td class="thumbnail">
-                                            <img src="../assets/img/products/cauliflower-xs.png" alt="product" />
-                                        </td>
-                                        <td class="text-secondary">$105.60</td>
-                                        <td class="text-center">
-                                            <a href="#" class="view-invoice fs-xs">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>635981586200289</td>
-                                        <td>03/12/2022</td>
-                                        <td>COD</td>
-                                        <td class="thumbnail">
-                                            <img src="../assets/img/products/cauliflower-xs.png" alt="product" />
-                                        </td>
-                                        <td class="text-secondary">$105.60</td>
-                                        <td class="text-center">
-                                            <a href="#" class="view-invoice fs-xs">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>635981586200289</td>
-                                        <td>03/12/2022</td>
-                                        <td>COD</td>
-                                        <td class="thumbnail">
-                                            <img src="../assets/img/products/cauliflower-xs.png" alt="product" />
-                                        </td>
-                                        <td class="text-secondary">$105.60</td>
-                                        <td class="text-center">
-                                            <a href="#" class="view-invoice fs-xs">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>635981586200289</td>
-                                        <td>03/12/2022</td>
-                                        <td>COD</td>
-                                        <td class="thumbnail">
-                                            <img src="../assets/img/products/cauliflower-xs.png" alt="product" />
-                                        </td>
-                                        <td class="text-secondary">$105.60</td>
-                                        <td class="text-center">
-                                            <a href="#" class="view-invoice fs-xs">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>635981586200289</td>
-                                        <td>03/12/2022</td>
-                                        <td>COD</td>
-                                        <td class="thumbnail">
-                                            <img src="../assets/img/products/cauliflower-xs.png" alt="product" />
-                                        </td>
-                                        <td class="text-secondary">$105.60</td>
-                                        <td class="text-center">
-                                            <a href="#" class="view-invoice fs-xs">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>635981586200289</td>
-                                        <td>03/12/2022</td>
-                                        <td>COD</td>
-                                        <td class="thumbnail">
-                                            <img src="../assets/img/products/cauliflower-xs.png" alt="product" />
-                                        </td>
-                                        <td class="text-secondary">$105.60</td>
-                                        <td class="text-center">
-                                            <a href="#" class="view-invoice fs-xs">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>635981586200289</td>
-                                        <td>03/12/2022</td>
-                                        <td>COD</td>
-                                        <td class="thumbnail">
-                                            <img src="../assets/img/products/cauliflower-xs.png" alt="product" />
-                                        </td>
-                                        <td class="text-secondary">$105.60</td>
-                                        <td class="text-center">
-                                            <a href="#" class="view-invoice fs-xs">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                        }
+                                    ?>
+
                                 </table>
                             </div>
                         </div>
@@ -505,11 +467,11 @@ include('../private/db.php');
                                             Default Shipping Address
                                         </p>
                                         <div class="address">
-                                            <p class="text-dark fw-bold mb-1">Saiful Talukdar</p>
+                                            <p class="text-dark fw-bold mb-1"><?= $address['fname']," ",$address['lname']?></p>
                                             <p class="mb-0">
-                                                Ghunshe, Muksudpur Dhaka - Gopalganj.
+                                            <?= $address['aptno'],",",$address['address']," - ",$address['zipcode']?>
                                                 <br />
-                                                (+880) 1633082302
+                                                +91 <?= $user['userphone']?>
                                             </p>
                                         </div>
                                     </div>
@@ -520,11 +482,11 @@ include('../private/db.php');
                                             Default Billing Address
                                         </p>
                                         <div class="address">
-                                            <p class="text-dark fw-bold mb-1">Saiful Talukdar</p>
+                                            <p class="text-dark fw-bold mb-1"><?= $address['fname']," ",$address['lname']?></p>
                                             <p class="mb-0">
-                                                Ghunshe, Muksudpur Dhaka - Gopalganj.
+                                                <?= $address['aptno'],",",$address['address']," - ",$address['zipcode']?>
                                                 <br />
-                                                (+880) 1633082302
+                                                +91 <?= $user['userphone']?>
                                             </p>
                                         </div>
                                     </div>
@@ -535,7 +497,7 @@ include('../private/db.php');
                     <div class="tab-pane fade" id="update-profile">
                         <div class="update-profile bg-white py-5 px-4">
                             <h6 class="mb-4">Update Profile</h6>
-                            <form class="profile-form">
+                            <form class="profile-form" method="post" action="../handler/profile_update.php">
                                 <div class="file-upload text-center rounded-3 mb-5">
                                     <input type="file" name="dp" />
                                     <img src="../assets/img/icons/image.svg" alt="dp" class="img-fluid" />
@@ -551,25 +513,25 @@ include('../private/db.php');
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>First Name</label>
-                                            <input type="text" placeholder="Gene J." />
+                                            <input type="text" placeholder="Gene J." name="fname" value="<?= $user['userfname']?>"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>Last Name</label>
-                                            <input type="text" placeholder="Larose" />
+                                            <input type="text" placeholder="Larose" name="lname" value="<?= $user['userlname']?>"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>Phone/Mobile</label>
-                                            <input type="tel" />
+                                            <input type="tel" / name="phone" value="<?= $user['userphone']?>">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>Email Address</label>
-                                            <input type="email" placeholder="themetags@gmail.com" />
+                                            <input type="email" placeholder="themetags@gmail.com" name="email" value="<?= $user['useremail']?>"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -585,41 +547,41 @@ include('../private/db.php');
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-6">
+                                <button type="submit" name="profileupdatebtn" class="btn btn-primary mt-6">
                                     Update Profile
                                 </button>
                             </form>
                         </div>
                         <div class="change-password bg-white py-5 px-4 mt-4 rounded">
                             <h6 class="mb-4">Change Password</h6>
-                            <form class="password-reset-form">
+                            <form class="password-reset-form" action="../handler/change_passwrod.php" method="post">
                                 <div class="row g-4">
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>Email Address</label>
-                                            <input type="email" placeholder="themetags@gmail.com" />
+                                            <input type="email" name="email" placeholder="themetags@gmail.com" />
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>Current Password</label>
-                                            <input type="password" placeholder="Current password" />
+                                            <input type="password" name="currpass" placeholder="Current password" />
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>New Password</label>
-                                            <input type="password" placeholder="New password" />
+                                            <input type="password" name="newpass" placeholder="New password" />
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>Re-type Password</label>
-                                            <input type="password" placeholder="Confirm password" />
+                                            <input type="password" name="cnfpass" placeholder="Confirm password" />
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-6">
+                                <button type="submit" name="changepasswordbtn" class="btn btn-primary mt-6">
                                     Change Password
                                 </button>
                             </form>
@@ -631,9 +593,10 @@ include('../private/db.php');
                             <h6 class="mb-4">Order Tracking</h6>
                             <ol id="progress-bar">
                                 <li class="fs-xs tt-step tt-step-done">Pending</li>
-                                <li class="fs-xs tt-step tt-step-done">Processing</li>
-                                <li class="fs-xs tt-step active">On the Way</li>
+                                <li class="fs-xs tt-step active">Processing</li>
+                                <li class="fs-xs tt-step ">On the Way</li>
                                 <li class="fs-xs tt-step">Delivered</li>
+                            </ol>
                             </ol>
                             <div class="table-responsive-md mt-5">
                                 <table class="table table-bordered fs-xs">
