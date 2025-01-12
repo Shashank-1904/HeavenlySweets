@@ -159,7 +159,8 @@ else{
                 class="position-absolute z--1 garlic vector-shape">
             <img src="../assets/img/shapes/roll-1.png" alt="roll" class="position-absolute z--1 roll vector-shape">
             <img src="../assets/img/shapes/roll-2.png" alt="roll" class="position-absolute z--1 roll-2 vector-shape">
-            <img src="../assets/img/shapes/pata-xs.svg" alt="roll" class="position-absolute z--1 pata-xs-2 vector-shape">
+            <img src="../assets/img/shapes/pata-xs.svg" alt="roll"
+                class="position-absolute z--1 pata-xs-2 vector-shape">
             <img src="../assets/img/shapes/tomato-half.svg" alt="tomato"
                 class="position-absolute z--1 tomato-half vector-shape">
             <img src="../assets/img/shapes/tomato-slice.svg" alt="tomato"
@@ -203,90 +204,85 @@ else{
                                 class="fa-solid fa-trash-can"></i></span>Delete</a>
                 </div>
                 <div class="rounded-2 overflow-hidden">
-                    <table class="cart-table w-100 mt-4 bg-white">
-                        <thead>
-                            <th>Image</th>
-                            <th>Product Name</th>
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th>Price</th>
-                        </thead>
-                        <tbody>
-                            <?php
-                           
-                                foreach($products as $product){
 
-                                
-                            ?>
+                    <form action="../handler/update_cart.php" method="post">
+                        <table class="cart-table w-100 mt-4 bg-white">
+                            <thead>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </thead>
+                            <tbody>
+                                <?php foreach($products as $product): ?>
                                 <tr>
                                     <td>
-                                        <img src="../assets/img/products/<?= $product['product_image']?>" alt="product-thumb" class="img-fluid h-1">
+                                        <img src="../assets/img/products/<?= $product['product_image'] ?>"
+                                            alt="product-thumb" class="img-fluid h-1 w-50">
                                     </td>
                                     <td class="text-start product-title">
-                                        <h6 class="mb-0"><?= $product['product_name']?></h6>
+                                        <h6 class="mb-0"><?= htmlspecialchars($product['product_name']) ?></h6>
                                     </td>
                                     <td>
                                         <div class="product-qty d-inline-flex align-items-center">
-                                            <button class="decrese">-</button>
-                                            <input type="text" value="<?= $product['productqty']?>">
-                                            <button class="increase">+</button>
+                                            <button type="button" class="decrease btn btn-sm btn-outline-secondary"
+                                                onclick="adjustQuantity(this, -0.5)">-</button>
+                                            <input type="text" class="qty-input text-center mx-2" name="qtyvalue"
+                                                value="<?= $product['productqty'] ?>" step="0.5">
+                                            <button type="button" class="increase btn btn-sm btn-outline-secondary"
+                                                onclick="adjustQuantity(this, 0.5)">+</button>
                                         </div>
                                     </td>
                                     <td>
-                                        <span class="text-dark fw-bold me-2 d-lg-none">Unit Price:</span>
-                                        <span class="text-dark fw-bold">₹<?= $product['product_price']?></span>
+                                        ₹<span class="unit-price"><?= $product['product_price'] ?></span>
                                     </td>
                                     <td>
-                                        <span class="text-dark fw-bold me-2 d-lg-none">Total Price:</span>
-                                        <span class="text-dark fw-bold">₹<?= $product['productqty'] * $product['product_price']?></span>
+                                        ₹<span
+                                            class="total-price"><?= $product['productqty'] * $product['product_price'] ?></span>
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <input type="hidden" name="product_id"
+                                                value="<?= $product['product_id'] ?>">
+                                            <button type="submit" name="updatebtn"
+                                                class="btn btn-primary btn-md rounded-1">Update</button>
+                                            <button type="submit" name="deletebtn"
+                                                class="btn btn-danger btn-md rounded-1">Delete</button>
+                                        </div>
                                     </td>
                                 </tr>
-                            <?php
-                                $totalprice = $totalprice + ($product['productqty'] * $product['product_price']);
-                                }
-                            ?>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </form>
 
-                            <!-- <tr>
-                                <td>
-                                    <img src="../assets/img/products/thumb-sm-1.png" alt="product-thumb" class="img-fluid">
-                                </td>
-                                <td class="text-start product-title">
-                                    <h6 class="mb-0">Three Carrot Vegetables Peruvian Cuisine</h6>
-                                </td>
-                                <td>
-                                    <div class="product-qty d-inline-flex align-items-center">
-                                        <button class="decrese">-</button>
-                                        <input type="text" value="01">
-                                        <button class="increase">+</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="text-dark fw-bold me-2 d-lg-none">Unit Price:</span>
-                                    <span class="text-dark fw-bold">$140.00</span>
-                                </td>
-                                <td>
-                                    <span class="text-dark fw-bold me-2 d-lg-none">Total Price:</span>
-                                    <span class="text-dark fw-bold">$140.00</span>
-                                </td>
-                            </tr> -->
-                        </tbody>
-                    </table>
+                    <script>
+                    function adjustQuantity(button, step) {
+                        // Get the input field and other relevant elements
+                        const input = button.parentElement.querySelector('.qty-input');
+                        const unitPriceElem = button.closest('tr').querySelector('.unit-price');
+                        const totalPriceElem = button.closest('tr').querySelector('.total-price');
+
+                        // Parse current values
+                        let currentValue = parseFloat(input.value) || 0;
+                        const unitPrice = parseFloat(unitPriceElem.textContent) || 0;
+
+                        // Adjust the quantity and ensure it doesn't go below 0
+                        currentValue += step;
+                        if (currentValue < 0) currentValue = 0;
+
+                        // Update the input field and total price
+                        input.value = currentValue.toFixed(1); // Keep one decimal place
+                        totalPriceElem.textContent = (currentValue * unitPrice).toFixed(2); // Update total price
+                    }
+                    </script>
+
                 </div>
-                <div class="row g-4">
-                    <div class="col-xl-7">
-                        <div class="voucher-box py-7 px-5 position-relative z-1 overflow-hidden bg-white rounded mt-4">
-                            <img src="../assets/img/shapes/circle-half.png" alt="circle shape"
-                                class="position-absolute end-0 top-0 z--1">
-                            <h4 class="mb-3">What would you like to do next?</h4>
-                            <p class="mb-7">Choose if you have a discount code or reward points you want to use<br> or
-                                would like to estimate your delivery cost.</p>
-                            <form class="d-flex align-items-center" action="#">
-                                <input type="text" placeholder="Enter Your Voucher Cod" class="theme-input w-100">
-                                <button type="submit" class="btn btn-secondary flex-shrink-0">Apply Voucher</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-xl-5">
+                <div class="row g-4 justify-content-end">
+
+                    <div class="col-xl-5 ">
                         <div class="cart-summery bg-white rounded-2 pt-4 pb-6 px-5 mt-4">
                             <table class="w-100">
                                 <tr>
@@ -308,7 +304,8 @@ else{
                             </table>
                             <p class="mb-5 mt-2">Shipping options will be updated during checkout.</p>
                             <div class="btns-group d-flex gap-3">
-                                <button type="submit" class="btn btn-primary btn-md rounded-1">Confirm Order</button>
+                                <button type="submit" class="btn btn-primary btn-md rounded-1"><a href="checkout.php"
+                                        class="btn btn-primary btn-md rounded-1">Confirm Order</a> </button>
                                 <button type="button"
                                     class="btn btn-outline-secondary border-secondary btn-md rounded-1">Continue
                                     Shopping</button>

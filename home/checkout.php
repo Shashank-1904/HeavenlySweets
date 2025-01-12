@@ -318,72 +318,7 @@ else{
                                         </div>
                                         <label class="h6 mb-0 ms-2" for="shipment">Credit Card or Debit Card</label>
                                     </div>
-                                    <form>
-                                        <div class="row g-4">
-                                            <div class="col-sm-12">
-                                                <div class="label-input-field mt-0">
-                                                    <input type="text" placeholder="****  **** **** 7898">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="label-input-field mt-0">
-                                                    <input type="text" placeholder="12 / 24">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="label-input-field mt-0">
-                                                    <input type="text" placeholder="****">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="label-input-field mt-0">
-                                                    <input type="tel" placeholder="478958">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="label-input-field">
-                                                    <label>City</label>
-                                                    <input type="text" placeholder="City">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="label-input-field">
-                                                    <label>State</label>
-                                                    <input type="text" placeholder="State">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="label-input-field">
-                                                    <label>Zip Code</label>
-                                                    <input type="text" placeholder="Dhaka-1230">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex align-items-center gap-2 mt-4 flex-wrap">
-                                            <div class="checkbox d-flex align-items-center gap-2 me-3">
-                                                <div class="theme-checkbox flex-shrink-0">
-                                                    <input type="checkbox" id="save-card">
-                                                    <span class="checkbox-field"><i
-                                                            class="fa-solid fa-check"></i></span>
-                                                </div>
-                                                <label for="save-card">Save this Credit Card for later use</label>
-                                            </div>
-                                            <div class="checkbox d-flex align-items-center gap-2">
-                                                <div class="theme-checkbox flex-shrink-0">
-                                                    <input type="checkbox" id="billing-info">
-                                                    <span class="checkbox-field"><i
-                                                            class="fa-solid fa-check"></i></span>
-                                                </div>
-                                                <label for="billing-info">Billing same as Shipping address</label>
-                                            </div>
-                                        </div>
-                                        <div class="mt-6 d-flex">
-                                            <button type="submit" class="btn btn-secondary btn-md me-3">Use this
-                                                Card</button>
-                                            <button type="button"
-                                                class="btn btn-outline-secondary border-secondary btn-md">Cancel</button>
-                                        </div>
-                                    </form>
+                                    
                                 </div>
                                 <div
                                     class="checkout-radio d-flex align-items-center justify-content-between gap-3 bg-white rounded p-4 mt-4">
@@ -392,10 +327,10 @@ else{
                                             <input type="radio" id="paypal" name="payment" value="paypal">
                                             <span class="custom-radio"></span>
                                         </div>
-                                        <label for="paypal" class="ms-2 h6 mb-0">Paypal</label>
+                                        <label for="paypal" class="ms-2 h6 mb-0">Online Payment (UPI) </label>
                                     </div>
                                     <div class="radio-right text-end">
-                                        <img src="../assets/img/brands/paypal-black.png" alt="paypal" class="img-fluid">
+                                        <img src="../assets/img/brands/upi.png" alt="paypal" class="img-fluid w-30">
                                     </div>
                                 </div>
                                 <div

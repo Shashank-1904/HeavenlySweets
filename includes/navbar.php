@@ -1,3 +1,16 @@
+<?php
+include('../private/db.php');
+if(isset($_SESSION['userid'])){
+    $user_id = $_SESSION['userid'];
+    $query = "select * from product p join productCart pc on pc.product_id = p.product_id where pc.user_id='$user_id'";
+    $result = mysqli_query($conn,$query);
+    if(!$result){
+        echo"Wrong Query";
+    }
+    $products = mysqli_fetch_all($result,MYSQLI_ASSOC);
+}
+?>
+
 <!--header section start-->
 <header class="gheader position-relative z-2 header-sticky">
     <div class="ghead-topbar bg-primary d-none d-lg-block">
@@ -168,30 +181,45 @@
                             <div class="cart-box-wrapper">
                                 <div class="apt_cart_box theme-scrollbar">
                                     <ul class="at_scrollbar scrollbar">
+                                        <?php
+                                        $total =0;
+                                        foreach($products as $product){
+
+                                        
+                                        ?>
                                         <li class="d-flex align-items-center">
                                             <div class="thumb-wrapper">
-                                                <a href="#"><img src="../assets/img/products/thumb-sm-1.png" alt="products" class="img-fluid"></a>
+                                                <a href="#"><img src="../assets/img/products/<?= $product['product_image']?>" alt="products" class="img-fluid"></a>
                                             </div>
                                             <div class="items-content ms-3">
                                                 <a href="product-details.html">
-                                                    <h6 class="mb-1">European Lemon Zest...</h6>
+                                                    <h6 class="mb-1"><?= $product['product_name']?></h6>
                                                 </a>
                                                 <div class="products_meta d-flex align-items-center">
                                                     <div>
-                                                        <span class="price text-primary fw-semibold">$17.00</span>
-                                                        <span class="count">x 1</span>
+                                                        <span class="price text-primary fw-semibold">$<?= $product['product_price']?></span>
+                                                        <span class="count">x <?= $product['product_qty']?></span>
+                                                        <?php
+                                                            $number = (int) filter_var($product['product_qty'], FILTER_SANITIZE_NUMBER_INT);
+                                                            $singletotal = $product['product_price'] * $number;
+                                                            $total += $singletotal;
+                                                        ?>
+                                                        <span class="count">= <?= $singletotal?></span>
                                                     </div>
-                                                    <button class="remove_cart_btn"><i
-                                                            class="fa-solid fa-trash-can"></i></button>
                                                 </div>
                                             </div>
+                                        </li>
+                                        <?php
+                                        }
+                                        ?>
+                                        
                                     </ul>
                                     <div class="d-flex align-items-center justify-content-between mt-3">
                                         <h6 class="mb-0">Subtotal:</h6>
-                                        <span class="fw-semibold text-primary">$1,247.00</span>
+                                        <span class="fw-semibold text-primary">$<?=$total ?></span>
                                     </div>
-                                    <a href="checkout.php" class="btn btn-primary btn-md d-block mt-4"><span
-                                            class="me-2"><i class="fa-solid fa-wallet"></i></span>Checkout</a>
+                                    <a href="cart.php" class="btn btn-primary btn-md d-block mt-4"><span
+                                            class="me-2"><i class="fa-solid fa-wallet"></i></span>View Cart</a>
                                 </div>
                             </div>
                         </div>
