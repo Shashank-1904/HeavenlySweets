@@ -6,11 +6,11 @@ include('../includes/navbar.php');
 
 <!--contact us section start-->
 <section class="contact-us-section position-relative overflow-hidden z-1 pt-80 pb-120">
-            <img src="../assets/img/shapes/frame-circle.svg" alt="frame circle" class="position-absolute frame z--1 d-none d-sm-block">
+            <img src="../assets/img/shapes/donut.png" alt="frame circle" class="position-absolute frame z--1 d-none d-sm-block w-10">
             <img src="../assets/img/shapes/roll-2.png" alt="roll" class="position-absolute roll-2 z--1">
-            <img src="../assets/img/shapes/pata-xs.svg" alt="pata" class="position-absolute pata z--1">
-            <img src="../assets/img/shapes/garlic-white.png" alt="garlic" class="position-absolute garlic z--1">
-            <img src="../assets/img/shapes/roll-1.png" alt="roll" class="position-absolute roll-1 z--1">
+            <img src="../assets/img/shapes/candy (1).png" alt="pata" class="position-absolute pata z--1">
+            <img src="../assets/img/shapes/cookies.png" alt="garlic" class="position-absolute garlic z--1">
+            <img src="../assets/img/shapes/cookies.png" alt="roll" class="position-absolute roll-1 z--1">
             <img src="../assets/img/shapes/leaf.svg" alt="leaf" class="position-absolute leaf z--1">
             <div class="container">
                 <div class="row justify-content-center">
