@@ -424,50 +424,82 @@ if(isset($_SESSION['userid'])){
                                         <th>Order Number#</th>
                                         <th>Placed on</th>
                                         <th>Method</th>
-                                        <!-- <th>Items</th> -->
                                         <th>Total</th>
                                         <th class="text-center">Action</th>
                                     </tr>
 
-                                    <?php
-                                        foreach($orders as $order){
-                                            // Extract the date part (first 8 characters)
-                                            $rawDate = substr($order['referenceID'], 0, 8);
-
-                                            // Reformat to DD/MM/YYYY
-                                            $day = substr($rawDate, 6, 2);
-                                            $month = substr($rawDate, 4, 2);
-                                            $year = substr($rawDate, 0, 4);
-                                            $formattedDate = "$day/$month/$year";
-
+                                    <?php foreach($orders as $order): 
+                                        $rawDate = substr($order['referenceID'], 0, 8);
+                                        $day = substr($rawDate, 6, 2);
+                                        $month = substr($rawDate, 4, 2);
+                                        $year = substr($rawDate, 0, 4);
+                                        $formattedDate = "$day/$month/$year";
                                     ?>
-
                                     <tr>
                                         <td><?= $order['referenceID']?></td>
-                                        <td><?=$formattedDate ?></td>
+                                        <td><?= $formattedDate ?></td>
                                         <td><?= $order['payment_type']?></td>
-                                        <!-- <td class="thumbnail">
-                                            <img src="../assets/img/products/cauliflower-xs.png" alt="product" />
-                                        </td> -->
                                         <td class="text-secondary">₹<?= $order['total_price']?></td>
                                         <td class="text-center">
-                                            <a href="#" class="view-invoice fs-xs" data-bs-toggle="modal" 
-                                                data-bs-target="#addAddressModal">
-                                                    <i class="fas fa-eye"></i>
+                                            <a href="#" class="view-invoice fs-xs" data-id="<?= $order['referenceID']?>"
+                                                data-bs-toggle="modal" data-bs-target="#orderDetailsModal">
+                                                <i class="fas fa-eye"></i>
                                             </a>
                                         </td>
                                     </tr>
-                                    <?php
-                                        }
-                                    ?>
-
+                                    <?php endforeach; ?>
                                 </table>
+
                             </div>
                         </div>
 
+                        <!-- recent order javascript start -->
+                        <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            document.querySelectorAll(".view-invoice").forEach(button => {
+                                button.addEventListener("click", function() {
+                                    let orderID = this.getAttribute("data-id");
+
+                                    fetch("../handler/fetch_order_details.php?referenceID=" +
+                                            orderID)
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data.success) {
+                                                let tableBody = document.getElementById(
+                                                    "orderDetailsBody");
+                                                tableBody.innerHTML =
+                                                ""; // Clear previous data
+
+                                                data.products.forEach(product => {
+                                                    let row = `
+                                                            <tr>
+                                                                <td>${product.product_name}</td>
+                                                                <td>${product.productqty}</td>
+                                                                <td>₹${product.product_price}</td>
+                                                                <td class="text-secondary">₹${product.total}</td>
+                                                            </tr>`;
+                                                    tableBody.innerHTML += row;
+                                                });
+
+                                                document.getElementById("orderModalTitle")
+                                                    .innerText = "Order #" + orderID;
+                                            } else {
+                                                alert("Order details not found!");
+                                            }
+                                        })
+                                        .catch(error => console.error(
+                                            "Error fetching order details:", error));
+                                });
+                            });
+                        });
+                        </script>
+
+
+                        <!-- recent order javascript end -->
+
                         <!--add address modal start-->
                         <!-- Modal -->
-                        <div class="modal fade" id="addAddressModal">
+                        <div class="modal fade" id="orderDetailsModal">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-body">
@@ -475,7 +507,7 @@ if(isset($_SESSION['userid'])){
                                             aria-label="Close"></button>
 
                                         <div class="gstore-product-quick-view bg-white rounded-3 py-6 px-4">
-                                            <h2 class="modal-title fs-5 mb-3">Add New Address</h2>
+                                            <h2 class="modal-title fs-5 mb-3" id="orderModalTitle">Order Details</h2>
                                             <div class="table-responsive">
                                                 <table class="order-history-table table">
                                                     <tr>
@@ -484,23 +516,7 @@ if(isset($_SESSION['userid'])){
                                                         <th>Price</th>
                                                         <th>Total</th>
                                                     </tr>
-                                                    <?php
-                                                    $count = 1;
-                                                    foreach($products as $product){
-                                                        // Calculate total price for this product
-                                                        $qtyarr = preg_split('/(?<=\d)(?=[a-zA-Z])/', $product['productqty']);
-                                                        $productTotalPrice = $qtyarr[0] * $product['product_price'];
-                                                    ?>
-                                                
-                                                    <tr>
-                                                        <td><?= $product['product_name']?></td>
-                                                        <td><?= $product['productqty']?></td>
-                                                        <td><?= $product['product_price']?></td>
-                                                        <td class="text-secondary">₹<?= $productTotalPrice?></td>
-                                                    </tr>
-                                                    <?php
-                                                    }
-                                                    ?>
+                                                    <tbody id="orderDetailsBody"></tbody>
                                                 </table>
                                             </div>
                                         </div>
@@ -508,6 +524,9 @@ if(isset($_SESSION['userid'])){
                                 </div>
                             </div>
                         </div>
+
+
+
                         <!--add address modal end-->
 
                     </div>
@@ -673,7 +692,7 @@ if(isset($_SESSION['userid'])){
                                     unset($_SESSION['message']);
                                 }
                                 ?>
-                                
+
                             </form>
                         </div>
                     </div>
