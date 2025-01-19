@@ -657,6 +657,23 @@ if(isset($_SESSION['userid'])){
                                 <button type="submit" name="changepasswordbtn" class="btn btn-primary mt-6">
                                     Change Password
                                 </button>
+
+                                <?php
+                                if (isset($_SESSION['message'])) {
+                                    // Retrieve the message and type
+                                    $messageType = $_SESSION['message']['type']; // 'success' or 'error'
+                                    $messageText = $_SESSION['message']['text'];
+                                
+                                    // Display the alert
+                                    echo "<script>
+                                        alert('$messageText');
+                                    </script>";
+                                
+                                    // Unset the session message to prevent repeated alerts
+                                    unset($_SESSION['message']);
+                                }
+                                ?>
+                                
                             </form>
                         </div>
                     </div>
