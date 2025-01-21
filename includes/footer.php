@@ -4,8 +4,8 @@
 </div>
 <footer class="gshop-footer position-relative pt-8 bg-dark z-1 overflow-hidden">
     <img src="../assets/img/shapes/pancake.png" alt="tomato" class="position-absolute z--1 tomato vector-shape w-30">
-    <img src="../assets/img/shapes/ladoo (2).png" alt="pata" class="position-absolute z--1 pata-lg vector-shape w-20">
-    <img src="../assets/img/shapes/ladoo (2).png" alt="pata" class="position-absolute z--1 pata-xs vector-shape">
+    <!-- <img src="../assets/img/shapes/ladoo (2).png" alt="pata" class="position-absolute z--1 pata-lg vector-shape w-20"> -->
+    <img src="../assets/img/shapes/ladoo (2).png" alt="pata" class="position-absolute z--1 pata-xs vector-shape"> 
     <img src="../assets/img/shapes/frame-circle.svg" alt="frame" class="position-absolute z--1 frame-circle vector-shape">
     <img src="../assets/img/shapes/candy (2).png" alt="leaf" class="position-absolute z--1 leaf vector-shape">
     <!--shape right -->
@@ -30,7 +30,7 @@
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                 <div class="footer-widget">
                     <h5 class="text-white mb-4">About HeavenlySweets</h5>
-                    <p>At **HeavenlySweets**, we specialize in creating delicious, handcrafted sweets that bring joy to every occasion. Our commitment to quality, freshness, and authenticity makes us your trusted destination for all things sweet.</p>
+                    <p class="text-white">At **HeavenlySweets**, we specialize in creating delicious, handcrafted sweets that bring joy to every occasion. Our commitment to quality, freshness, and authenticity makes us your trusted destination for all things sweet.</p>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">

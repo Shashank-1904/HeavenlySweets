@@ -42,12 +42,12 @@ if (isset($_SESSION['useremail'])) {
                     <div class="col-lg-5 col-12 tt-login-img" data-background="../assets/img/banner/banner-2.jpg"></div>
                     <div class="col-lg-5 col-12 bg-white d-flex p-0 tt-login-col shadow">
                         <form class="tt-login-form-wrap p-3 p-md-6 p-lg-6 py-7 w-100" method="POST" action="./../handler/register_handle.php">
-                            <div class="mb-7">
+                        <div>
                                 <a href="index.html">
-                                    <img src="../assets/img/logo.png" alt="logo">
+                                <img src="../assets/img/hslogo.png" alt="logo" style="height: 70px;" class="img-fluid">
                                 </a>
                             </div>
-                            <h2 class="mb-4 h3">Hey there! <br>Welcome back <span class="text-secondary">Grostore.</span>
+                            <h2 class="mb-4 h3"><br>Welcome to <span class="text-secondary">Heavenly Sweets.</span>
                             </h2>
                             <div class="row g-3">
                                 <div class="col-sm-6">
