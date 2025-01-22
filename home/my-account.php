@@ -716,6 +716,9 @@ if(isset($_SESSION['userid'])){
                                 <li class="fs-xs tt-step">Delivered</li>
                             </ol> -->
                             <?php
+                                if(isset($pendingorders)){
+
+                                
                                 $status = $pendingorders['orderstatus'];
                                 $steps = ["Pending", "Processing", "On the Way", "Delivered"];
                                 $statusInfo = [
@@ -758,7 +761,16 @@ if(isset($_SESSION['userid'])){
                                                     }
                                                 }
                                             }
+
+                                        }else{
+                                            ?>
+                                        
+                                        <p class="">No Order yet</p>
+                                        <?php
+                                            }
                                         ?>
+
+
                                     </tbody>
                                 </table>
                             </div>
