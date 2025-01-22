@@ -83,6 +83,14 @@ if(isset($_SESSION['userid'])){
 }
 
 ?>
+
+<?php if (isset($_SESSION['message'])): ?>
+            <div class="toast <?php echo $_SESSION['message']['type']; ?>" id="toast">
+                <span class="toast-text"><?php echo $_SESSION['message']['text']; ?></span>
+                <button class="toast-close" id="closeToast">×</button>
+            </div>
+            <?php unset($_SESSION['message']); // Clear the session message ?>
+        <?php endif;?>
 <!--my account section-->
 <section class="my-account pt-6 pb-120">
     <div class="container">
@@ -694,23 +702,6 @@ if(isset($_SESSION['userid'])){
                                 <button type="submit" name="changepasswordbtn" class="btn btn-primary mt-6">
                                     Change Password
                                 </button>
-
-                                <?php
-                                if (isset($_SESSION['message'])) {
-                                    // Retrieve the message and type
-                                    $messageType = $_SESSION['message']['type']; // 'success' or 'error'
-                                    $messageText = $_SESSION['message']['text'];
-                                
-                                    // Display the alert
-                                    echo "<script>
-                                        alert('$messageText');
-                                    </script>";
-                                
-                                    // Unset the session message to prevent repeated alerts
-                                    unset($_SESSION['message']);
-                                }
-                                ?>
-
                             </form>
                         </div>
                     </div>

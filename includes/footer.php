@@ -252,116 +252,6 @@
 
 <!--modal box-->
 
-<div class="modal fade" id="quickview_modal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="gstore-product-quick-view bg-white rounded-3 py-6 px-4">
-                    <div class="row align-items-center g-4">
-                        <div class="col-xl-6 align-self-end">
-                            <div class="quickview-double-slider">
-                                <div class="quickview-product-slider swiper">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide text-center">
-                                            <img src="../assets/img/products/p-lg-1.png" alt="jam" class="img-fluid">
-                                        </div>
-                                        <div class="swiper-slide text-center">
-                                            <img src="../assets/img/products/p-lg-2.png" alt="jam" class="img-fluid">
-                                        </div>
-                                        <div class="swiper-slide text-center">
-                                            <img src="../assets/img/products/p-lg-3.png" alt="jam" class="img-fluid">
-                                        </div>
-                                        <div class="swiper-slide text-center">
-                                            <img src="../assets/img/products/p-lg-4.png" alt="jam" class="img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-thumbnail-slider swiper mt-80">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide product-thumb-single rounded-2 d-flex align-items-center justify-content-center">
-                                            <img src="../assets/img/products/thumb-sm-1.png" alt="jam" class="img-fluid">
-                                        </div>
-                                        <div class="swiper-slide product-thumb-single rounded-2 d-flex align-items-center justify-content-center">
-                                            <img src="../assets/img/products/thumb-sm-2.png" alt="jam" class="img-fluid">
-                                        </div>
-                                        <div class="swiper-slide product-thumb-single rounded-2 d-flex align-items-center justify-content-center">
-                                            <img src="../assets/img/products/thumb-sm-3.png" alt="jam" class="img-fluid">
-                                        </div>
-                                        <div class="swiper-slide product-thumb-single rounded-2 d-flex align-items-center justify-content-center">
-                                            <img src="../assets/img/products/thumb-sm-4.png" alt="jam" class="img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="product-info">
-                                <h4 class="mt-1 mb-3">Three Carrot Vegetables <br> Peruvian Cuisine</h4>
-                                <div class="d-flex align-items-center flex-nowrap star-rating fs-xxs mb-2">
-                                    <ul class="d-flex align-items-center me-2">
-                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                    </ul>
-                                    <span class="flex-shrink-0">(5.2k Reviews)</span>
-                                </div>
-                                <div class="pricing mt-2">
-                                    <span class="fw-bold fs-xs text-danger">$140.00</span>
-                                    <span class="fw-bold fs-xs deleted ms-1">$240.00</span>
-                                </div>
-                                <div class="widget-title d-flex mt-4">
-                                    <h6 class="mb-1 flex-shrink-0">Description</h6>
-                                    <span class="hr-line w-100 position-relative d-block align-self-end ms-1"></span>
-                                </div>
-                                <p class="mb-3">Clicks-and-mortar "outside the bethinking. Interactively disseminate innovative intellectual relationships. </p>
-                                <ul class="d-flex flex-column gap-2">
-                                    <li><span class="me-2 text-primary"><i class="fa-solid fa-circle-check"></i></span>Natural ingredients</li>
-                                    <li><span class="me-2 text-primary"><i class="fa-solid fa-circle-check"></i></span>Tastes better with milk</li>
-                                    <li><span class="me-2 text-primary"><i class="fa-solid fa-circle-check"></i></span>Vitamins B2, B3, B5 and B6</li>
-                                    <li><span class="me-2 text-primary"><i class="fa-solid fa-circle-check"></i></span>Refrigerate for freshness</li>
-                                </ul>
-                                <h6 class="fs-md mb-2 mt-3">Weight:</h6>
-                                <ul class="product-radio-btn mb-4 d-flex align-items-center gap-2">
-                                    <li>
-                                        <input type="radio" name="weight" value="250g" checked>
-                                        <label>150g</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" name="weight" value="250g">
-                                        <label>500g</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" name="weight" value="250g">
-                                        <label>1kg</label>
-                                    </li>
-                                </ul>
-                                <div class="d-flex align-items-center gap-4 flex-wrap">
-                                    <div class="product-qty d-flex align-items-center">
-                                        <button class="decrese">-</button>
-                                        <input type="text" value="01">
-                                        <button class="increase">+</button>
-                                    </div>
-                                    <a href="#" class="btn btn-secondary btn-md"><span class="me-2"><i class="fa-solid fa-cart-plus"></i></span>Add to Cart</a>
-                                </div>
-                                <div class="categories mt-4">
-                                    <a href="#" class="btn btn-outline btn-sm">Vegetable</a>
-                                    <a href="#" class="btn btn-outline btn-sm">Healthy</a>
-                                    <a href="#" class="btn btn-outline btn-sm">Organic</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> <!--modal box end-->
-
-
-
 </div>
 
 
@@ -370,34 +260,6 @@
 <button class="scroll-top-btn">
     <i class="fa-regular fa-hand-pointer"></i>
 </button>
-<!--scroll bottom to top button end-->
-<script>
-    window.onload = function() {
-        // Get the toast element
-        var toast = document.getElementById('toast');
-        var closeBtn = document.getElementById('closeToast');
-
-        // Check if there's a toast to show
-        if (toast) {
-            toast.classList.add('show');
-
-            // Hide toast after 3 seconds if not closed manually
-            setTimeout(function() {
-                if (toast.classList.contains('show')) {
-                    toast.classList.remove('show');
-                }
-            }, 8000);
-        }
-
-        // Close the toast manually when the close button is clicked
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function() {
-                toast.classList.remove('show');
-            });
-        }
-
-    };
-</script>
 <!--build:js-->
 <script src="../assets/js/vendors/jquery-3.6.0.min.js"></script>
 <script src="../assets/js/vendors/jquery-ui.min.js"></script>
@@ -413,7 +275,7 @@
 <script src="../assets/js/vendors/counterup.min.js"></script>
 <script src="../assets/js/vendors/typer.js"></script>
 <script src="../assets/js/app.js"></script>
-<!-- <script src="../assets/js/custom.js"></script> -->
+<script src="../assets/js/custom.js"></script>
 <!--endbuild-->
 </body>
 

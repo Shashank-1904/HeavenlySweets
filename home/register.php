@@ -21,7 +21,7 @@ if (isset($_SESSION['useremail'])) {
     <meta name="author" content="ThemeTags">
     <meta name="keywords" content="Grostore Grocery  ecommerce, admin template, online shop, e-commerce, ecommerce template, marketplace, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean">
     <!--favicon icon-->
-    <link rel="icon" href="../assets/img/favicon.png" type="image/png" sizes="16x16">
+    <!-- <link rel="icon" href="../assets/img/favicon.png" type="image/png" sizes="16x16"> -->
 
     <!--title-->
     <title>Grostore - Signup - Grostore Grocery eCommerce HTML Template</title>
@@ -34,6 +34,13 @@ if (isset($_SESSION['useremail'])) {
 <body>
     <!--main content wrapper start-->
     <div class="main-wrapper">
+        <?php if (isset($_SESSION['message'])): ?>
+            <div class="toast <?php echo $_SESSION['message']['type']; ?>" id="toast">
+                <span class="toast-text"><?php echo $_SESSION['message']['text']; ?></span>
+                <button class="toast-close" id="closeToast">×</button>
+            </div>
+            <?php unset($_SESSION['message']); // Clear the session message ?>
+        <?php endif;?>
 
         <!--login section start-->
         <section class="login-section py-5">

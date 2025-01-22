@@ -4,6 +4,14 @@ include('../includes/header.php');
 include('../includes/navbar.php');
 ?>
 
+<?php if (isset($_SESSION['message'])): ?>
+            <div class="toast <?php echo $_SESSION['message']['type']; ?>" id="toast">
+                <span class="toast-text"><?php echo $_SESSION['message']['text']; ?></span>
+                <button class="toast-close" id="closeToast">×</button>
+            </div>
+            <?php unset($_SESSION['message']); // Clear the session message ?>
+        <?php endif;?>
+        
 <!--contact us section start-->
 <section class="contact-us-section position-relative overflow-hidden z-1 pt-80 pb-120">
             <img src="../assets/img/shapes/donut.png" alt="frame circle" class="position-absolute frame z--1 d-none d-sm-block w-10">

@@ -19,7 +19,7 @@ if(!$offres){
 $offer = mysqli_fetch_assoc($offres);
 
 // fetch product start
-$proquery = "select * from product";
+$proquery = "select * from product WHERE status='Trending'";
 $proresult = mysqli_query($conn,$proquery);
 if(!$proquery){
     echo"Wrong Input";
@@ -64,6 +64,15 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
     background-color: rgba(255, 255, 255, 0.5);
 }
 </style>
+
+<?php if (isset($_SESSION['message'])): ?>
+            <div class="toast <?php echo $_SESSION['message']['type']; ?>" id="toast">
+                <span class="toast-text"><?php echo $_SESSION['message']['text']; ?></span>
+                <button class="toast-close" id="closeToast">×</button>
+            </div>
+            <?php unset($_SESSION['message']); // Clear the session message ?>
+        <?php endif;?>
+
 <!--hero section start-->
 <section class="gshop-hero pt-120 bg-white position-relative z-1 overflow-hidden">
     <img src="../assets/img/shapes/candy (1).png" alt="leaf" class="position-absolute leaf-shape z--1 rounded-circle">
@@ -94,10 +103,8 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
                         </div>
                         <div class="col-xl-6 col-lg-7">
                             <div class="hero-right text-center position-relative z-1 mt-8 mt-xl-0">
-                                <img src="../assets/img/home1/fruits.png" alt="fruits"
+                                <img src="../assets/img/pexels-changerstudio-140831.jpg" alt="fruits"
                                     class="img-fluid position-absolute end-0 top-50 hero-img">
-                                <img src="../assets/img/shapes/tree.png" alt="tree"
-                                    class="img-fluid position-absolute tree z-1">
                                 <img src="../assets/img/shapes/orange-1.png" alt="orange"
                                     class="position-absolute orange-1 z-1">
                                 <img src="../assets/img/shapes/orange-2.png" alt="orange"
@@ -120,19 +127,17 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
                                 <p class="mb-7 fs-6">Assertively target market-driven intellectual capital with
                                     worldwide human capital holistic.</p>
                                 <div class="hero-btns d-flex align-items-center gap-3 gap-sm-5 flex-wrap">
-                                    <a href="shop-grid.html" class="btn btn-secondary">Shop Now<span class="ms-2"><i
+                                    <a href="./products.php" class="btn btn-secondary">Shop Now<span class="ms-2"><i
                                                 class="fa-solid fa-arrow-right"></i></span></a>
-                                    <a href="about.html" class="btn btn-primary">About Us<span class="ms-2"><i
+                                    <a href="./about.php" class="btn btn-primary">About Us<span class="ms-2"><i
                                                 class="fa-solid fa-arrow-right"></i></span></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-7">
                             <div class="hero-right text-center position-relative z-1 mt-8 mt-xl-0">
-                                <img src="../assets/img/home1/fruits.png" alt="fruits"
+                                <img src="../assets/img/pexels-marta-dzedyshko-1042863-2067396.jpg" alt="fruits"
                                     class="img-fluid position-absolute end-0 top-50 hero-img">
-                                <img src="../assets/img/shapes/tree.png" alt="tree"
-                                    class="img-fluid position-absolute tree z-1">
                                 <img src="../assets/img/shapes/orange-1.png" alt="orange"
                                     class="position-absolute orange-1 z-1">
                                 <img src="../assets/img/shapes/orange-2.png" alt="orange"
@@ -154,19 +159,17 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
                                 <p class="mb-7 fs-6">Assertively target market-driven intellectual capital with
                                     worldwide human capital holistic.</p>
                                 <div class="hero-btns d-flex align-items-center gap-3 gap-sm-5 flex-wrap">
-                                    <a href="shop-grid.html" class="btn btn-secondary">Shop Now<span class="ms-2"><i
+                                    <a href="./products.php" class="btn btn-secondary">Shop Now<span class="ms-2"><i
                                                 class="fa-solid fa-arrow-right"></i></span></a>
-                                    <a href="about.html" class="btn btn-primary">About Us<span class="ms-2"><i
+                                    <a href="./about.php" class="btn btn-primary">About Us<span class="ms-2"><i
                                                 class="fa-solid fa-arrow-right"></i></span></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-7">
                             <div class="hero-right text-center position-relative z-1 mt-8 mt-xl-0">
-                                <img src="../assets/img/home1/fruits.png" alt="fruits"
+                                <img src="../assets/img/pexels-nano-erdozain-120534369-19202791.jpg" alt="fruits"
                                     class="img-fluid position-absolute end-0 top-50 hero-img">
-                                <img src="../assets/img/shapes/tree.png" alt="tree"
-                                    class="img-fluid position-absolute tree z-1">
                                 <img src="../assets/img/shapes/orange-1.png" alt="orange"
                                     class="position-absolute orange-1 z-1">
                                 <img src="../assets/img/shapes/orange-2.png" alt="orange"
@@ -242,29 +245,40 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
 <!--Services section end-->
 
 <!--banner section start-->
+<?php
+if (!empty($offer)) { // Check if $offer is not empty
+?>
 <section class="banner-section position-relative z-1 overflow-hidden pt-120 pb-200">
-    <img src="../assets/img/shapes/bg-shape-4.png" alt="bg shape" class="position-absolute start-0 bottom-0 w-100 z--1">
+    <img src="../assets/img/shapes/bg-shape-4.png" alt="Background Shape" class="position-absolute start-0 bottom-0 w-100 z--1">
     <div class="container">
         <div class="row g-4">
             <div class="col-xl-7">
-                <div class="banner-box background-banner rounded-2 banner-lg"
-                    data-background="../assets/img/banner/cta-banner-2.jpg">
+                <div class="banner-box background-banner rounded-2 banner-lg" data-background="../assets/img/banner/cta-banner-2.jpg">
                     <span class="badge bg-danger mb-2">Top Offer</span>
-                    <h3 class="mb-6 text-dark gshop-title"><?php echo $offer['offersubheading']?><br class="d-none d-sm-block">
-                        <mark class="position-relative text-secondary position-relative bg-transparent"><?php echo $offer['offerheading']?><img src="../assets/img/shapes/border-line.png"
-                                class="position-absolute start-0 border-line w-100" alt="border line"></mark></h3>
-                    <a href="./products.php" class="btn btn-secondary btn-md">Shop Now<span class="ms-2"><i
-                                class="fas fa-arrow-right"></i></span></a>
+                    <h3 class="mb-6 text-dark gshop-title">
+                        <?php echo htmlspecialchars($offer['offersubheading'], ENT_QUOTES, 'UTF-8'); ?><br class="d-none d-sm-block">
+                        <mark class="position-relative text-secondary bg-transparent">
+                            <?php echo htmlspecialchars($offer['offerheading'], ENT_QUOTES, 'UTF-8'); ?>
+                            <img src="../assets/img/shapes/border-line.png" class="position-absolute start-0 border-line w-100" alt="Border Line">
+                        </mark>
+                    </h3>
+                    <a href="./products.php" class="btn btn-secondary btn-md">
+                        Shop Now <span class="ms-2"><i class="fas fa-arrow-right"></i></span>
+                    </a>
                 </div>
             </div>
             <div class="col-xl-5">
                 <div class="banner-img rounded-3 overflow-hidden">
-                    <img src="../common_images/offer/coffee flavoured cookies2.jpg" style="height: 400px;" alt="banner" class="img-fluid">
+                    <img src="../common_images/offer/coffee flavoured cookies2.jpg" style="height: 400px;" alt="Banner Image" class="img-fluid">
                 </div>
             </div>
         </div>
     </div>
 </section>
+<?php
+}
+?>
+
 <!--banner section end-->
 
 <!--Category Section start-->
@@ -293,7 +307,7 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
                     <div class="horizontal-product-card d-sm-flex align-items-center p-3 bg-white rounded-2 gap-4">
                         <div class="thumbnail position-relative rounded-2">
                             <a href="./products.php"><img src="../common_images/category/<?= $category['catimg']?>" alt="product"
-                                    style="height:120px;width:120px;" class="img-fluid"></a>
+                                    style="height:130px;width:130px;" class="img-fluid"></a>
                             <div
                                 class="product-overlay position-absolute start-0 top-0 w-100 h-100 d-flex align-items-center justify-content-center gap-2 rounded-2">
                                 <a href="#quickview_modal" data-bs-toggle="modal" class="rounded-btn"><i
@@ -355,79 +369,49 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
             foreach($products as $product){
 
             ?>
-            <div class="col-xxl-3 col-lg-4 col-md-6 col-sm-10 filter_item">
-                <div class="vertical-product-card rounded-2 position-relative">
-                    <div class="thumbnail position-relative text-center p-4">
-                        <a href="./products.php"><img src="../assets/img/products/<?= $product['product_image']?>"
-                                alt="apple" class="img-fluid"></a>
-                        <div class="product-btns position-absolute d-flex gap-2 flex-column">
-                            <a href="#" class="rounded-btn"><i class="fa-regular fa-heart"></i></a>
-                            <a href="#quickview_modal" data-bs-toggle="modal" class="rounded-btn"><i
-                                    class="fa-regular fa-eye"></i></a>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <a href="shop-grid.html" class="mb-2 d-inline-block text-secondary fw-semibold fs-xxs">Fresh
-                            Organic</a>
-                        <a href="./products.php"
-                            class="card-title fw-bold d-block mb-2"><?=$product['product_name'] ?></a>
-                        <div class="d-flex align-items-center flex-nowrap star-rating fs-xxs mb-2">
-                            <ul class="d-flex align-items-center me-2">
-                                <?php
-                                    $rating = $product['product_rating'];
-                                    for($i = 0; $i < 5 ; $i++){
-                                        if($rating >= $i + 0.8){
-                                    ?>
-                                <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                <?php
-                                        }
-                                        elseif($rating >= $i + 0.3){
-                                        ?>
-                                <li class="text-warning"><i class="fa-solid fa-star-half-alt"></i></li>
-                                <?php
-                                    }
-                                        else{
-                                        ?>
-                                <li class="text-warning"><i class="far fa-star"></i></li>
-                                <?php
-                                    }
-                                }
-                                ?>
-                            </ul>
-                            <span class="flex-shrink-0">(<?= $product['product_rating']?>)</span>
-                        </div>
-                        <h6 class="price text-danger mb-3">₹<?= $product['product_price']?> / <?= $product['product_qty']?></h6>
-                        <!-- <div class="card-progressbar mb-2 rounded-pill">
-                            <span class="card-progress bg-primary" data-progress="100%"></span>
-                        </div>
-                        <p class="mb-0 fw-semibold">Available: <span class="fw-bold text-secondary">40/100</span></p> -->
-                    </div>
-                    <div class="card-btn bg-white">
-                        <form method="post" action="../handler/add_cart.php">
-                            <input type="hidden" name="product_id" value="<?= $product['product_id']?>">
-                            <input type="hidden" name="product_price" value="<?= $product['product_price']?>">
-                            <input type="hidden" name="product_qty" value="<?= $product['product_qty']?>">
-                            <button type="submit" class="btn btn-secondary d-block btn-md rounded-1 w-100" name="addcartbtn">Add to Cart</button>
-                        </form>
-
-                        <?php
-                                if (isset($_SESSION['message'])) {
-                                    // Retrieve the message and type
-                                    $messageType = $_SESSION['message']['type']; // 'success' or 'error'
-                                    $messageText = $_SESSION['message']['text'];
-                                
-                                    // Display the alert
-                                    echo "<script>
-                                        alert('$messageText');
-                                    </script>";
-                                
-                                    // Unset the session message to prevent repeated alerts
-                                    unset($_SESSION['message']);
-                                }
-                                ?>
-                    </div>
-                </div>
-            </div>
+                <div class="col-lg-3 col-md-6 col-sm-10">
+                                    <div class="vertical-product-card rounded-2 position-relative border-0 bg-white bg-white">
+                                        <!-- <span class="offer-badge text-white fw-bold fs-xxs bg-danger position-absolute start-0 top-0">-12% OFF</span> -->
+                                        <div class="thumbnail position-relative text-center p-4">
+                                            <img src="../common_images/product/<?= $product['product_image']; ?>" alt="apple" style="height: 250px;" class="img-fluid">
+                                            <div class="product-btns position-absolute d-flex gap-2 flex-column">
+                                                <a href="#" class="rounded-btn"><i class="fa-regular fa-heart"></i></a>
+                                                <!-- <a href="#quickview_modal" data-bs-toggle="modal" class="rounded-btn quick-view-btn" data-id="<?= $product['product_id']; ?>"> <i class="fa-regular fa-eye"></i></a> -->
+                                                <a href="#quickview_modal" 
+                                                    data-bs-toggle="modal" 
+                                                    class="rounded-btn quick-view-btn" 
+                                                    data-id="<?= $product['product_id']; ?>"
+                                                    data-name="<?= $product['product_name']; ?>"
+                                                    data-price="<?= $product['product_price']; ?>"
+                                                    data-image="../common_images/product/<?= $product['product_image']; ?>"
+                                                    data-description="<?= $product['product_description']; ?>"
+                                                    data-qty="<?= $product['product_qty']; ?>">
+                                                    <i class="fa-regular fa-eye"></i>
+                                                    </a>
+                                            </div>
+                                        </div>
+                                        <div class="card-content">
+                                            <a href="#" class="card-title fw-bold d-block mb-2 tt-line-clamp tt-clamp-2"><?= $product['product_name']; ?></a>
+                                            <div class="d-flex align-items-center flex-nowrap star-rating fs-xxs mb-2">
+                                                <ul class="d-flex align-items-center me-2">
+                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                                </ul>
+                                                <span class="flex-shrink-0">(5.2k Reviews)</span>
+                                            </div>
+                                            <h6 class="price text-danger mb-4">₹ <?= $product['product_price']; ?> / <?= $product['product_qty']; ?></h6> 
+                                            <form method="post" action="../handler/add_cart.php">
+                                                <input type="hidden" name="product_id" value="<?= $product['product_id']?>">
+                                                <input type="hidden" name="product_price" value="<?= $product['product_price']?>">
+                                                <input type="hidden" name="product_qty" value="<?= $product['product_qty']?>">
+                                                <button type="submit" class="btn btn-secondary d-block btn-md rounded-1 w-100" name="addcartbtn">Add to Cart</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
 
             <?php
             }
@@ -439,21 +423,21 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
 <!--trending products end-->
 
 <!--banner section start-->
-<section class="banner-section position-relative z-1 overflow-hidden bg-white pt-2">
+<!-- <section class="banner-section position-relative z-1 overflow-hidden bg-white pt-2">
     <img src="../assets/img/shapes/bg-shape-3.png" alt="bg shape" class="position-absolute start-0 bottom-0 z--1 w-100">
     <div class="container">
         <div class="row align-items-center g-4 justify-content-center">
-        <div class="col-xl-4 col-md-6">
-    <div class="banner-box background-banner rounded-2 overflow-hidden position-relative" 
-         data-background="../common_images/category/cat.jpg">
-        <div class="glass-effect position-absolute top-0 left-0 w-100 h-100"></div>
-        <span class="gshop-subtitle fs-xxs mb-1 text-light d-inline-block">100% Pure Products</span>
-        <h6 class="mb-0 text-light">Fresh Fruits</h6>
-        <h4 class="mb-6 text-light">Healthy Juice</h4>
-        <a href="./products.php" class="explore-btn fw-bold text-light">Shop Now<span class="ms-1"><i
-                    class="fas fa-arrow-right"></i></span></a>
-    </div>
-</div>
+            <div class="col-xl-4 col-md-6">
+                <div class="banner-box background-banner rounded-2 overflow-hidden position-relative" 
+                    data-background="../common_images/category/cat.jpg">
+                    <div class="glass-effect position-absolute top-0 left-0 w-100 h-100"></div>
+                    <span class="gshop-subtitle fs-xxs mb-1 text-light d-inline-block">100% Pure Products</span>
+                    <h6 class="mb-0 text-light">Fresh Fruits</h6>
+                    <h4 class="mb-6 text-light">Healthy Juice</h4>
+                    <a href="./products.php" class="explore-btn fw-bold text-light">Shop Now<span class="ms-1"><i
+                                class="fas fa-arrow-right"></i></span></a>
+                </div>
+            </div>
             <div class="col-xl-4 col-md-6">
                 <div class="banner-box rounded-2 overflow-hidden position-relative banner-color-green z-1">
                     <img src="../assets/img/products/kaju katli.jpg" alt="capsicum" class="banner-img mt-1" >
@@ -476,7 +460,7 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!--banner section end-->
 
 <!--feedback section start-->
@@ -598,6 +582,99 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
     </div>
 </section>
 <!--feedback section end-->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const quickViewButtons = document.querySelectorAll('.quick-view-btn');
+        
+        quickViewButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Fetch data from the clicked button
+                const productId = this.getAttribute('data-id');
+                const productName = this.getAttribute('data-name');
+                const productPrice = this.getAttribute('data-price');
+                const productImage = this.getAttribute('data-image');
+                const productDescription = this.getAttribute('data-description');
+                const productQty = this.getAttribute('data-qty');
+                // Populate the modal fields
+                document.querySelector('#quickview_modal .product-info h4').textContent = productName;
+                document.querySelector('#quickview_modal .product-info .fw-bold').textContent = `₹ ${productPrice}`;
+                document.querySelector('#quickview_modal .product-info p').textContent = productDescription;
+                document.querySelector('#quickview_modal .quickview-product-slider img').setAttribute('src', productImage);
+                document.querySelector('#quickview_modal .product-radio-btn label').textContent = productQty;
+
+                document.querySelector('#quickview_modal .form-inputs #pid').value = productId;
+                document.querySelector('#quickview_modal .form-inputs #pprice').value = productPrice;
+                document.querySelector('#quickview_modal .form-inputs #pqty').value = productQty;
+            });
+        });
+    });
+</script>
+
+<div class="modal fade" id="quickview_modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="gstore-product-quick-view bg-white rounded-3 py-6 px-4">
+                    <div class="row align-items-center g-4">
+                        <div class="col-xl-6 align-self-end">
+                            <div class="quickview-double-slider">
+                                <div class="quickview-product-slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide text-center">
+                                            <img src="" alt="jam" class="img-fluid" style="height: 400px; width:300px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="product-info">
+                                <h4 class="mt-1 mb-3">Three Carrot Vegetables <br> Peruvian Cuisine</h4>
+                                <div class="d-flex align-items-center flex-nowrap star-rating fs-xxs mb-2">
+                                    <ul class="d-flex align-items-center me-2">
+                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <span class="flex-shrink-0">(5.2k Reviews)</span>
+                                </div>
+                                <div class="pricing mt-2">
+                                    <span class="fw-bold fs-xs text-danger">$140.00</span>
+                                </div>
+                                <div class="widget-title d-flex mt-4">
+                                    <h6 class="mb-1 flex-shrink-0">Description</h6>
+                                    <span class="hr-line w-100 position-relative d-block align-self-end ms-1"></span>
+                                </div>
+                                <p class="mb-3"></p>
+                                <h6 class="fs-md mb-2 mt-3">Weight:</h6>
+                                <ul class="product-radio-btn mb-4 d-flex align-items-center gap-2">
+                                    <li>
+                                        <input type="radio" name="weight" value="250g" checked>
+                                        <label></label>
+                                    </li>
+                                </ul>
+                                <div class="d-flex align-items-center gap-4 flex-wrap form-inputs">
+                                    <form method="post" action="../handler/add_cart.php">
+                                        <input type="hidden" id="pid" name="product_id">
+                                        <input type="hidden" id="pprice" name="product_price">
+                                        <input type="hidden" id="pqty" name="product_qty">
+                                        <button type="submit" class="btn btn-secondary d-block btn-md rounded-1 w-100" name="addcartbtn"><span class="me-2"><i class="fa-solid fa-cart-plus"></i></span>Add to Cart</button>
+                                    </form>
+                                    <!-- <a href="#" class="btn btn-secondary btn-md"><span class="me-2"><i class="fa-solid fa-cart-plus"></i></span>Add to Cart</a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <?php
 include('../includes/footer.php');

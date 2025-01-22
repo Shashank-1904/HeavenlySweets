@@ -21,13 +21,14 @@ if (isset($_SESSION['useremail'])) {
     <meta name="author" content="ThemeTags">
     <meta name="keywords" content="Grostore Grocery  ecommerce, admin template, online shop, e-commerce, ecommerce template, marketplace, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean">
     <!--favicon icon-->
-    <link rel="icon" href="../assets/img/favicon.png" type="image/png" sizes="16x16">
+    <!-- <link rel="icon" href="../assets/img/favicon.png" type="image/png" sizes="16x16"> -->
 
     <!--title-->
     <title>Grostore - Signup - Grostore Grocery eCommerce HTML Template</title>
 
     <!--build:css-->
     <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/custom.css">
     <!-- endbuild -->
 </head>
 
@@ -40,7 +41,7 @@ if (isset($_SESSION['useremail'])) {
                 <span class="toast-text"><?php echo $_SESSION['message']['text']; ?></span>
                 <button class="toast-close" id="closeToast">×</button>
             </div>
-            <?php //unset($_SESSION['message']); // Clear the session message ?>
+            <?php unset($_SESSION['message']); // Clear the session message ?>
         <?php endif;?>
         <!--login section start-->
         <section class="login-section py-5">
@@ -116,6 +117,7 @@ if (isset($_SESSION['useremail'])) {
     <script src="../assets/js/vendors/counterup.min.js"></script>
     <script src="../assets/js/vendors/typer.js"></script>
     <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/custom.js"></script>
     <!--endbuild-->
 </body>
 

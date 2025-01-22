@@ -72,7 +72,7 @@ if (isset($_SESSION['userid'])) {
                 </div>
                 <div class="col-xxl-10 col-xl-9 col-md-9 col-7">
                     <div class="gshop-navbar-right d-flex align-items-center justify-content-end position-relative">
-                        <div class="category-dropdown position-relative d-none d-md-inline-block">
+                        <!-- <div class="category-dropdown position-relative d-none d-md-inline-block">
                             <a href="javascript:void(0)" class="category-dropdown-btn fw-bold d-none d-sm-inline-block">Browse Category<span
                                     class="ms-1"><i class="fa-solid fa-angle-down"></i></span></a>
                             <a href="javascript:void(0)" class="category-dropdown-btn fw-bold d-sm-none">Categories
@@ -89,7 +89,7 @@ if (isset($_SESSION['userid'])) {
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                         <nav class="gshop-navmenu ms-3 d-none d-xl-block">
                             <ul class="d-flex align-itmes-center justify-content-end">
                                 <li class="">

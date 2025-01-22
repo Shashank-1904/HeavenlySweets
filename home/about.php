@@ -19,6 +19,14 @@ if(!$result){
 $categories = mysqli_fetch_all($result,MYSQLI_ASSOC);
 
 ?>
+
+<?php if (isset($_SESSION['message'])): ?>
+            <div class="toast <?php echo $_SESSION['message']['type']; ?>" id="toast">
+                <span class="toast-text"><?php echo $_SESSION['message']['text']; ?></span>
+                <button class="toast-close" id="closeToast">×</button>
+            </div>
+            <?php unset($_SESSION['message']); // Clear the session message ?>
+        <?php endif;?>
 <!--breadcrumb section start-->
 <div class="gstore-breadcrumb position-relative z-1 overflow-hidden mt--50">
 <img src="../assets/img/shapes/bg-shape-6.png" alt="bg-shape" class="position-absolute start-0 z--1 w-100 bg-shape">
@@ -42,7 +50,7 @@ $categories = mysqli_fetch_all($result,MYSQLI_ASSOC);
                     <nav>
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item fw-semibold" aria-current="page"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item fw-semibold" aria-current="page">Page</li>
+                            <li class="breadcrumb-item fw-semibold" aria-current="page">Pages</li>
                             <li class="breadcrumb-item fw-semibold" aria-current="page">About</li>
                         </ol>
                     </nav>
@@ -53,94 +61,8 @@ $categories = mysqli_fetch_all($result,MYSQLI_ASSOC);
 </div>
 <!--breadcrumb section end-->
 
-<!--about section start-->
-<section class="pt-120 ab-about-section position-relative z-1 overflow-hidden">
-    <img src="../assets/img/shapes/mango.png" alt="mango" class="position-absolute mango z--1">
-    <div class="container">
-        <div class="row g-5 g-xl-4 align-items-center">
-            <div class="col-xl-6">
-                <div class="ab-left position-relative">
-                    <img src="../assets/img/about/ab-1.png" alt="image" class="img-fluid">
-                    <!-- <div class="text-end">
-                        <div class="ab-quote p-4 text-start">
-                            <h4 class="mb-0 fw-normal text-white">“Assertively target market Lorem ipsum is simply free consectetur notted elit sed do eiusmod” <span class="fs-md fw-medium position-relative">George Scholll</span></h4>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
-            <div class="col-xl-6">
-                <div class="ab-about-right">
-                    <div class="subtitle d-flex align-items-center gap-3 flex-wrap">
-                        <span class="gshop-subtitle">Providing 100% Pure and Authentic Sweets</span>
-                        <span>
-                            <svg width="78" height="16" viewBox="0 0 78 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line x1="0.0138875" y1="7.0001" x2="72.0139" y2="8.0001" stroke="#FF7C08" stroke-width="2" />
-                                <path d="M78 8L66 14.9282L66 1.0718L78 8Z" fill="#FF7C08" />
-                            </svg>
-                        </span>
-                    </div>
-                    <h2 class="mb-4">Stay Sweet &<br> Enjoy Freshly Made Sweets</h2>
-                    <p class="mb-8">We are dedicated to delivering quality, freshness, and authenticity in every bite, ensuring that our customers experience pure delight. We aspire to be the go-to destination for quality confections, spreading joy and building lasting relationships through our passion for exceptional sweets.</p>
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <div class="image-box py-6 px-4 image-box-border">
-                                <div class="icon position-relative">
-                                    <img src="../assets/img/icons/hand-icon.svg" alt="hand icon" class="img-fluid">
-                                </div>
-                                <h4 class="mt-3">Our Mission</h4>
-                                <p class="mb-0">At HeavenlySweets, our mission is to create unforgettable moments of happiness by offering premium, handcrafted sweets that combine traditional recipes with modern flavors.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="image-box py-6 px-4 image-box-border">
-                                <div class="icon position-relative">
-                                    <img src="../assets/img/icons/hand-icon.svg" alt="hand icon" class="img-fluid">
-                                </div>
-                                <h4 class="mt-3">Our Vision</h4>
-                                <p class="mb-0">Our vision at HeavenlySweets is to become a symbol of sweetness and celebration in every home.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> <!--about section end-->
-
-<!--brands section start-->
-<section class="brands-section ptb-120 position-relative z-1 overflow-hidden service-section">
-    <img src="../assets/img/shapes/bg-shape-4.png" alt="bg shape" class="position-absolute start-0 bottom-0 w-100 z--1 bg-shape">
-    <div class="container">
-        <div class="brand-wrapper px-5 rounded-4">
-            <h4 class="section-title mb-0">The Most Popular Brands</h4>
-            <div class="brands-slider swiper px-2 pt-4 pb-7">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide brand-item rounded">
-                        <img src="../assets/img/brands/brand-1.png" alt="brand" class="img-fluid">
-                    </div>
-                    <div class="swiper-slide brand-item rounded">
-                        <img src="../assets/img/brands/brand-2.png" alt="brand" class="img-fluid">
-                    </div>
-                    <div class="swiper-slide brand-item rounded">
-                        <img src="../assets/img/brands/brand-3.png" alt="brand" class="img-fluid">
-                    </div>
-                    <div class="swiper-slide brand-item rounded">
-                        <img src="../assets/img/brands/brand-4.png" alt="brand" class="img-fluid">
-                    </div>
-                    <div class="swiper-slide brand-item rounded">
-                        <img src="../assets/img/brands/brand-5.png" alt="brand" class="img-fluid">
-                    </div>
-                    <div class="swiper-slide brand-item rounded">
-                        <img src="../assets/img/brands/brand-2.png" alt="brand" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> <!--brands section end-->
-
 <!--feature section start-->
-<section class="about-section bg-shade position-relative z-1">
+<section class="about-section position-relative mt-5">
     <img src="../assets/img/shapes/bg-shape-5.png" alt="bg shape" class="position-absolute start-0 bottom-0 z--1 w-100">
     <img src="../assets/img/shapes/cake (2).png" alt="roll" class="position-absolute roll-color z--1" data-parallax='{"y": -50}'>
     <img src="../assets/img/shapes/cake.png" alt="roll" class="position-absolute roll-color-curve z--1" data-parallax='{"y": 50}'>
@@ -203,8 +125,62 @@ $categories = mysqli_fetch_all($result,MYSQLI_ASSOC);
     </div>
 </section> <!--feature section end-->
 
+<!--about section start-->
+<section class="pt-5 ab-about-section position-relative z-1 overflow-hidden">
+    <img src="../assets/img/shapes/mango.png" alt="mango" class="position-absolute mango z--1">
+    <div class="container">
+        <div class="row g-5 g-xl-4 align-items-center">
+            <div class="col-xl-6">
+                <div class="ab-left position-relative">
+                    <img src="../assets/img/about/ab-1.png" alt="image" class="img-fluid">
+                    <!-- <div class="text-end">
+                        <div class="ab-quote p-4 text-start">
+                            <h4 class="mb-0 fw-normal text-white">“Assertively target market Lorem ipsum is simply free consectetur notted elit sed do eiusmod” <span class="fs-md fw-medium position-relative">George Scholll</span></h4>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="ab-about-right">
+                    <div class="subtitle d-flex align-items-center gap-3 flex-wrap">
+                        <span class="gshop-subtitle">Providing 100% Pure and Authentic Sweets</span>
+                        <span>
+                            <svg width="78" height="16" viewBox="0 0 78 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="0.0138875" y1="7.0001" x2="72.0139" y2="8.0001" stroke="#FF7C08" stroke-width="2" />
+                                <path d="M78 8L66 14.9282L66 1.0718L78 8Z" fill="#FF7C08" />
+                            </svg>
+                        </span>
+                    </div>
+                    <h2 class="mb-4">Stay Sweet &<br> Enjoy Freshly Made Sweets</h2>
+                    <p class="mb-8">We are dedicated to delivering quality, freshness, and authenticity in every bite, ensuring that our customers experience pure delight. We aspire to be the go-to destination for quality confections, spreading joy and building lasting relationships through our passion for exceptional sweets.</p>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="image-box py-6 px-4 image-box-border">
+                                <div class="icon position-relative">
+                                    <img src="../assets/img/icons/hand-icon.svg" alt="hand icon" class="img-fluid">
+                                </div>
+                                <h4 class="mt-3">Our Mission</h4>
+                                <p class="mb-0">At HeavenlySweets, our mission is to create unforgettable moments of happiness by offering premium, handcrafted sweets that combine traditional recipes with modern flavors.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="image-box py-6 px-4 image-box-border">
+                                <div class="icon position-relative">
+                                    <img src="../assets/img/icons/hand-icon.svg" alt="hand icon" class="img-fluid">
+                                </div>
+                                <h4 class="mt-3">Our Vision</h4>
+                                <p class="mb-0">Our vision at HeavenlySweets is to become a symbol of sweetness and celebration in every home.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> <!--about section end-->
+
 <!--about us section-->
-<section class="about-us-section pb-120">
+<section class="pt-120 about-us-section pb-120">
     <div class="container">
         <div class="row g-4 align-items-center">
             <div class="col-xl-5">
@@ -284,6 +260,8 @@ $categories = mysqli_fetch_all($result,MYSQLI_ASSOC);
         </div>
     </div>
 </section> <!--about us section end-->
+
+
 <?php
 include('../includes/footer.php');
 ?>
