@@ -66,8 +66,8 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
 </style>
 <!--hero section start-->
 <section class="gshop-hero pt-120 bg-white position-relative z-1 overflow-hidden">
-    <img src="../assets/img/shapes/leaf-shadow.png" alt="leaf" class="position-absolute leaf-shape z--1 rounded-circle">
-    <img src="../assets/img/shapes/mango.png" alt="mango" class="position-absolute mango z--1"
+    <img src="../assets/img/shapes/candy (1).png" alt="leaf" class="position-absolute leaf-shape z--1 rounded-circle">
+    <img src="../assets/img/shapes/cookies.png" alt="mango" class="position-absolute mango z--1"
         data-parallax='{"y": -120}'>
     <img src="../assets/img/shapes/hero-circle-sm.png" alt="circle"
         class="position-absolute hero-circle circle-sm z--1">
@@ -269,9 +269,9 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
 
 <!--Category Section start-->
 <section class="featured-products pt-120 pb-200 bg-shade position-relative overflow-hidden z-1">
-    <img src="../assets/img/shapes/roll-1.png" alt="roll" class="position-absolute roll-1 z--1"
+    <img src="../assets/img/shapes/candy (1).png" alt="roll" class="h-10 position-absolute roll-1 z--1"
         data-parallax='{"y": -120}'>
-    <img src="../assets/img/shapes/roll-2.png" alt="roll" class="position-absolute roll-2 z--1"
+    <img src="../assets/img/shapes/candies.png" alt="roll" class="w-20 position-absolute roll-2 z--1"
         data-parallax='{"y": 120}'>
     <div class="container">
         <div class="row justify-content-center">
@@ -456,7 +456,7 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
 </div>
             <div class="col-xl-4 col-md-6">
                 <div class="banner-box rounded-2 overflow-hidden position-relative banner-color-green z-1">
-                    <img src="../assets/img/products/capsicum.png" alt="capsicum" class="banner-img">
+                    <img src="../assets/img/products/kaju katli.jpg" alt="capsicum" class="banner-img mt-1" >
                     <span class="gshop-subtitle fs-xxs mb-1 text-dark d-inline-block">Weekly Best Seller</span>
                     <h6 class="mb-0">Fresh Fruits</h6>
                     <h4 class="mb-6">Healthy Juice</h4>
@@ -466,7 +466,7 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
             </div>
             <div class="col-xl-4 col-md-6">
                 <div class="banner-box rounded-2 overflow-hidden position-relative z-1 banner-color-secondary">
-                    <img src="../assets/img/products/lychee.png" alt="lychee" class="banner-img">
+                    <img src="../assets/img/products/rasmali.jpg" alt="lychee" class="banner-img">
                     <span class="badge bg-danger gshop-subtitle mb-1">Top Offer</span>
                     <h6 class="mb-0">Fresh Fruits</h6>
                     <h4 class="mb-6">Healthy Juice</h4>
@@ -484,11 +484,11 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
     <img src="../assets/img/shapes/bg-shape-5.png" alt="bg shape" class="position-absolute start-0 bottom-0 z--1 w-100">
     <img src="../assets/img/shapes/map-bg.png" alt="map"
         class="position-absolute start-50 top-50 translate-middle z--1">
-    <img src="../assets/img/shapes/fd-1.png" alt="shape" class="position-absolute z--1 fd-1">
-    <img src="../assets/img/shapes/fd-2.png" alt="shape" class="position-absolute z--1 fd-2">
-    <img src="../assets/img/shapes/fd-3.png" alt="shape" class="position-absolute z--1 fd-3">
-    <img src="../assets/img/shapes/fd-4.png" alt="shape" class="position-absolute z--1 fd-4">
-    <img src="../assets/img/shapes/fd-5.png" alt="shape" class="position-absolute z--1 fd-5">
+    <img src="../assets/img/shapes/ladoo.png" alt="shape" class="position-absolute z--1 fd-1 w-20">
+    <img src="../assets/img/shapes/cake (2).png" alt="shape" class="position-absolute z--1 fd-2">
+    <img src="../assets/img/shapes/candy (1).png" alt="shape" class="position-absolute z--1 fd-3 w-10">
+    <img src="../assets/img/shapes/cookies.png" alt="shape" class="position-absolute z--1 fd-4">
+    <img src="../assets/img/shapes/ladoo (1).png" alt="shape" class="position-absolute z--1 fd-5">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-6">

@@ -43,7 +43,7 @@ if(isset($_SESSION['userid'])){
     // fetch order-image end
 
     // fetch pending order start
-    $pendingorderquery = "SELECT * FROM orders WHERE user_id = '$user_id' AND orderstatus !='Delivered'";
+    $pendingorderquery = "SELECT * FROM orders WHERE user_id = '$user_id' AND orderstatus ='Pending'";
     $pendingorderresult = mysqli_query($conn, $pendingorderquery);
     if ($pendingorderresult) {
         $pendingorders = mysqli_fetch_assoc($pendingorderresult);
@@ -68,8 +68,16 @@ if(isset($_SESSION['userid'])){
         $ddatacount = $ddata->num_rows;
     }
 
-    // fetch pending order end
+    //  fetch  quantity start
 
+    // fetch  prodcut cart start
+    $productquery = "SELECT * FROM productCart JOIN orders ON orders.referenceID = productCart.orderReference JOIN product ON productCart.product_id = product.product_id;";
+    $productresult = mysqli_query($conn, $productquery);
+    if ($productresult) {
+        $products = mysqli_fetch_all($productresult,MYSQLI_ASSOC);
+    }
+
+// fetch  prodcut cart start
 
     
 }
@@ -78,7 +86,8 @@ if(isset($_SESSION['userid'])){
 <!--my account section-->
 <section class="my-account pt-6 pb-120">
     <div class="container">
-        <div class="account-info d-flex align-items-center gap-6 p-4 p-sm-6 bg-white rounded mb-4 flex-wrap flex-lg-nowrap">
+        <div
+            class="account-info d-flex align-items-center gap-6 p-4 p-sm-6 bg-white rounded mb-4 flex-wrap flex-lg-nowrap">
             <div class="profile-pic bg-shade rounded">
                 <img src="../assets/img/authors/avatar.jpg" alt="avatar" class="img-fluid" />
             </div>
@@ -87,26 +96,43 @@ if(isset($_SESSION['userid'])){
                 <div class="info-meta d-flex align-items-center gap-2 gap-md-4 fs-xs flex-wrap">
                     <span>
                         <i class="fa-solid fa-location-pin me-2"></i>
-                        <?= $address['aptno'],",",$address['address']," - ",$address['zipcode']?>
+                        <?php
+                        if(isset($address['address'])){
+                            echo $address['aptno'],",",$address['address']," - ",$address['zipcode'];
+                        }
+                        else{
+                            echo"-";
+                        }
+                        ?>
                     </span>
                     <span>
                         <i class="fa-solid fa-phone me-2"></i>
-                        +91 <?= $user['userphone']?>
+                        <?php
+                        if(isset($user['userphone'])){
+                            echo "+91 ",$user['userphone'];
+                        }
+                        else{
+                            echo"-";
+                        }
+                        ?>
                     </span>
                     <span>
                         <i class="fa-solid fa-envelope me-2"></i>
-                        <?= $user['useremail']?>
+                        <?php
+                        if(isset($user['useremail'])){
+                            echo $user['useremail'];
+                        }
+                        else{
+                            echo"-";
+                        }
+                        ?>
                     </span>
                 </div>
                 <div class="profile-achievements d-flex align-items-center flex-wrap mt-4">
                     <div class="achievement-box d-flex align-items-center gap-3">
                         <span
                             class="icon d-inline-flex align-items-center justify-content-center flex-shrink-0 bg-color-1 rounded-3">
-                            <svg
-                                width="26"
-                                height="32"
-                                viewBox="0 0 26 32"
-                                fill="none"
+                            <svg width="26" height="32" viewBox="0 0 26 32" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M25.3573 26.3886L23.9282 8.38138C23.8392 7.22125 22.8581 6.31244 21.6946 6.31244H18.8719V6.18556C18.8719 2.77481 16.0971 0 12.6863 0C9.27556 0 6.50074 2.77481 6.50074 6.18556V6.31244H3.67812C2.51456 6.31244 1.53337 7.22119 1.44462 8.37894L0.0151202 26.3911C-0.0955048 27.8333 0.404808 29.2691 1.38768 30.3302C2.37056 31.3913 3.76387 32 5.21031 32H20.1622C21.6086 32 23.002 31.3914 23.9849 30.3302C24.9678 29.269 25.4681 27.8333 25.3573 26.3886ZM8.37512 6.18556C8.37512 3.80838 10.3092 1.87437 12.6863 1.87437C15.0634 1.87437 16.9975 3.80844 16.9975 6.18556V6.31244H8.37512V6.18556ZM22.6097 29.0566C21.9711 29.7459 21.102 30.1256 20.1622 30.1256H5.21037C4.27062 30.1256 3.40149 29.7459 2.76287 29.0566C2.12431 28.3671 1.81218 27.4714 1.88393 26.5369L3.31331 8.52469C3.32781 8.33519 3.48806 8.18681 3.67812 8.18681H6.50074V10.4952C6.50074 11.0128 6.92037 11.4324 7.43793 11.4324C7.95549 11.4324 8.37512 11.0128 8.37512 10.4952V8.18681H16.9975V10.4952C16.9975 11.0128 17.4171 11.4324 17.9347 11.4324C18.4522 11.4324 18.8719 11.0128 18.8719 10.4952V8.18681H21.6946C21.8846 8.18681 22.0448 8.33525 22.0596 8.52719L23.4886 26.5344C23.5605 27.4714 23.2483 28.3671 22.6097 29.0566Z"
@@ -124,11 +150,7 @@ if(isset($_SESSION['userid'])){
                     <div class="achievement-box d-flex align-items-center gap-3">
                         <span
                             class="icon bg-color-2 d-inline-flex align-items-center justify-content-center flex-shrink-0 bg-color-1 rounded-3">
-                            <svg
-                                width="32"
-                                height="32"
-                                viewBox="0 0 32 32"
-                                fill="none"
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M0.145579 15.9438H1.18512C1.34222 15.9438 1.49288 16.003 1.60396 16.1084C1.71505 16.2139 1.77745 16.3568 1.77745 16.5059C1.77511 18.9392 2.44015 21.3311 3.70719 23.4466C4.97422 25.562 6.79962 27.3282 9.0039 28.5713C9.1869 27.8714 9.59618 27.2434 10.1744 26.7754L10.2857 26.6838C8.41262 25.6462 6.85962 24.16 5.78223 22.3737C4.70485 20.5875 4.14087 18.564 4.14678 16.5059C4.14678 16.3568 4.20919 16.2139 4.32027 16.1084C4.43135 16.003 4.58202 15.9438 4.73911 15.9438H5.77866C5.8065 15.945 5.83406 15.9381 5.85759 15.9239C5.88112 15.9097 5.89947 15.889 5.91015 15.8646C5.92234 15.8419 5.92677 15.8162 5.92284 15.791C5.91892 15.7658 5.90682 15.7424 5.88824 15.724L3.07229 12.6185C3.05856 12.6036 3.04166 12.5918 3.02271 12.5836C3.00376 12.5755 2.98321 12.5713 2.96241 12.5713C2.94162 12.5713 2.92106 12.5755 2.90212 12.5836C2.88317 12.5918 2.86627 12.6036 2.85254 12.6185L0.0359972 15.724C0.0174144 15.7424 0.00531912 15.7658 0.00139153 15.791C-0.00253605 15.8162 0.00189912 15.8419 0.014081 15.8646C0.0247628 15.889 0.0431166 15.9097 0.0666451 15.9239C0.0901737 15.9381 0.117735 15.945 0.145579 15.9438V15.9438Z"
@@ -152,11 +174,7 @@ if(isset($_SESSION['userid'])){
                     <div class="achievement-box d-flex align-items-center gap-3">
                         <span
                             class="icon bg-color-3 d-inline-flex align-items-center justify-content-center flex-shrink-0 bg-color-1 rounded-3">
-                            <svg
-                                width="32"
-                                height="32"
-                                viewBox="0 0 32 32"
-                                fill="none"
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_1339_6368)">
                                     <path
@@ -168,15 +186,11 @@ if(isset($_SESSION['userid'])){
                                     <path
                                         d="M3.9395 9.05396C3.55144 9.05396 3.19581 9.27064 3.01787 9.61583L0.115062 15.2487C0.039375 15.3955 0 15.5583 0 15.7235V24.0864C0 24.659 0.464125 25.1231 1.03669 25.1231H3.55938V23.0496H2.07344V15.9751L4.57156 11.1274H12.4751V9.05396H3.9395V9.05396Z"
                                         fill="#10B2F5" />
-                                    <path
-                                        d="M21.4592 23.0498H9.64062V25.1232H21.4592V23.0498Z"
-                                        fill="#10B2F5" />
+                                    <path d="M21.4592 23.0498H9.64062V25.1232H21.4592V23.0498Z" fill="#10B2F5" />
                                     <path
                                         d="M30.9662 3.90503H12.4781C11.9055 3.90503 11.4414 4.36915 11.4414 4.94172V24.0864H13.5148V5.97847H29.9295V23.0497H27.4414V25.1232H30.9662C31.5388 25.1232 32.0029 24.659 32.0029 24.0865V4.94178C32.0029 4.36915 31.5388 3.90503 30.9662 3.90503Z"
                                         fill="#10B2F5" />
-                                    <path
-                                        d="M12.4736 14.7212H1.03516V16.7946H12.4736V14.7212Z"
-                                        fill="#10B2F5" />
+                                    <path d="M12.4736 14.7212H1.03516V16.7946H12.4736V14.7212Z" fill="#10B2F5" />
                                     <path
                                         d="M26.7949 10.2314C26.4144 9.80292 25.7589 9.76455 25.3314 10.145L20.192 14.71L18.1532 12.6449C17.7509 12.2375 17.0943 12.2334 16.6872 12.6356C16.2798 13.0379 16.2757 13.6944 16.6779 14.1019L19.4076 16.8664C19.6098 17.0714 19.8776 17.175 20.1457 17.175C20.3911 17.175 20.6368 17.0883 20.8334 16.9134L26.7082 11.6949C27.1363 11.3148 27.175 10.6595 26.7949 10.2314Z"
                                         fill="#10B2F5" />
@@ -196,11 +210,7 @@ if(isset($_SESSION['userid'])){
                     <div class="achievement-box d-flex align-items-center gap-3">
                         <span
                             class="icon bg-color-4 d-inline-flex align-items-center justify-content-center flex-shrink-0 bg-color-1 rounded-3">
-                            <svg
-                                width="32"
-                                height="32"
-                                viewBox="0 0 32 32"
-                                fill="none"
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M29.3988 26.2549H8.4524C8.19484 26.2549 8.08449 25.9166 8.28619 25.7611L11.202 23.5201H27.8625C29.047 23.5201 30.0295 22.5464 30.0524 21.3637L30.2391 11.7551C30.2605 10.6597 29.4583 9.70857 28.3734 9.54639C27.8514 9.46831 27.3626 9.8272 27.2844 10.3499C27.2062 10.8726 27.5669 11.359 28.09 11.4372C28.226 11.4575 28.3265 11.5757 28.3239 11.7125L28.1371 21.3265C28.1343 21.4743 28.0111 21.6057 27.8626 21.6057H11.6372L8.61464 8.53751L10.1488 8.76115C10.6718 8.83909 11.1595 8.47611 11.2378 7.95341C11.316 7.43071 10.9553 6.9422 10.4321 6.86398L8.1342 6.51987L7.25576 3.10519C7.14712 2.68191 6.76533 2.39331 6.32796 2.39331H2.59851C2.06952 2.39331 1.64062 2.822 1.64062 3.35051C1.64062 3.87902 2.06945 4.30771 2.59851 4.30771H5.58477L9.80376 22.1608L7.11615 24.2313C5.49472 25.4806 6.40666 28.1693 8.45233 28.1693H10.9669C10.8556 28.4428 10.7945 28.7915 10.7945 29.1338C10.7945 30.7172 12.0918 32 13.6865 32C15.2812 32 16.5785 30.7199 16.5785 29.1365C16.5785 28.7942 16.5174 28.4428 16.4061 28.1693H21.6375C21.5262 28.4428 21.4651 28.7915 21.4651 29.1338C21.4651 30.7172 22.7625 32 24.3572 32C25.9519 32 27.2493 30.7199 27.2493 29.1365C27.2493 28.7942 27.1881 28.4428 27.0768 28.1693H29.3989C29.928 28.1693 30.3568 27.7406 30.3568 27.2121C30.3568 26.6836 29.9279 26.2549 29.3988 26.2549V26.2549ZM13.6865 30.0806C13.1481 30.0806 12.7102 29.6511 12.7102 29.1232C12.7102 28.5952 13.1482 28.1657 13.6865 28.1657C14.2249 28.1657 14.6628 28.5952 14.6628 29.1232C14.6628 29.6511 14.2249 30.0806 13.6865 30.0806ZM24.3571 30.0806C23.8187 30.0806 23.3808 29.6511 23.3808 29.1232C23.3808 28.5952 23.8188 28.1657 24.3571 28.1657C24.8955 28.1657 25.3334 28.5952 25.3334 29.1232C25.3334 29.6511 24.8954 30.0806 24.3571 30.0806Z"
@@ -229,15 +239,9 @@ if(isset($_SESSION['userid'])){
                         <li>
                             <a href="#dashboard" data-bs-toggle="tab" class="active">
                                 <span class="me-2">
-                                    <svg
-                                        width="13"
-                                        height="12"
-                                        viewBox="0 0 13 12"
-                                        fill="none"
+                                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            fill-rule="evenodd"
-                                            clip-rule="evenodd"
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
                                             d="M0.332031 1.33333V0.666667C0.332031 0.3 0.632031 0 0.998698 0H12.332C12.6987 0 12.9987 0.3 12.9987 0.666667V1.33333C12.9987 1.7 12.6987 2 12.332 2H0.998698C0.632031 2 0.332031 1.7 0.332031 1.33333ZM12.332 3.33333H0.998698C0.632031 3.33333 0.332031 3.63333 0.332031 4V8C0.332031 8.36667 0.632031 8.66667 0.998698 8.66667H12.332C12.6987 8.66667 12.9987 8.36667 12.9987 8V4C12.9987 3.63333 12.6987 3.33333 12.332 3.33333ZM0.998698 12H12.332C12.6987 12 12.9987 11.7 12.9987 11.3333V10.6667C12.9987 10.3 12.6987 10 12.332 10H0.998698C0.632031 10 0.332031 10.3 0.332031 10.6667V11.3333C0.332031 11.7 0.632031 12 0.998698 12Z"
                                             fill="#4EB529" />
                                     </svg>
@@ -248,11 +252,7 @@ if(isset($_SESSION['userid'])){
                         <li>
                             <a href="#order-history" data-bs-toggle="tab">
                                 <span class="me-2">
-                                    <svg
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M5 12C5 12.5523 4.55228 13 4 13C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11C4.55228 11 5 11.4477 5 12Z"
@@ -274,11 +274,7 @@ if(isset($_SESSION['userid'])){
                         <li>
                             <a href="#address-book" data-bs-toggle="tab">
                                 <span class="me-2">
-                                    <svg
-                                        width="16"
-                                        height="16"
-                                        viewBox="0 0 16 16"
-                                        fill="none"
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M3.33333 1.99341H6C6.35362 1.99341 6.69276 2.13388 6.94281 2.38393C7.19286 2.63398 7.33333 2.97312 7.33333 3.32674V5.99341C7.33333 6.34703 7.19286 6.68617 6.94281 6.93622C6.69276 7.18627 6.35362 7.32674 6 7.32674H3.33333C2.97971 7.32674 2.64057 7.18627 2.39052 6.93622C2.14048 6.68617 2 6.34703 2 5.99341V3.32674C2 2.97312 2.14048 2.63398 2.39052 2.38393C2.64057 2.13388 2.97971 1.99341 3.33333 1.99341Z"
@@ -300,11 +296,7 @@ if(isset($_SESSION['userid'])){
                         <li>
                             <a href="#update-profile" data-bs-toggle="tab">
                                 <span class="me-2">
-                                    <svg
-                                        width="16"
-                                        height="16"
-                                        viewBox="0 0 16 16"
-                                        fill="none"
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M3.33333 1.99341H6C6.35362 1.99341 6.69276 2.13388 6.94281 2.38393C7.19286 2.63398 7.33333 2.97312 7.33333 3.32674V5.99341C7.33333 6.34703 7.19286 6.68617 6.94281 6.93622C6.69276 7.18627 6.35362 7.32674 6 7.32674H3.33333C2.97971 7.32674 2.64057 7.18627 2.39052 6.93622C2.14048 6.68617 2 6.34703 2 5.99341V3.32674C2 2.97312 2.14048 2.63398 2.39052 2.38393C2.64057 2.13388 2.97971 1.99341 3.33333 1.99341Z"
@@ -326,11 +318,7 @@ if(isset($_SESSION['userid'])){
                         <li>
                             <a href="#order-tracking" data-bs-toggle="tab">
                                 <span class="me-2">
-                                    <svg
-                                        width="16"
-                                        height="16"
-                                        viewBox="0 0 16 16"
-                                        fill="none"
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M3.33333 1.99341H6C6.35362 1.99341 6.69276 2.13388 6.94281 2.38393C7.19286 2.63398 7.33333 2.97312 7.33333 3.32674V5.99341C7.33333 6.34703 7.19286 6.68617 6.94281 6.93622C6.69276 7.18627 6.35362 7.32674 6 7.32674H3.33333C2.97971 7.32674 2.64057 7.18627 2.39052 6.93622C2.14048 6.68617 2 6.34703 2 5.99341V3.32674C2 2.97312 2.14048 2.63398 2.39052 2.38393C2.64057 2.13388 2.97971 1.99341 3.33333 1.99341Z"
@@ -352,11 +340,7 @@ if(isset($_SESSION['userid'])){
                         <li>
                             <a href="./../handler/logout_handle.php">
                                 <span class="me-2">
-                                    <svg
-                                        width="16"
-                                        height="16"
-                                        viewBox="0 0 16 16"
-                                        fill="none"
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M3.33333 1.99341H6C6.35362 1.99341 6.69276 2.13388 6.94281 2.38393C7.19286 2.63398 7.33333 2.97312 7.33333 3.32674V5.99341C7.33333 6.34703 7.19286 6.68617 6.94281 6.93622C6.69276 7.18627 6.35362 7.32674 6 7.32674H3.33333C2.97971 7.32674 2.64057 7.18627 2.39052 6.93622C2.14048 6.68617 2 6.34703 2 5.99341V3.32674C2 2.97312 2.14048 2.63398 2.39052 2.38393C2.64057 2.13388 2.97971 1.99341 3.33333 1.99341Z"
@@ -389,11 +373,38 @@ if(isset($_SESSION['userid'])){
                                             <h6 class="mb-0">Address Book</h6>
                                             <a href="#">Edit</a>
                                         </div>
+                                        <?php
+                                        if(isset($address['addrid'])){
+                                        ?>
                                         <p class="text-uppercase fw-medium mb-3">
                                             Default Shipping Address
                                         </p>
                                         <div class="address">
-                                            <p class="text-dark fw-bold mb-1"><?= $address['fname']," ",$address['lname']?></p>
+                                            <p class="text-dark fw-bold mb-1">
+                                                <?= $address['fname']," ",$address['lname']?></p>
+                                            <p class="mb-0">
+                                                <?= $address['aptno'],",",$address['address']," - ",$address['zipcode']?>
+                                                <br />
+                                                +91 <?= $user['userphone']?>
+                                            </p>
+                                        </div>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 align-self-end">
+
+                                    <?php
+                                    if(isset($address['addrid'])){
+                                ?>
+                                    <div class="address-book-content ps-md-4">
+                                        <p class="text-uppercase fw-medium mb-3">
+                                            Default Billing Address
+                                        </p>
+                                        <div class="address">
+                                            <p class="text-dark fw-bold mb-1">
+                                                <?= $address['fname']," ",$address['lname']?></p>
                                             <p class="mb-0">
                                                 <?= $address['aptno'],",",$address['address']," - ",$address['zipcode']?>
                                                 <br />
@@ -401,9 +412,11 @@ if(isset($_SESSION['userid'])){
                                             </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 align-self-end">
-                                    <div class="address-book-content ps-md-4">
+                                    <?php
+                                    }
+                                ?>
+
+                                    <!-- <div class="address-book-content ps-md-4">
                                         <p class="text-uppercase fw-medium mb-3">
                                             Default Billing Address
                                         </p>
@@ -415,7 +428,7 @@ if(isset($_SESSION['userid'])){
                                                 +91 <?= $user['userphone']?>
                                             </p>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -429,48 +442,111 @@ if(isset($_SESSION['userid'])){
                                         <th>Order Number#</th>
                                         <th>Placed on</th>
                                         <th>Method</th>
-                                        <th>Items</th>
                                         <th>Total</th>
                                         <th class="text-center">Action</th>
                                     </tr>
 
-                                    <?php
-                                        foreach($orders as $order){
-                                            // Extract the date part (first 8 characters)
-                                            $rawDate = substr($order['referenceID'], 0, 8);
-
-                                            // Reformat to DD/MM/YYYY
-                                            $day = substr($rawDate, 6, 2);
-                                            $month = substr($rawDate, 4, 2);
-                                            $year = substr($rawDate, 0, 4);
-                                            $formattedDate = "$day/$month/$year";
-
+                                    <?php foreach($orders as $order): 
+                                        $rawDate = substr($order['referenceID'], 0, 8);
+                                        $day = substr($rawDate, 6, 2);
+                                        $month = substr($rawDate, 4, 2);
+                                        $year = substr($rawDate, 0, 4);
+                                        $formattedDate = "$day/$month/$year";
                                     ?>
-
                                     <tr>
                                         <td><?= $order['referenceID']?></td>
-                                        <td><?=$formattedDate ?></td>
+                                        <td><?= $formattedDate ?></td>
                                         <td><?= $order['payment_type']?></td>
-                                        <td class="thumbnail">
-                                            <img src="../assets/img/products/cauliflower-xs.png" alt="product" />
-                                        </td>
                                         <td class="text-secondary">₹<?= $order['total_price']?></td>
                                         <td class="text-center">
-                                            <a href="#" class="view-invoice fs-xs">
+                                            <a href="#" class="view-invoice fs-xs" data-id="<?= $order['referenceID']?>"
+                                                data-bs-toggle="modal" data-bs-target="#orderDetailsModal">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                        
-
-
                                         </td>
                                     </tr>
-                                    <?php
-                                        }
-                                    ?>
-
+                                    <?php endforeach; ?>
                                 </table>
+
                             </div>
                         </div>
+
+                        <!-- recent order javascript start -->
+                        <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            document.querySelectorAll(".view-invoice").forEach(button => {
+                                button.addEventListener("click", function() {
+                                    let orderID = this.getAttribute("data-id");
+
+                                    fetch("../handler/fetch_order_details.php?referenceID=" +
+                                            orderID)
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data.success) {
+                                                let tableBody = document.getElementById(
+                                                    "orderDetailsBody");
+                                                tableBody.innerHTML =
+                                                ""; // Clear previous data
+
+                                                data.products.forEach(product => {
+                                                    let row = `
+                                                            <tr>
+                                                                <td>${product.product_name}</td>
+                                                                <td>${product.productqty}</td>
+                                                                <td>₹${product.product_price}</td>
+                                                                <td class="text-secondary">₹${product.total}</td>
+                                                            </tr>`;
+                                                    tableBody.innerHTML += row;
+                                                });
+
+                                                document.getElementById("orderModalTitle")
+                                                    .innerText = "Order #" + orderID;
+                                            } else {
+                                                alert("Order details not found!");
+                                            }
+                                        })
+                                        .catch(error => console.error(
+                                            "Error fetching order details:", error));
+                                });
+                            });
+                        });
+                        </script>
+
+
+                        <!-- recent order javascript end -->
+
+                        <!--add address modal start-->
+                        <!-- Modal -->
+                        <div class="modal fade" id="orderDetailsModal">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+
+                                        <div class="gstore-product-quick-view bg-white rounded-3 py-6 px-4">
+                                            <h2 class="modal-title fs-5 mb-3" id="orderModalTitle">Order Details</h2>
+                                            <div class="table-responsive">
+                                                <table class="order-history-table table">
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>QTY</th>
+                                                        <th>Price</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                    <tbody id="orderDetailsBody"></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!--add address modal end-->
+
                     </div>
                     <div class="tab-pane fade" id="address-book">
                         <div class="address-book bg-white rounded p-5">
@@ -481,32 +557,49 @@ if(isset($_SESSION['userid'])){
                                             <h6 class="mb-0">Address Book</h6>
                                             <a href="#">Edit</a>
                                         </div>
+                                        <?php
+                                        if(isset($address['addrid'])){
+
+                                        ?>
                                         <p class="text-uppercase fw-medium mb-3">
                                             Default Shipping Address
                                         </p>
                                         <div class="address">
-                                            <p class="text-dark fw-bold mb-1"><?= $address['fname']," ",$address['lname']?></p>
-                                            <p class="mb-0">
-                                            <?= $address['aptno'],",",$address['address']," - ",$address['zipcode']?>
-                                                <br />
-                                                +91 <?= $user['userphone']?>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 align-self-end">
-                                    <div class="address-book-content ps-md-4">
-                                        <p class="text-uppercase fw-medium mb-3">
-                                            Default Billing Address
-                                        </p>
-                                        <div class="address">
-                                            <p class="text-dark fw-bold mb-1"><?= $address['fname']," ",$address['lname']?></p>
+                                            <p class="text-dark fw-bold mb-1">
+                                                <?= $address['fname']," ",$address['lname']?></p>
                                             <p class="mb-0">
                                                 <?= $address['aptno'],",",$address['address']," - ",$address['zipcode']?>
                                                 <br />
                                                 +91 <?= $user['userphone']?>
                                             </p>
                                         </div>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 align-self-end">
+                                    <div class="address-book-content ps-md-4">
+                                        <?php
+                                        if(isset($address['addrid'])){
+
+                                        
+                                        ?>
+                                        <p class="text-uppercase fw-medium mb-3">
+                                            Default Billing Address
+                                        </p>
+                                        <div class="address">
+                                            <p class="text-dark fw-bold mb-1">
+                                                <?= $address['fname']," ",$address['lname']?></p>
+                                            <p class="mb-0">
+                                                <?= $address['aptno'],",",$address['address']," - ",$address['zipcode']?>
+                                                <br />
+                                                +91 <?= $user['userphone']?>
+                                            </p>
+                                        </div>
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -515,9 +608,10 @@ if(isset($_SESSION['userid'])){
                     <div class="tab-pane fade" id="update-profile">
                         <div class="update-profile bg-white py-5 px-4">
                             <h6 class="mb-4">Update Profile</h6>
-                            <form class="profile-form" method="post" action="../handler/profile_update.php">
+                            <form class="profile-form" method="post" action="../handler/profile_update.php"
+                                enctype="multipart/form-data">
                                 <div class="file-upload text-center rounded-3 mb-5">
-                                    <input type="file" name="dp" />
+                                    <input type="file" name="userimage" value="Demo" />
                                     <img src="../assets/img/icons/image.svg" alt="dp" class="img-fluid" />
                                     <p class="text-dark fw-bold mb-2 mt-3">
                                         Drop your files here or
@@ -531,13 +625,15 @@ if(isset($_SESSION['userid'])){
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>First Name</label>
-                                            <input type="text" placeholder="Gene J." name="fname" value="<?= $user['userfname']?>"/>
+                                            <input type="text" placeholder="Gene J." name="fname"
+                                                value="<?= $user['userfname']?>" />
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>Last Name</label>
-                                            <input type="text" placeholder="Larose" name="lname" value="<?= $user['userlname']?>"/>
+                                            <input type="text" placeholder="Larose" name="lname"
+                                                value="<?= $user['userlname']?>" />
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -549,21 +645,17 @@ if(isset($_SESSION['userid'])){
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>Email Address</label>
-                                            <input type="email" placeholder="themetags@gmail.com" name="email" value="<?= $user['useremail']?>"/>
+                                            <input type="email" placeholder="themetags@gmail.com" name="email"
+                                                value="<?= $user['useremail']?>" />
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="label-input-field">
                                             <label>Birthday</label>
-                                            <input type="date" />
+                                            <input type="date" name="dob" value="<?= $user['DOB']?>" />
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="label-input-field">
-                                            <label>User Name</label>
-                                            <input type="text" placeholder="Username" />
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <button type="submit" name="profileupdatebtn" class="btn btn-primary mt-6">
                                     Update Profile
@@ -602,6 +694,23 @@ if(isset($_SESSION['userid'])){
                                 <button type="submit" name="changepasswordbtn" class="btn btn-primary mt-6">
                                     Change Password
                                 </button>
+
+                                <?php
+                                if (isset($_SESSION['message'])) {
+                                    // Retrieve the message and type
+                                    $messageType = $_SESSION['message']['type']; // 'success' or 'error'
+                                    $messageText = $_SESSION['message']['text'];
+                                
+                                    // Display the alert
+                                    echo "<script>
+                                        alert('$messageText');
+                                    </script>";
+                                
+                                    // Unset the session message to prevent repeated alerts
+                                    unset($_SESSION['message']);
+                                }
+                                ?>
+
                             </form>
                         </div>
                     </div>

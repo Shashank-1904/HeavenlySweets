@@ -21,18 +21,18 @@ $categories = mysqli_fetch_all($result,MYSQLI_ASSOC);
 ?>
 <!--breadcrumb section start-->
 <div class="gstore-breadcrumb position-relative z-1 overflow-hidden mt--50">
-    <img src="../assets/img/shapes/bg-shape-6.png" alt="bg-shape" class="position-absolute start-0 z--1 w-100 bg-shape">
-    <img src="../assets/img/shapes/pata-xs.svg" alt="pata" class="position-absolute pata-xs z--1 vector-shape">
-    <img src="../assets/img/shapes/onion.png" alt="onion" class="position-absolute z--1 onion start-0 top-0 vector-shape">
-    <img src="../assets/img/shapes/frame-circle.svg" alt="frame circle" class="position-absolute z--1 frame-circle vector-shape">
+<img src="../assets/img/shapes/bg-shape-6.png" alt="bg-shape" class="position-absolute start-0 z--1 w-100 bg-shape">
+    <img src="../assets/img/shapes/candy (1).png" alt="pata" class="position-absolute pata-xs z--1 vector-shape">
+    <img src="../assets/img/shapes/candy.png" alt="onion" class="position-absolute z--1 onion start-0 top-0 vector-shape h-15">
+    <img src="../assets/img/shapes/laddu.png" alt="frame circle" class="position-absolute z--1 frame-circle vector-shape h-17">
     <img src="../assets/img/shapes/leaf.svg" alt="leaf" class="position-absolute z--1 leaf vector-shape">
-    <img src="../assets/img/shapes/garlic-white.png" alt="garlic" class="position-absolute z--1 garlic vector-shape">
-    <img src="../assets/img/shapes/roll-1.png" alt="roll" class="position-absolute z--1 roll vector-shape">
-    <img src="../assets/img/shapes/roll-2.png" alt="roll" class="position-absolute z--1 roll-2 vector-shape">
-    <img src="../assets/img/shapes/pata-xs.svg" alt="roll" class="position-absolute z--1 pata-xs-2 vector-shape">
+    <img src="../assets/img/shapes/cupcake.png" alt="garlic" class="position-absolute z--1 garlic vector-shape h-10">
+    <img src="../assets/img/shapes/cake (2).png" alt="roll" class="position-absolute z--1 roll vector-shape h-10">
+    <img src="../assets/img/shapes/cake.png" alt="roll" class="position-absolute z--1 roll-2 vector-shape">
+    <img src="../assets/img/shapes/candy (1).png" alt="roll" class="position-absolute z--1 pata-xs-2 vector-shape">
     <img src="../assets/img/shapes/tomato-half.svg" alt="tomato" class="position-absolute z--1 tomato-half vector-shape">
-    <img src="../assets/img/shapes/tomato-slice.svg" alt="tomato" class="position-absolute z--1 tomato-slice vector-shape">
-    <img src="../assets/img/shapes/cauliflower.png" alt="tomato" class="position-absolute z--1 cauliflower vector-shape">
+    <img src="../assets/img/shapes/donut.png" alt="tomato" class="position-absolute z--1 tomato-slice vector-shape h-15">
+    <img src="../assets/img/shapes/candies.png" alt="tomato" class="position-absolute z--1 cauliflower vector-shape w-15">
     <img src="../assets/img/shapes/leaf-gray.png" alt="tomato" class="position-absolute z--1 leaf-gray vector-shape">
     <div class="container">
         <div class="row">
@@ -142,8 +142,8 @@ $categories = mysqli_fetch_all($result,MYSQLI_ASSOC);
 <!--feature section start-->
 <section class="about-section bg-shade position-relative z-1">
     <img src="../assets/img/shapes/bg-shape-5.png" alt="bg shape" class="position-absolute start-0 bottom-0 z--1 w-100">
-    <img src="../assets/img/shapes/roll-color.png" alt="roll" class="position-absolute roll-color z--1" data-parallax='{"y": -50}'>
-    <img src="../assets/img/shapes/roll-color-curve.png" alt="roll" class="position-absolute roll-color-curve z--1" data-parallax='{"y": 50}'>
+    <img src="../assets/img/shapes/cake (2).png" alt="roll" class="position-absolute roll-color z--1" data-parallax='{"y": -50}'>
+    <img src="../assets/img/shapes/cake.png" alt="roll" class="position-absolute roll-color-curve z--1" data-parallax='{"y": 50}'>
     <img src="../assets/img/shapes/onion-color.png" alt="onion" class="position-absolute onion-color z--1" data-parallax='{"x": -30}'>
     <div class="container">
         <div class="row justify-content-center">
