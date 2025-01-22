@@ -11,15 +11,15 @@ if(isset($_SESSION['userid'])){
 
     // Cart product fetch start
     $query = "SELECT * 
-FROM product p 
-JOIN productCart pc ON pc.product_id = p.product_id 
-WHERE pc.user_id = '3' 
-AND `orderReference` IS NULL 
-LIMIT 0, 25;";
-    $result = mysqli_query($conn,$query);
-    if(!$result){
-        echo"Wrong Query";
-    }
+        FROM product p 
+        JOIN productCart pc ON pc.product_id = p.product_id 
+        WHERE pc.user_id = '$user_id' 
+        AND `orderReference` IS NULL 
+        LIMIT 0, 25;";
+        $result = mysqli_query($conn,$query);
+        if(!$result){
+            echo"Wrong Query";
+        }
     $products = mysqli_fetch_all($result,MYSQLI_ASSOC);
     $count = $result->num_rows;
 
@@ -101,7 +101,7 @@ else{
                             <div class="checkout-steps">
                                 <div class="d-flex justify-content-between">
                                     <h4 class="mb-5">Shipment Address</h4>
-                                    <?php count($addresses) == 0 ? '<a href="#" data-bs-toggle="modal" data-bs-target="#addAddressModal"
+                                    <?php echo count($addresses) == 0 ? '<a href="#" data-bs-toggle="modal" data-bs-target="#addAddressModal"
                                         class="fw-semibold"><i class="fas fa-plus me-1"></i> Add Address</a>' : '' ?>
                                 </div>
                                 <div class="row g-4">

@@ -43,11 +43,29 @@ if(isset($_SESSION['userid'])){
     // fetch order-image end
 
     // fetch pending order start
-    $pendingorderquery = "SELECT * FROM orders WHERE user_id = '$user_id' AND orderstatus ='Pending'";
+    $pendingorderquery = "SELECT * FROM orders WHERE user_id = '$user_id' AND orderstatus !='Delivered'";
     $pendingorderresult = mysqli_query($conn, $pendingorderquery);
     if ($pendingorderresult) {
-        $pendingorders = mysqli_fetch_all($pendingorderresult,MYSQLI_ASSOC);
+        $pendingorders = mysqli_fetch_assoc($pendingorderresult);
         $totalpendingorder = $pendingorderresult->num_rows;
+    }
+
+    $proccessorder = "SELECT * FROM orders WHERE user_id = '$user_id' AND orderstatus='Processing'";
+    $pdata = mysqli_query($conn, $proccessorder);
+    if ($pdata) {
+        $pdatacount = $pdata->num_rows;
+    }
+
+    $pendingQuery = "SELECT * FROM orders WHERE user_id = '$user_id' AND orderstatus='Pending'";
+    $penddata = mysqli_query($conn, $pendingQuery);
+    if ($penddata) {
+        $penddatacount = $penddata->num_rows;
+    }
+
+    $deliverdQuery = "SELECT * FROM orders WHERE user_id = '$user_id' AND orderstatus='Delivered'";
+    $ddata = mysqli_query($conn, $deliverdQuery);
+    if ($ddata) {
+        $ddatacount = $ddata->num_rows;
     }
 
     // fetch pending order end
@@ -127,7 +145,7 @@ if(isset($_SESSION['userid'])){
                             </svg>
                         </span>
                         <div>
-                            <h4 class="mb-1"><?=$totalpendingorder?></h4>
+                            <h4 class="mb-1"><?=$pdatacount?></h4>
                             <span>Order Processing</span>
                         </div>
                     </div>
@@ -171,7 +189,7 @@ if(isset($_SESSION['userid'])){
                             </svg>
                         </span>
                         <div>
-                            <h4 class="mb-1"><?=$totalorder-$totalpendingorder?></h4>
+                            <h4 class="mb-1"><?=$ddatacount?></h4>
                             <span>Total Delivered</span>
                         </div>
                     </div>
@@ -196,7 +214,7 @@ if(isset($_SESSION['userid'])){
                             </svg>
                         </span>
                         <div>
-                            <h4 class="mb-1"><?=$totalpendingorder?></h4>
+                            <h4 class="mb-1"><?=$penddatacount?></h4>
                             <span>Pending Orders</span>
                         </div>
                     </div>
@@ -591,12 +609,34 @@ if(isset($_SESSION['userid'])){
                     <div class="tab-pane fade" id="order-tracking">
                         <div class="order-tracking-wrap bg-white rounded py-5 px-4">
                             <h6 class="mb-4">Order Tracking</h6>
-                            <ol id="progress-bar">
+                            <!-- <ol id="progress-bar">
                                 <li class="fs-xs tt-step tt-step-done">Pending</li>
                                 <li class="fs-xs tt-step active">Processing</li>
                                 <li class="fs-xs tt-step ">On the Way</li>
                                 <li class="fs-xs tt-step">Delivered</li>
-                            </ol>
+                            </ol> -->
+                            <?php
+                                $status = $pendingorders['orderstatus'];
+                                $steps = ["Pending", "Processing", "On the Way", "Delivered"];
+                                $statusInfo = [
+                                    "Pending" => "Thank you for shopping at HeavenlySweets! Your order is being verified.",
+                                    "Processing" => "Your order has been successfully verified.",
+                                    "On the Way" => "Your package has been packed and is being handed over to a logistics partner.",
+                                    "Delivered" => "Your package has been delivered. Thank you for shopping at Grostore!"
+                                ];
+
+                                echo '<ol id="progress-bar">';
+                                foreach ($steps as $step) {
+                                    if ($step == $status) {
+                                        echo '<li class="fs-xs tt-step active">' . $step . '</li>';
+                                    } elseif (array_search($step, $steps) < array_search($status, $steps)) {
+                                        echo '<li class="fs-xs tt-step tt-step-done">' . $step . '</li>';
+                                    } else {
+                                        echo '<li class="fs-xs tt-step">' . $step . '</li>';
+                                    }
+                                }
+                                echo '</ol>';
+                                ?>
                             </ol>
                             <div class="table-responsive-md mt-5">
                                 <table class="table table-bordered fs-xs">
@@ -607,31 +647,18 @@ if(isset($_SESSION['userid'])){
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td> 14 Feb 2023 - 13:19 </td>
-                                            <td>Your package has been delivered. Thank
-                                                you for shopping at Grostore!</td>
-                                        </tr>
-                                        <tr>
-                                            <td> 13 Feb 2023 - 13:39</td>
-                                            <td>Your package has been handed over to
-                                                Grostore Delivery.</td>
-                                        </tr>
-                                        <tr>
-                                            <td> 12 Feb 2023 - 14:50</td>
-                                            <td>Your package has been packed and is
-                                                being handed over to a logistics partner</td>
-                                        </tr>
-                                        <tr>
-                                            <td>12 Feb 2023 - 13:05</td>
-                                            <td>Your order has been successfully
-                                                verified.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>12 Feb 2023 - 13:05</td>
-                                            <td>Thank you for shopping at GroStore! Your
-                                                order is being verified.</td>
-                                        </tr>
+                                        <?php 
+                                            foreach ($steps as $step) {
+                                                if (array_search($step, $steps) <= array_search($status, $steps)) {
+                                                    if (isset($statusInfo[$step])) {
+                                                        echo '<tr>
+                                                                <td>' . $pendingorders['orderupdated'] . '</td>
+                                                                <td>' . htmlspecialchars($statusInfo[$step]) . '</td>
+                                                            </tr>';
+                                                    }
+                                                }
+                                            }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

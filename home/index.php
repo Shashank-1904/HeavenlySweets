@@ -293,7 +293,7 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
                     <div class="horizontal-product-card d-sm-flex align-items-center p-3 bg-white rounded-2 gap-4">
                         <div class="thumbnail position-relative rounded-2">
                             <a href="./products.php"><img src="../common_images/category/<?= $category['catimg']?>" alt="product"
-                                    class="img-fluid"></a>
+                                    style="height:120px;width:120px;" class="img-fluid"></a>
                             <div
                                 class="product-overlay position-absolute start-0 top-0 w-100 h-100 d-flex align-items-center justify-content-center gap-2 rounded-2">
                                 <a href="#quickview_modal" data-bs-toggle="modal" class="rounded-btn"><i
@@ -396,7 +396,7 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
                             </ul>
                             <span class="flex-shrink-0">(<?= $product['product_rating']?>)</span>
                         </div>
-                        <h6 class="price text-danger mb-3">₹<?= $product['product_price']?></h6>
+                        <h6 class="price text-danger mb-3">₹<?= $product['product_price']?> / <?= $product['product_qty']?></h6>
                         <!-- <div class="card-progressbar mb-2 rounded-pill">
                             <span class="card-progress bg-primary" data-progress="100%"></span>
                         </div>
