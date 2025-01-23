@@ -97,7 +97,18 @@ if(isset($_SESSION['userid'])){
         <div
             class="account-info d-flex align-items-center gap-6 p-4 p-sm-6 bg-white rounded mb-4 flex-wrap flex-lg-nowrap">
             <div class="profile-pic bg-shade rounded">
-                <img src="../assets/img/authors/avatar.jpg" alt="avatar" class="img-fluid" />
+                <?php 
+                    if($user['userimg'] == '')
+                    {
+                        $path = "../assets/img/authors/avatar.jpg";
+                    }
+                    else
+                    {
+                        $path = "../common_images/Users/".$user['userimg'];
+                    }
+
+                ?>
+                <img src="<?php echo $path; ?>" alt="<?php echo $path; ?>" class="img-fluid" />
             </div>
             <div class="profile-inf-right">
                 <h4 class="mb-2"><?=$user['userfname']," ",$user['userlname']?></h4>

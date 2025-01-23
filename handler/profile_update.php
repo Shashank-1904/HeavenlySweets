@@ -24,15 +24,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['profileupdatebtn'])) 
         if (in_array(strtolower($imageExtension), $allowedExtensions)) {
             // Create a unique name for the file
             $imageName = uniqid('user_') . '.' . $imageExtension;
-            $targetDirectory = '../assets/img/users/';
+            $targetDirectory = '../common_images/Users/';
             $targetFilePath = $targetDirectory . $imageName;
 
             // Move uploaded file to the target directory
             if (!move_uploaded_file($imageTmpName, $targetFilePath)) {
-                die('Failed to upload image. Please try again.');
+                $_SESSION['message'] = ['type' => 'error', 'text' => 'Image Upload Error'];
+                echo "<script> window.location.replace('./../home/my-account.php'); </script>";
+                exit;
             }
         } else {
-            die('Invalid file type. Please upload a JPG, JPEG, or PNG image.');
+            $_SESSION['message'] = ['type' => 'error', 'text' => 'Image Upload Error'];
+            echo "<script> window.location.replace('./../home/my-account.php'); </script>";
+            exit;
         }
     }
 
@@ -43,6 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['profileupdatebtn'])) 
         $_SESSION['message'] = ['type' => 'success', 'text' => 'Updated Successfully !'];
         echo "<script> window.location.replace('../Home/my-account.php'); </script>";
         exit;
+    }
+    else
+    {
+        $_SESSION['message'] = ['type' => 'error', 'text' => 'Something Went Wrong'];
+                echo "<script> window.location.replace('./../home/my-account.php'); </script>";
+                exit;
     }
 }
 ?>
