@@ -17,14 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['loginbtn']))
     {
         $_SESSION['user_id'] = $user['admin_id'];
         $_SESSION['user_email'] = $user['admin_email'];
-        header("Location: ./../index.php");
+        header("Location: ./../home/index.php");
         exit();
     }
     // Set error and redirect back to login
     $_SESSION['error'] = "Invalid email or password.";
-    header("Location: ./../login.php");
+    header("Location: ./../home/login.php");
     exit();
 }
-header("Location: ./../login.php");
+header("Location: ./../home/login.php");
 exit();
 ?>
