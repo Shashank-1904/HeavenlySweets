@@ -136,8 +136,8 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
                         </div>
                         <div class="col-xl-6 col-lg-7">
                             <div class="hero-right text-center position-relative z-1 mt-8 mt-xl-0">
-                                <img src="../assets/img/pexels-marta-dzedyshko-1042863-2067396.jpg" alt="fruits"
-                                    class="img-fluid position-absolute end-0 top-50 hero-img">
+                                <img src="../assets/img/pexels-abhinavcoca-291528.jpg" alt="fruits"
+                                    class="img-fluid position-absolute end-0 top-50 hero-img" >
                                 <img src="../assets/img/shapes/orange-1.png" alt="orange"
                                     class="position-absolute orange-1 z-1">
                                 <img src="../assets/img/shapes/orange-2.png" alt="orange"
@@ -168,7 +168,7 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
                         </div>
                         <div class="col-xl-6 col-lg-7">
                             <div class="hero-right text-center position-relative z-1 mt-8 mt-xl-0">
-                                <img src="../assets/img/pexels-nano-erdozain-120534369-19202791.jpg" alt="fruits"
+                                <img src="../assets/img/pexels-vojtech-okenka-127162-1055271.jpg" alt="fruits"
                                     class="img-fluid position-absolute end-0 top-50 hero-img">
                                 <img src="../assets/img/shapes/orange-1.png" alt="orange"
                                     class="position-absolute orange-1 z-1">
@@ -305,7 +305,7 @@ if (!empty($offer)) { // Check if $offer is not empty
                 ?>
                 <div class="col-md-6 mb-4">
                     <div class="horizontal-product-card d-sm-flex align-items-center p-3 bg-white rounded-2 gap-4">
-                        <div class="thumbnail position-relative rounded-2">
+                        <div class="thumbnail position-relative rounded-2 text-center">
                             <a href="./products.php"><img src="../common_images/category/<?= $category['catimg']?>" alt="product"
                                     style="height:130px;width:130px;" class="img-fluid"></a>
                             <div

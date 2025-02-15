@@ -107,7 +107,7 @@ if (isset($_SESSION['userid'])) {
                             </ul>
                         </nav>
                         <div class="gshop-header-icons d-none d-md-inline-flex align-items-center justify-content-end ms-3">
-                            <div class="gshop-header-search dropdown">
+                            <!-- <div class="gshop-header-search dropdown">
                                 <button type="button" class="header-icon" data-bs-toggle="dropdown">
                                     <svg width="18" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M9.68859 0.5C4.34645 0.5 0 4.84646 0 10.1886C0 15.5311 4.34645 19.8772 9.68859 19.8772C15.031 19.8772 19.3772 15.5311 19.3772 10.1886C19.3772 4.84646 15.031 0.5 9.68859 0.5ZM9.68859 18.0886C5.33261 18.0886 1.78866 14.5447 1.78866 10.1887C1.78866 5.83266 5.33261 2.28867 9.68859 2.28867C14.0446 2.28867 17.5885 5.83262 17.5885 10.1886C17.5885 14.5446 14.0446 18.0886 9.68859 18.0886Z" fill="#5D6374" />
@@ -121,7 +121,7 @@ if (isset($_SESSION['userid'])) {
                                                 class="fa-solid fa-magnifying-glass"></i></button>
                                     </form>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <?php
                             if (isset($_SESSION['useremail'])) {
@@ -289,54 +289,21 @@ if (isset($_SESSION['userid'])) {
     </div>
     <div class="mobile-menu d-md-block d-lg-block d-xl-none">
         <button class="offcanvas-close"><i class="fa-solid fa-xmark"></i></button>
-        <a href="#" class="d-inline-block mb-5"><img src="../assets/img/logo.png" alt="logo" /></a>
+        <a href="#" class="d-inline-block mb-5"><img src="../assets/img/hslogo.png" alt="logo" style="height: 70px;"/></a>
         <nav class="mobile-menu-wrapper mt-4">
             <ul>
                 <li class="has-submenu">
-                    <a href="javascript:void(0)">Home<span class="ms-1 fs-xs float-end"><i class="fa-solid fa-angle-right"></i></span></a>
-                    <ul>
-                        <li><a href="index.html">Grocery Store</a></li>
-                        <li><a href="index-2.html">Natural Store</a></li>
-                        <li><a href="index-3.html">Organic Store</a></li>
-                        <li><a href="index-4.html">Halal Meat Store</a></li>
-                        <li><a href="index-5.html">Meat Store</a></li>
-                        <li><a href="index-6.html">Medicine Store</a></li>
-                        <li><a href="index-7.html">Furniture Store</a></li>
-                    </ul>
+                    <!-- <a href="javascript:void(0)">Home<span class="ms-1 fs-xs float-end"><i class="fa-solid fa-angle-right"></i></span></a> -->
+                    <a href="./../home/index.php">Home<span class="ms-1 fs-xs float-end"></a>
                 </li>
                 <li class="has-submenu">
-                    <a href="javascript:void(0)">Products<span class="ms-1 fs-xs float-end"><i class="fa-solid fa-angle-right"></i></span></a>
-                    <ul>
-                        <li><a href="shop-grid.html">Shop Grid</a></li>
-                        <li><a href="shop-grid-2.html">Shop Grid V2</a></li>
-                        <li><a href="product-details.html">Product Details</a></li>
-                    </ul>
+                    <a href="./../home/about.php">About Us<span class="ms-1 fs-xs float-end"></a>    
                 </li>
                 <li class="has-submenu">
-                    <a href="javascript:void(0)">Blog<span class="ms-1 fs-xs float-end"><i class="fa-solid fa-angle-right"></i></span></a>
-                    <ul>
-                        <li><a href="blog-grid.html">Blog Grid</a></li>
-                        <li><a href="blog-listing.html">Blog List</a></li>
-                        <li><a href="blog-details.html">Blog Details</a></li>
-                    </ul>
+                    <a href="./../home/products.php">Product<span class="ms-1 fs-xs float-end"></a>
                 </li>
                 <li class="has-submenu">
-                    <a href="javascript:void(0)">Pages<span class="ms-1 fs-xs float-end"><i class="fa-solid fa-angle-right"></i></span></a>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="service-details.html">Service Details</a></li>
-                        <li><a href="my-account.html">My Account</a></li>
-                        <li><a href="cart.php">Cart</a></li>
-                        <li><a href="wishlist.html">Wishlist</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="invoice.html">Invoice</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="team.html">Team</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="signup.html">Sign Up</a></li>
-                        <li><a href="404.html">404 Page</a></li>
-                    </ul>
+                    <a href="./../home/contact.php">Contact Us<span class="ms-1 fs-xs float-end"></a>
                 </li>
             </ul>
         </nav>

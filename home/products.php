@@ -64,6 +64,7 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
 <!--breadcrumb section end-->
 
 <!--shop grid section start-->
+
 <section class="gshop-gshop-grid ptb-120">
     <div class="container">
         <div class="row g-4">
@@ -76,9 +77,7 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
                         </div>
                         <ul class="widget-nav mt-4">
                             <li><a href="#" class="d-flex justify-content-between align-items-center">All<span class="fw-bold fs-xs total-count"><?php echo count($categories); ?></span></a></li>
-
                         <?php
-                            
                             foreach($categories as $category){      
                             ?>
                                 <li><a href="#" class="d-flex justify-content-between align-items-center"><?= $category['catname']?><span class="fw-bold fs-xs total-count"><?= $category['total_products']?></span></a></li>
@@ -98,25 +97,23 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
                                     <h6 class="mb-0 flex-shrink-0">Search Now</h6>
                                     <span class="hr-line w-100 position-relative d-block align-self-end ms-1"></span>
                                 </div>
-                                <form class="search-form d-flex align-items-center mt-4">
-                                    <input type="text" placeholder="Search...">
+                                <form class="search-form d-flex align-items-center mt-4" onsubmit="return false;">
+                                    <input type="text" id="search-input" placeholder="Search..." onkeyup="filterProducts()">
                                     <button type="submit" class="submit-icon-btn-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="row g-4 justify-content-center">
+                    <div class="row g-4 justify-content-center" id="product-container">
                         <?php 
                             foreach($products as $product){      
                             ?>
-                                <div class="col-lg-4 col-md-6 col-sm-10">
+                                <div class="col-lg-4 col-md-6 col-sm-10 product-card" data-name="<?= strtolower($product['product_name']); ?>">
                                     <div class="vertical-product-card rounded-2 position-relative border-0 bg-white bg-white">
-                                        <!-- <span class="offer-badge text-white fw-bold fs-xxs bg-danger position-absolute start-0 top-0">-12% OFF</span> -->
                                         <div class="thumbnail position-relative text-center p-4">
                                             <img src="../common_images/product/<?= $product['product_image']; ?>" alt="apple" style="height: 250px;" class="img-fluid">
                                             <div class="product-btns position-absolute d-flex gap-2 flex-column">
                                                 <a href="#" class="rounded-btn"><i class="fa-regular fa-heart"></i></a>
-                                                <!-- <a href="#quickview_modal" data-bs-toggle="modal" class="rounded-btn quick-view-btn" data-id="<?= $product['product_id']; ?>"> <i class="fa-regular fa-eye"></i></a> -->
                                                 <a href="#quickview_modal" 
                                                     data-bs-toggle="modal" 
                                                     class="rounded-btn quick-view-btn" 
@@ -161,6 +158,25 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
         </div>
     </div>
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+function filterProducts() {
+    let input = document.getElementById("search-input").value.toLowerCase();
+    let products = document.querySelectorAll(".product-card");
+    
+    products.forEach(product => {
+        let name = product.getAttribute("data-name");
+        if (name.includes(input)) {
+            product.style.display = "block";
+        } else {
+            product.style.display = "none";
+        }
+    });
+}
+</script>
+
 <!--shop grid section end-->
 
 <script>

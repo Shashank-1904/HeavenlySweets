@@ -72,7 +72,7 @@
     </div>
 </footer>
 
-<div class="mobile-toolbar d-block d-md-none d-lg-none">
+<!-- <div class="mobile-toolbar d-block d-md-none d-lg-none">
     <div class="d-table table-layout-fixed w-100">
         <a class="d-table-cell mobile-toolbar-item mobile-menu-toggle" href="#">
             <span class="mobile-toolbar-icon"><i class="fas fa-bars"></i></span><span
@@ -118,7 +118,7 @@
             <span class="mobile-toolbar-label">$265</span>
         </a>
     </div>
-</div>
+</div> -->
 <div class="offcanvas-left-menu position-fixed">
     <div class="mobile-menu">
         <button class="offcanvas-close"><i class="fa-solid fa-xmark"></i></button>
