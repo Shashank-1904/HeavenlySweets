@@ -55,6 +55,23 @@
              </div>
          </div>
      </li>
+
+     <li class="nav-item">
+        <a class="nav-link" href="./../pages/all-orders.php"><i class="fa-solid fa-cake-candles"></i> Orders</a>
+         <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+             aria-expanded="true" aria-controls="collapseThree">
+             <i class="fa-solid fa-cake-candles"></i>
+             <span>Orders</span>
+         </a>
+         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+             <div class="bg-white py-2 collapse-inner rounded">
+                 <a class="collapse-item" href="./../pages/add-products.php">Add Products</a>
+                 <a class="collapse-item" href="./../pages/all-products.php">All Products</a>
+             </div>
+         </div> -->
+     </li>
+
+
      <li class="nav-item">
          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
              aria-expanded="true" aria-controls="collapseFour">
