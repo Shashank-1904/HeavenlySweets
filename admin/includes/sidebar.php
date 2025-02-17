@@ -81,7 +81,7 @@
          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <a class="collapse-item" href="./../pages/new-offer.php">New Offer</a>
-                 <a class="collapse-item" href="./../pages/all-offer.php">All Offers</a>
+                 <a class="collapse-item" href="./../pages/all-offers.php">All Offers</a>
              </div>
          </div>
      </li>

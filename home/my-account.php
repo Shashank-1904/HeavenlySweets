@@ -68,6 +68,14 @@ if(isset($_SESSION['userid'])){
         $ddatacount = $ddata->num_rows;
     }
 
+
+    $trackquery = "SELECT * FROM orders WHERE user_id = '$user_id' AND orderstatus IN ('Pending', 'Processing', 'On the Way', 'Delivered')"; 
+    $trackdata = mysqli_query($conn, $trackquery);
+    if ($trackdata) {
+        $trackorders = mysqli_fetch_assoc($trackdata);
+        $trackdatacount = $trackdata->num_rows;
+    }
+
     //  fetch  quantity start
 
     // fetch  prodcut cart start
@@ -727,59 +735,64 @@ if(isset($_SESSION['userid'])){
                                 <li class="fs-xs tt-step">Delivered</li>
                             </ol> -->
                             <?php
-                                if(isset($pendingorders)){
+                                if(isset($trackorders))
+                                {
+                                    $status = $trackorders['orderstatus']; // Current status of the order
+                                    $steps = ["Pending", "Processing", "On the Way", "Delivered"];
+                                    $statusInfo = [
+                                        "Pending" => "Thank you for your order! We are confirming the details of your sweets.",
+                                        "Processing" => "Your sweets are being freshly prepared with the finest ingredients.",
+                                        "On the Way" => "Your delicious sweets are on their way! Our delivery partner is bringing them to you.",
+                                        "Delivered" => "Your order has been delivered! Enjoy your treats, and thank you for choosing us!"
+                                    ];
 
-                                
-                                $status = $pendingorders['orderstatus'];
-                                $steps = ["Pending", "Processing", "On the Way", "Delivered"];
-                                $statusInfo = [
-                                    "Pending" => "Thank you for shopping at HeavenlySweets! Your order is being verified.",
-                                    "Processing" => "Your order has been successfully verified.",
-                                    "On the Way" => "Your package has been packed and is being handed over to a logistics partner.",
-                                    "Delivered" => "Your package has been delivered. Thank you for shopping at Grostore!"
-                                ];
+                                    // Find the index of the current status in $steps
+                                    $currentIndex = array_search($status, $steps);
 
-                                echo '<ol id="progress-bar">';
-                                foreach ($steps as $step) {
-                                    if ($step == $status) {
-                                        echo '<li class="fs-xs tt-step active">' . $step . '</li>';
-                                    } elseif (array_search($step, $steps) < array_search($status, $steps)) {
-                                        echo '<li class="fs-xs tt-step tt-step-done">' . $step . '</li>';
-                                    } else {
-                                        echo '<li class="fs-xs tt-step">' . $step . '</li>';
+                                    echo '<ol id="progress-bar">';
+                                    foreach ($steps as $index => $step) {
+                                        if ($index < $currentIndex || $index == $currentIndex) {
+                                            // Past steps
+                                            echo '<li class="fs-xs tt-step tt-step-done">' . $step . '</li>';
+                                        } elseif ($index == $currentIndex) {
+                                            // Current step
+                                            echo '<li class="fs-xs tt-step tt-step-active">' . $step . '</li>';
+                                        } else {
+                                            // Future steps
+                                            echo '<li class="fs-xs tt-step">' . $step . '</li>';
+                                        }
                                     }
-                                }
-                                echo '</ol>';
+                                    echo '</ol>';
                                 ?>
-                            </ol>
-                            <div class="table-responsive-md mt-5">
-                                <table class="table table-bordered fs-xs">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Date & Time</th>
-                                            <th scope="col">Status Info</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php 
-                                            foreach ($steps as $step) {
-                                                if (array_search($step, $steps) <= array_search($status, $steps)) {
-                                                    if (isset($statusInfo[$step])) {
-                                                        echo '<tr>
-                                                                <td>' . $pendingorders['orderupdated'] . '</td>
-                                                                <td>' . htmlspecialchars($statusInfo[$step]) . '</td>
-                                                            </tr>';
+                                    </ol>
+                                    <div class="table-responsive-md mt-5">
+                                        <table class="table table-bordered fs-xs">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Date & Time</th>
+                                                    <th scope="col">Status Info</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php 
+                                                    foreach ($steps as $step) {
+                                                        if (array_search($step, $steps) <= array_search($status, $steps)) {
+                                                            if (isset($statusInfo[$step])) {
+                                                                echo '<tr>
+                                                                        <td>' . $trackorders['orderupdated'] . '</td>
+                                                                        <td>' . htmlspecialchars($statusInfo[$step]) . '</td>
+                                                                    </tr>';
+                                                            }
+                                                        }
                                                     }
-                                                }
-                                            }
-
-                                        }else{
-                                            ?>
-                                        
+                                }
+                                else
+                                {
+                                    ?>
                                         <p class="">No Order yet</p>
-                                        <?php
-                                            }
-                                        ?>
+                                    <?php
+                                }
+                                ?>
 
 
                                     </tbody>

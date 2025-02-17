@@ -100,15 +100,15 @@ include('./../includes/header.php');
                                                     <option value="Pending"
                                                         <?php if ($row['orderstatus'] == "Pending") echo "selected"; ?>>
                                                         Pending</option>
-                                                    <option value="Shipped"
-                                                        <?php if ($row['orderstatus'] == "Shipped") echo "selected"; ?>>
-                                                        Shipped</option>
+                                                    <option value="Processing"
+                                                        <?php if ($row['orderstatus'] == "Processing") echo "selected"; ?>>
+                                                        Processing</option>
+                                                    <option value="On the Way"
+                                                        <?php if ($row['orderstatus'] == "On the Way") echo "selected"; ?>>
+                                                        On the Way</option>
                                                     <option value="Delivered"
                                                         <?php if ($row['orderstatus'] == "Delivered") echo "selected"; ?>>
                                                         Delivered</option>
-                                                    <option value="Cancelled"
-                                                        <?php if ($row['orderstatus'] == "Cancelled") echo "selected"; ?>>
-                                                        Cancelled</option>
                                                 </select>
                                             </div>
 
