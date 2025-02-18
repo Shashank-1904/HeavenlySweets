@@ -23,13 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['changepasswordbtn']))
         $query = "SELECT * FROM users WHERE useruid = '$user_id' AND useremail = '$email' AND userpass = '$currentpassword'";
         $result = mysqli_query($conn, $query);
         if ($result) {
-                $query1 ="UPDATE users set userpass = '$newpass' WHERE useruid = '$user_id'";
-                $result1 =  mysqli_query($conn, $query1);
-                if($result1){
-                    $_SESSION['message'] = ['type' => 'success', 'text' => 'changed Successfully !'];
-                    echo "<script> window.location.replace('../Home/login.php'); </script>";
-                    exit;
-                }
+            $user = mysqli_fetch_assoc($result);
+            if($user['userpass'] == $currentpassword){
+                    $query1 ="UPDATE users set userpass = '$newpass' WHERE useruid = '$user_id'";
+                    $result1 =  mysqli_query($conn, $query1);
+                    if($result1){
+                        $_SESSION['message'] = ['type' => 'success', 'text' => 'changed Successfully !'];
+                        echo "<script> window.location.replace('../Home/login.php'); </script>";
+                        exit;
+                    }
+            }
+            else{
+                $_SESSION['message'] = ['type' => 'error', 'text' => 'Email or Current Password is Incorrect !'];
+                echo "<script> window.location.replace('../Home/my-account.php'); </script>";
+                exit;
+            }
             }
         }
 }    

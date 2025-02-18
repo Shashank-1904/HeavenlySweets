@@ -78,7 +78,7 @@ if (isset($_SESSION['userid'])) {
                             <tr>
                                 <td><?php echo $count; ?></td>
                                 <td>
-                                    <img src="../assets/img/products/<?= $product['product_image'] ?>" alt="product-thumb" class="img-fluid h-1 w-50">
+                                    <img src="../common_images/product/<?= $product['product_image'] ?>" alt="product-thumb" class="img-fluid h-1 w-50">
                                 </td>
                                 <td class="text-start product-title">
                                     <h6 class="mb-0"><?= htmlspecialchars($product['product_name']) ?></h6>
