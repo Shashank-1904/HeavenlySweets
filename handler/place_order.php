@@ -2,7 +2,8 @@
 require('../private/db.php');
 session_start();
 
-if(isset($_SESSION['userid'])){
+if(isset($_SESSION['userid']))
+{
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['placeorderbtn']))
     {
         $user_id = $_SESSION['userid'];
@@ -19,7 +20,7 @@ if(isset($_SESSION['userid'])){
 
             if($result)
             {
-                $query1 ="UPDATE productCart set orderReference = '$referenceid' WHERE user_id = '$user_id'";
+                $query1 ="UPDATE productCart set orderReference = '$referenceid' WHERE user_id = '$user_id' AND orderReference is NULL";
                 $result1 =  mysqli_query($conn, $query1);
                 if($result1){
                     $_SESSION['message'] = ['type' => 'success', 'text' => 'Order placed Successfully'];

@@ -10,16 +10,12 @@ if (isset($_SESSION['userid'])) {
             // Sanitize the inputs
             $product_id = mysqli_real_escape_string($conn, $_POST['product_id']);
             $product_qty = mysqli_real_escape_string($conn, $_POST['product_qty']);
-            $product_qty_unit = mysqli_real_escape_string($conn, $_POST['product_qty_unit']);
 
             if ($product_qty == floor($product_qty)) {
                 $product_qty = intval($product_qty); // Convert to integer if it's a whole number
             }
 
-            $pqty = $product_qty . $product_qty_unit;
-
-            $query = "UPDATE productCart SET productqty = '$pqty' WHERE user_id = '$user_id' AND product_id = '$product_id'";
-            echo $query;
+            $query = "UPDATE productCart SET productqty = '$product_qty' WHERE user_id = '$user_id' AND product_id = '$product_id'";
             if (mysqli_query($conn, $query)) 
             {
                 $_SESSION['message'] = ['type' => 'success', 'text' => 'Cart updated successfully'];

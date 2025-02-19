@@ -175,19 +175,6 @@ else{
                             class="checkout-radio d-flex align-items-center justify-content-between gap-3 bg-white rounded p-4 mt-4">
                             <div class="radio-left d-inline-flex align-items-center">
                                 <div class="theme-radio">
-                                    <input type="radio" id="paypal" name="payment" value="paypal">
-                                    <span class="custom-radio"></span>
-                                </div>
-                                <label for="paypal" class="ms-2 h6 mb-0">Online Payment (UPI) </label>
-                            </div>
-                            <div class="radio-right text-end">
-                                <img src="../assets/img/brands/upi.png" alt="paypal" class="img-fluid w-30">
-                            </div>
-                        </div>
-                        <div
-                            class="checkout-radio d-flex align-items-center justify-content-between gap-3 bg-white rounded p-4 mt-4">
-                            <div class="radio-left d-inline-flex align-items-center">
-                                <div class="theme-radio">
                                     <input type="radio" id="paypal" name="payment" value="COD">
                                     <span class="custom-radio"></span>
                                 </div>

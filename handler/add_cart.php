@@ -12,13 +12,13 @@ if(isset($_SESSION['userid'])){
         // $product_qty = 1;
     
         
-            $query = "INSERT INTO productCart (user_id,product_id, productqty, product_price) VALUES ('$user_id','$product_id', '$product_qty', '$product_price')";
+            $query = "INSERT INTO productCart (user_id,product_id, productqty, product_price) VALUES ('$user_id','$product_id', '1', '$product_price')";
             $result = mysqli_query($conn, $query);
 
             if($result)
             {
                 $_SESSION['message'] = ['type' => 'success', 'text' => 'Added to Cart'];
-                echo "<script> window.location.replace('../Home/index.php'); </script>";
+                echo "<script> window.location.replace('../Home/products.php'); </script>";
                 exit;
             }
     }

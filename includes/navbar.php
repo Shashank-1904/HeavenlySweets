@@ -179,7 +179,7 @@ if (isset($_SESSION['userid'])) {
                                                 ?>
                                                     <li class="d-flex align-items-center">
                                                         <div class="thumb-wrapper">
-                                                            <a href="#"><img src="../assets/img/products/<?= $product['product_image'] ?>" alt="products" class="img-fluid"></a>
+                                                            <a href="#"><img src="../common_images/product/<?= $product['product_image'] ?>" alt="products" class="img-fluid"></a>
                                                         </div>
                                                         <div class="items-content ms-3">
                                                             <a href="product-details.html">
@@ -187,16 +187,38 @@ if (isset($_SESSION['userid'])) {
                                                             </a>
                                                             <div class="products_meta d-flex align-items-center">
                                                                 <div>
-                                                                    <span class="price text-primary fw-semibold">$<?= $product['product_price'] ?></span>
-                                                                    <span class="count">x <?= $product['product_qty'] ?></span>
                                                                     <?php
-                                                                    $number = (int) filter_var($product['product_qty'], FILTER_SANITIZE_NUMBER_INT);
-                                                                    $singletotal = $product['product_price'] * $number;
+                                                                    $qty = $product['productqty']; // Get the quantity value
+                                                                    $price = $product['product_price'];
+                                                                    $total_price = 0;
+
+                                                                    if (strpos($qty, 'kg') !== false) {
+                                                                        // Convert kg to grams (1kg = 1000g) and calculate
+                                                                        $number = (float) str_replace('kg', '', $qty);
+                                                                        $singletotal = $price * $number;
+                                                                    } elseif (strpos($qty, 'gm') !== false) {
+                                                                        $number = (float) str_replace('gm', '', $qty);
+                                                                        $singletotal = $price * ($number / 1000);
+                                                                    } elseif (strpos($qty, 'pcs') !== false || strpos($qty, 'pieces') !== false) {
+                                                                        // Handle pieces directly as integers
+                                                                        $number = (int) filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                                                        $singletotal = $price * $number;
+                                                                    } else {
+                                                                        // Default case (if no unit is provided, assume it's a direct quantity)
+                                                                        $number = (float) $qty;
+                                                                        $singletotal = $price * $number;
+                                                                    }
+
+                                                                    // Update total cart price
                                                                     $total += $singletotal;
                                                                     ?>
-                                                                    <span class="count">= <?= $singletotal ?></span>
+
+                                                                    <span class="price text-primary fw-semibold"><?= number_format($price, 2) ?> (<?= $product['product_qty'] ?>) </span>
+                                                                    <span class="count">x <?= $qty ?></span>
+                                                                    <span class="count">= <?= number_format($singletotal, 2) ?></span>
                                                                 </div>
                                                             </div>
+
                                                         </div>
                                                     </li>
                                                 <?php
@@ -206,7 +228,7 @@ if (isset($_SESSION['userid'])) {
                                             </ul>
                                             <div class="d-flex align-items-center justify-content-between mt-3">
                                                 <h6 class="mb-0">Subtotal:</h6>
-                                                <span class="fw-semibold text-primary">$<?= $total ?></span>
+                                                <span class="fw-semibold text-primary"><?= number_format($total, 2) ?></span>
                                             </div>
                                         <?php
                                         }
@@ -289,7 +311,7 @@ if (isset($_SESSION['userid'])) {
     </div>
     <div class="mobile-menu d-md-block d-lg-block d-xl-none">
         <button class="offcanvas-close"><i class="fa-solid fa-xmark"></i></button>
-        <a href="#" class="d-inline-block mb-5"><img src="../assets/img/hslogo.png" alt="logo" style="height: 70px;"/></a>
+        <a href="#" class="d-inline-block mb-5"><img src="../assets/img/hslogo.png" alt="logo" style="height: 70px;" /></a>
         <nav class="mobile-menu-wrapper mt-4">
             <ul>
                 <li class="has-submenu">
@@ -297,7 +319,7 @@ if (isset($_SESSION['userid'])) {
                     <a href="./../home/index.php">Home<span class="ms-1 fs-xs float-end"></a>
                 </li>
                 <li class="has-submenu">
-                    <a href="./../home/about.php">About Us<span class="ms-1 fs-xs float-end"></a>    
+                    <a href="./../home/about.php">About Us<span class="ms-1 fs-xs float-end"></a>
                 </li>
                 <li class="has-submenu">
                     <a href="./../home/products.php">Product<span class="ms-1 fs-xs float-end"></a>

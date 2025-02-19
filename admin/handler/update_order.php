@@ -9,11 +9,15 @@ if (isset($_POST['updateOrder'])) {
     $query = "UPDATE orders SET orderstatus='$orderstatus' WHERE order_id='$order_id'";
     $result = mysqli_query($conn, $query);
 
-    if ($result) {
-        echo "<script> window.location.replace('../pages/all-orders.php'); </script>";
-        exit; 
+    if ($result) 
+    {
+        $_SESSION['message'] = ['type' => 'success', 'text' => 'Order Updated Successfully'];
+        echo "<script> window.location.replace('../pages/all-orders.php'); </script> ";
+        exit;
     } else {
-        echo "<script>alert('Failed to Update Order');</script>";
+        $_SESSION['message'] = ['type' => 'errorr', 'text' => 'Failed to Update Order'];
+        echo "<script>window.location.replace('../pages/all-orders.php');</script>";
+        exit;
     }
 }
 ?>

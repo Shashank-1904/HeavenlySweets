@@ -70,8 +70,8 @@ if (isset($_SESSION['userid'])) {
                     $count = 1;
                     foreach ($products as $product):
                         // Calculate total price for this product
-                        $qtyarr = preg_split('/(?<=\d)(?=[a-zA-Z])/', $product['productqty']);
-                        $productTotalPrice = $qtyarr[0] * $product['product_price'];
+                        // $qtyarr = preg_split('/(?<=\d)(?=[a-zA-Z])/', $product['productqty']);
+                        $productTotalPrice = $product['productqty'] * $product['product_price'];
                         $totalprice += $productTotalPrice; // Add to subtotal
                     ?>
                         <form action="../handler/update_cart.php" method="post">
@@ -86,10 +86,10 @@ if (isset($_SESSION['userid'])) {
                                 <td>
                                     <div class="product-qty d-inline-flex align-items-center">
                                         <button type="button" class="decrease btn btn-sm btn-outline-secondary" onclick="adjustQuantity(this, -0.5, <?= $product['product_id'] ?>)">-</button>
-                                        <input type="text" class="qty-input text-center mx-2" id="qty_<?= $product['product_id'] ?>" name="qtyvalue" value="<?= $qtyarr[0] ?>" step="0.5">
+                                        <input type="text" class="qty-input text-center mx-2" id="qty_<?= $product['product_id'] ?>" name="qtyvalue" value="<?= $product['productqty'] ?>" step="0.5">
                                         <button type="button" class="increase btn btn-sm btn-outline-secondary" onclick="adjustQuantity(this, 0.5, <?= $product['product_id'] ?>)">+</button>
                                     </div>
-                                    <?php echo $qtyarr[1]; ?>
+                                    <?php echo $product['product_qty']; ?>
                                 </td>
                                 <td>
                                     ₹<span class="unit-price"><?= $product['product_price'] ?></span>
@@ -100,8 +100,7 @@ if (isset($_SESSION['userid'])) {
                                 <td>
                                     <div class="d-flex justify-content-start align-items-center">
                                         <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
-                                        <input type="hidden" name="product_qty" id="qtychangevalue_<?= $product['product_id'] ?>" value="<?= $qtyarr[0]; ?>">
-                                        <input type="hidden" name="product_qty_unit" value="<?= $qtyarr[1]; ?>">
+                                        <input type="hidden" name="product_qty" id="qtychangevalue_<?= $product['product_id'] ?>" value="<?= $product['productqty']; ?>">
                                         <button type="submit" name="updatebtn" class="btn btn-primary btn-md rounded-1 me-2">Update</button>
                                         <button type="submit" name="deletebtn" class="btn btn-danger btn-md rounded-1">Delete</button>
                                     </div>
