@@ -10,6 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['changepasswordbtn']))
     $newpassword = mysqli_real_escape_string($conn, $_POST['newpass']);
     $cnfpass = mysqli_real_escape_string($conn, $_POST['cnfpass']);
 
+    echo $email.$currpass.$newpassword.$cnfpass;
+
     $currentpassword = md5($currpass);
     $newpass = md5($newpassword);
     
