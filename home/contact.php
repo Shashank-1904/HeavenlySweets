@@ -41,8 +41,7 @@ include('../includes/navbar.php');
                             <div class="contact-left-box position-relative overflow-hidden z-1 bg-primary p-6 d-flex flex-column h-100" data-background="../assets/img/shapes/circle-half-fill.png">
                                 <img src="../assets/img/shapes/texture-overlay.png" alt="texture" class="position-absolute w-100 h-100 start-0 top-0 z--1">
                                 <h3 class="text-white mb-3">Contact Details</h3>
-                                <p class="fs-sm text-white"><strong>Office Address-1:</strong> G-shop Grocery shop (United Estate<br> Of America) Co., Ltd. Bridge 8, Room 9201.</p>
-                                <p class="fs-sm text-white mb-0"><strong>Office Address-2:</strong> #25 Jocker Goru Zhong Road<br> NYPD 200025 USA.</p>
+                                <p class="fs-sm text-white"><strong>Shop Address :</strong> Sahas housing society, Garkheda Chh.Sambhajinagar </p>
                                 <span class="spacer my-5"></span>
                                 <ul class="contact-list">
                                     <li class="d-flex align-items-center gap-3 flex-wrap">
@@ -51,7 +50,7 @@ include('../includes/navbar.php');
                                     </span>
                                         <div class="info">
                                             <span class="fw-medium text-white fs-xs">Emergency Call</span>
-                                            <h5 class="mb-0 mt-1 text-white">+90 54 3147 87 98</h5>
+                                            <h5 class="mb-0 mt-1 text-white">+91 11111 11111</h5>
                                         </div>
                                     </li>
                                     <li class="d-flex align-items-center gap-3 flex-wrap mt-3">
@@ -60,11 +59,11 @@ include('../includes/navbar.php');
                                     </span>
                                         <div class="info">
                                             <span class="fw-medium text-white fs-xs">General Communication</span>
-                                            <p class="mb-0 mt-1 text-white fw-medium">gshop2022@gmail.com</p>
+                                            <p class="mb-0 mt-1 text-white fw-medium">heavenlysweets@support.com</p>
                                         </div>
                                     </li>
                                 </ul>
-                                <div class="mt-5">
+                                <!-- <div class="mt-5">
                                     <span class="fw-bold text-white mb-3 d-block">Social Share:</span>
                                     <div class="social-links d-flex align-items-center gap-2">
                                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -72,7 +71,7 @@ include('../includes/navbar.php');
                                         <a href="#"><i class="fab fa-behance"></i></a>
                                         <a href="#"><i class="fab fa-discord"></i></a>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="col-xl-7">

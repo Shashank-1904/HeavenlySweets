@@ -51,7 +51,7 @@ if (isset($_SESSION['userid'])) {
                                         fill="white" stroke="white" stroke-width="0.3" />
                                 </svg>
                             </span>
-                            Address
+                            Sahas housing society, Garkheda Chh.Sambhajinagar 
                         </li>
                         <!-- <li class="nav-item">
                             <a href="javascript:void(0)" class="btn btn-link p-0 tt-theme-toggle fw-normal">
@@ -72,24 +72,7 @@ if (isset($_SESSION['userid'])) {
                 </div>
                 <div class="col-xxl-10 col-xl-9 col-md-9 col-7">
                     <div class="gshop-navbar-right d-flex align-items-center justify-content-end position-relative">
-                        <!-- <div class="category-dropdown position-relative d-none d-md-inline-block">
-                            <a href="javascript:void(0)" class="category-dropdown-btn fw-bold d-none d-sm-inline-block">Browse Category<span
-                                    class="ms-1"><i class="fa-solid fa-angle-down"></i></span></a>
-                            <a href="javascript:void(0)" class="category-dropdown-btn fw-bold d-sm-none">Categories
-                                <span class="ms-1"><i class="fa-solid fa-angle-down"></i></span></a>
-                            <div class="category-dropdown-box scrollbar">
-                                <ul class="category-dropdown-menu">
-                                    <li>
-                                        <a href="shop-grid.html" class="d-flex align-items-center">
-                                            <div class="me-2 avatar-icon">
-                                                <img src="../assets/img/category/baby-care.png" alt="$category" class="w-100 h-100 rounded-circle">
-                                            </div>
-                                            <span>$category</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div> -->
+
                         <nav class="gshop-navmenu ms-3 d-none d-xl-block">
                             <ul class="d-flex align-itmes-center justify-content-end">
                                 <li class="">
@@ -107,21 +90,6 @@ if (isset($_SESSION['userid'])) {
                             </ul>
                         </nav>
                         <div class="gshop-header-icons d-none d-md-inline-flex align-items-center justify-content-end ms-3">
-                            <!-- <div class="gshop-header-search dropdown">
-                                <button type="button" class="header-icon" data-bs-toggle="dropdown">
-                                    <svg width="18" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.68859 0.5C4.34645 0.5 0 4.84646 0 10.1886C0 15.5311 4.34645 19.8772 9.68859 19.8772C15.031 19.8772 19.3772 15.5311 19.3772 10.1886C19.3772 4.84646 15.031 0.5 9.68859 0.5ZM9.68859 18.0886C5.33261 18.0886 1.78866 14.5447 1.78866 10.1887C1.78866 5.83266 5.33261 2.28867 9.68859 2.28867C14.0446 2.28867 17.5885 5.83262 17.5885 10.1886C17.5885 14.5446 14.0446 18.0886 9.68859 18.0886Z" fill="#5D6374" />
-                                        <path d="M21.7406 20.9824L16.6436 15.8853C16.2962 15.538 15.7338 15.538 15.3865 15.8853C15.0391 16.2323 15.0391 16.7954 15.3865 17.1424L20.4835 22.2395C20.6571 22.4131 20.8845 22.5 21.1121 22.5C21.3393 22.5 21.5669 22.4131 21.7406 22.2395C22.0879 21.8925 22.0879 21.3294 21.7406 20.9824Z" fill="#5D6374" />
-                                    </svg>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-end border-0">
-                                    <form class="search-form d-flex align-items-center" action="#">
-                                        <input type="text" placeholder="Search products..." class="w-100">
-                                        <button type="submit" class="submit-icon-btn-secondary"><i
-                                                class="fa-solid fa-magnifying-glass"></i></button>
-                                    </form>
-                                </div>
-                            </div> -->
 
                             <?php
                             if (isset($_SESSION['useremail'])) {
@@ -296,9 +264,9 @@ if (isset($_SESSION['userid'])) {
         <div class="offcanvas-contact mt-5">
             <h5 class="mb-20">Contact Info</h5>
             <address>
-                Chicago 12, Melborne City, USA <br />
-                <a href="tel:+8801682648101">+8801682648101</a> <br />
-                <a href="mailto:info@example.com">info@example.com</a>
+                Sahas housing society, Garkheda Chh.Sambhajinagar <br />
+                <a href="tel:+911111111111">+911111111111</a> <br />
+                <a href="mailto:heavenlysweets@support.com">heavenlysweets@support.com</a>
             </address>
         </div>
         <div class="social-contact offcanvas_social mt-4">
@@ -332,9 +300,9 @@ if (isset($_SESSION['userid'])) {
         <div class="contact-info mt-8">
             <h5 class="mb-20">Contact Info</h5>
             <address>
-                Chicago 12, Melborne City, USA <br />
-                <a href="tel:+8801682648101">+8801682648101</a> <br />
-                <a href="mailto:info@example.com">info@example.com</a>
+                Sahas housing society, Garkheda Chh.Sambhajinagar <br />
+                <a href="tel:+911111111111">+911111111111</a> <br />
+                <a href="mailto:heavenlysweets@support.com">heavenlysweets@support.com</a>
             </address>
             <div class="social-contact">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
