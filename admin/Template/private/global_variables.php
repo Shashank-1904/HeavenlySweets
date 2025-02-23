@@ -1,1 +1,0 @@
-            <?php require '../../personal/secrete_varables.php';  ?>
