@@ -113,6 +113,7 @@ else{
                         <div class="row g-4">
 
                             <?php
+                                $shippingid = 1;
                                     foreach($addresses as $address){
                                 
                                 ?>
@@ -120,8 +121,8 @@ else{
                             <div class="col-lg-6 col-sm-6">
                                 <div class="tt-address-content">
                                     <input type="radio" class="tt-custom-radio" checked name="shipping_address"
-                                        id="tt-radio-1" value="<?= $address['addrid']?>">
-                                    <label for="tt-radio-1"
+                                        id="tt-radio-<?=$shippingid?>" value="<?= $address['addrid']?>">
+                                    <label for="tt-radio-<?=$shippingid?>"
                                         class="tt-address-info bg-white rounded p-4 position-relative">
                                         <strong><?=$address['fname']," ", $address['lname']?></strong>
                                         <address class="fs-sm mb-0">
@@ -135,6 +136,7 @@ else{
                             </div>
 
                             <?php
+                                 $shippingid++;
                                     }
                                 ?>
                         </div>
@@ -144,6 +146,7 @@ else{
                         <div class="row g-4">
 
                             <?php
+                                    $billingid=4;
                                     foreach($addresses as $address){
                                        
                                 ?>
@@ -151,8 +154,8 @@ else{
                             <div class="col-lg-4 col-sm-6">
                                 <div class="tt-address-content">
                                     <input type="radio" class="tt-custom-radio" checked name="billing_address"
-                                        id="tt-radio-4" value="<?= $address['addrid']?>">
-                                    <label for="tt-radio-4"
+                                        id="tt-radio-<?=$billingid?>" value="<?= $address['addrid']?>">
+                                    <label for="tt-radio-<?=$billingid?>"
                                         class="tt-address-info bg-white rounded p-4 position-relative">
                                         <strong><?=$address['fname']," ", $address['lname']?></strong>
                                         <address class="fs-sm mb-0">
@@ -166,6 +169,7 @@ else{
                             </div>
 
                             <?php
+                                    $billingid++;
                                     }
                                 ?>
                         </div>
@@ -175,7 +179,7 @@ else{
                             class="checkout-radio d-flex align-items-center justify-content-between gap-3 bg-white rounded p-4 mt-4">
                             <div class="radio-left d-inline-flex align-items-center">
                                 <div class="theme-radio">
-                                    <input type="radio" id="paypal" name="payment" value="COD">
+                                    <input type="radio" id="paypal" name="payment" value="COD" checked>
                                     <span class="custom-radio"></span>
                                 </div>
                                 <label for="paypal" class="ms-2 h6 mb-0">Cash on Delivery</label>
