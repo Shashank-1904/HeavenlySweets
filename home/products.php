@@ -113,7 +113,11 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
                                         <div class="thumbnail position-relative text-center p-4">
                                             <img src="../common_images/product/<?= $product['product_image']; ?>" alt="apple" style="height: 250px;" class="img-fluid">
                                             <div class="product-btns position-absolute d-flex gap-2 flex-column">
-                                                <a href="#" class="rounded-btn"><i class="fa-regular fa-heart"></i></a>
+                                                <!-- <a href="#" class="rounded-btn"><i class="fa-regular fa-heart"></i></a> -->
+                                                <a href="#" class="rounded-btn like-btn" data-product-id="<?= $product['product_id']; ?>">
+                                                    <i class="fa-regular fa-heart"></i>
+                                                </a>
+
                                                 <a href="#quickview_modal" 
                                                     data-bs-toggle="modal" 
                                                     class="rounded-btn quick-view-btn" 
