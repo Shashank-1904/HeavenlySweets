@@ -108,6 +108,8 @@ if (isset($_SESSION['userid'])) {
                                                             class="fa-solid fa-user"></i></span>My Account</a></li>
                                             <li><a href="./../home/cart.php"><span class="me-2"><i
                                                             class="fa-solid fa-tags"></i></span>My Cart</a></li>
+                                            <li><a href="./../home/wishlist.php"><span class="me-2"><i
+                                                            class="fa-solid fa-tags"></i></span>My Wishlist</a></li>
                                             <li><a href="./../handler/logout_handle.php"><span class="me-2"><i
                                                             class="fa-solid fa-arrow-right-from-bracket"></i></span>Sign
                                                     Out</a></li>
@@ -208,24 +210,6 @@ if (isset($_SESSION['userid'])) {
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="gshop-header-contact ms-7 position-relative d-none d-lg-flex d-xl-none d-xxl-flex">
-                            <a href="tel:+801570584567" class="d-flex align-items-center">
-                                <span
-                                    class="icon d-inline-flex rounded-circle justify-content-center align-items-center bg-secondary-light">
-                                    <svg width="20" height="24" viewBox="0 0 23 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M1.98193 3.44444C1.98193 2.09441 2.97352 1 4.19672 1H7.82812C8.30477 1 8.72795 1.33664 8.87867 1.83572L10.5373 7.3277C10.7116 7.90472 10.475 8.53538 9.98206 8.8074L7.48236 10.1868C8.70297 13.1748 10.884 15.5821 13.5913 16.9292L14.8411 14.1703C15.0876 13.6263 15.659 13.3651 16.1818 13.5575L21.1577 15.3881C21.61 15.5545 21.915 16.0215 21.915 16.5476V20.5556C21.915 21.9056 20.9234 23 19.7002 23H18.5928C9.41887 23 1.98193 14.7919 1.98193 4.66667V3.44444Z"
-                                            stroke="#FF7C08" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-                                <div class="ms-3">
-                                    <span class="text-muted fs-xs">Phone & Telephone</span>
-                                    <h6 class="mb-0 mt-1 fs-sm">1234567890</h6>
-                                </div>
-                            </a>
-                        </div> -->
                         <button class="gshop-offcanvas-btn offcanvas-toggle ms-3">
                             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3.5892 0C1.66061 0 0.0917969 1.56893 0.0917969 3.4974C0.0917969 5.42588 1.65997 6.9947 3.5892 6.9947C5.51844 6.9947 7.08661 5.42588 7.08661 3.4974C7.08661 1.56893 5.51768 0 3.5892 0Z" fill="white" />

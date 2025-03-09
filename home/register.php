@@ -24,7 +24,7 @@ if (isset($_SESSION['useremail'])) {
     <!-- <link rel="icon" href="../assets/img/favicon.png" type="image/png" sizes="16x16"> -->
 
     <!--title-->
-    <title>Grostore - Signup - Grostore Grocery eCommerce HTML Template</title>
+    <title>Signup | HeavenlySweets</title>
 
     <!--build:css-->
     <link rel="stylesheet" href="../assets/css/main.css">

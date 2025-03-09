@@ -4,15 +4,9 @@ include('../includes/header.php');
 include('../includes/navbar.php');
 include('../private/db.php');
 
-$query = "SELECT c.*, COUNT(p.product_id) AS total_products FROM category c LEFT JOIN product p ON c.catid = p.catid GROUP BY c.catid";
-$result = mysqli_query($conn,$query);
-if(!$result){
-    echo"Wrong Query";
-}
-$categories = mysqli_fetch_all($result,MYSQLI_ASSOC);
+$user_id = $_SESSION['userid'];
 
-// fetch product start
-$proquery = "select * from product";
+$proquery = "SELECT p.*, l.* FROM product p LEFT JOIN likes l ON p.product_id = l.product_id WHERE l.user_id = '$user_id'";
 $proresult = mysqli_query($conn,$proquery);
 if(!$proquery){
     echo"Wrong Input";
@@ -47,12 +41,12 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
         <div class="row">
             <div class="col-12">
                 <div class="breadcrumb-content">
-                    <h2 class="mb-2 text-center">Our Products</h2>
+                    <h2 class="mb-2 text-center">Wishlist</h2>
                     <nav>
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item fw-bold" aria-current="page"><a href="./index.php">Home</a></li>
                             <li class="breadcrumb-item fw-bold" aria-current="page">Pages</li>
-                            <li class="breadcrumb-item fw-bold" aria-current="page">Products</li>
+                            <li class="breadcrumb-item fw-bold" aria-current="page">My Wishlist</li>
                         </ol>
                     </nav>
                 </div>
@@ -68,42 +62,8 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
 <section class="gshop-gshop-grid ptb-120">
     <div class="container">
         <div class="row g-4">
-            <div class="col-xl-3">
-                <div class="gshop-sidebar bg-white rounded-2 overflow-hidden">
-                    <div class="sidebar-widget category-widget bg-white py-5 px-4 border-top">
-                        <div class="widget-title d-flex">
-                            <h6 class="mb-0 flex-shrink-0">Categories</h6>
-                            <span class="hr-line w-100 position-relative d-block align-self-end ms-1"></span>
-                        </div>
-                        <ul class="widget-nav mt-4">
-                            <li><a href="#" class="d-flex justify-content-between align-items-center">All<span class="fw-bold fs-xs total-count"><?php echo count($categories); ?></span></a></li>
-                        <?php
-                            foreach($categories as $category){      
-                            ?>
-                                <li><a href="#" class="d-flex justify-content-between align-items-center"><?= $category['catname']?><span class="fw-bold fs-xs total-count"><?= $category['total_products']?></span></a></li>
-                            <?php 
-                            }
-                        ?>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-9">
+            <div class="col-xl-12">
                 <div class="shop-grid">
-                    <div class="listing-top d-flex align-items-center justify-content-between flex-wrap gap-3 bg-white rounded-2 px-4 py-5 mb-6">
-                        <div class="listing-top-right text-end d-inline-flex align-items-center gap-3 flex-wrap">
-                        <div class="sidebar-widget search-widget bg-white py-5 px-4">
-                                <div class="widget-title d-flex">
-                                    <h6 class="mb-0 flex-shrink-0">Search Now</h6>
-                                    <span class="hr-line w-100 position-relative d-block align-self-end ms-1"></span>
-                                </div>
-                                <form class="search-form d-flex align-items-center mt-4" onsubmit="return false;">
-                                    <input type="text" id="search-input" placeholder="Search..." onkeyup="filterProducts()">
-                                    <button type="submit" class="submit-icon-btn-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row g-4 justify-content-center" id="product-container">
                         <?php 
                             foreach($products as $product){      
