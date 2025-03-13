@@ -11,11 +11,12 @@ if(isset($_SESSION['userid']))
         $billingaddress_id = mysqli_real_escape_string($conn, $_POST['billing_address']);
         $payment_type = mysqli_real_escape_string($conn, $_POST['payment']);
         $total_price = mysqli_real_escape_string($conn, $_POST['total_price']);
+        $gift = mysqli_real_escape_string($conn, $_POST['gift']);
         date_default_timezone_set('Asia/Kolkata');
         $referenceid = date("YmdHis");
     
         
-            $query = "INSERT INTO orders (user_id,shippingaddressid, billingaddressid, payment_type,total_price,referenceID) VALUES ('$user_id','$shippingaddress_id', '$billingaddress_id', '$payment_type','$total_price','$referenceid')";
+            $query = "INSERT INTO orders (user_id,shippingaddressid, billingaddressid, payment_type,gift,total_price,referenceID) VALUES ('$user_id','$shippingaddress_id', '$billingaddress_id', '$payment_type','$gift','$total_price','$referenceid')";
             $result = mysqli_query($conn, $query);
 
             if($result)

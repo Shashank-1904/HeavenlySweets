@@ -185,6 +185,20 @@ else{
                                 <label for="paypal" class="ms-2 h6 mb-0">Cash on Delivery</label>
                             </div>
                         </div>
+
+                        <div
+                            class="checkout-radio d-flex align-items-center justify-content-between gap-3 bg-white rounded p-4 mt-4">
+                            <div class="radio-left d-inline-flex align-items-center">
+                                <div class="theme-radio">
+                                    <input type="radio" id="gift" name="gift" value="1">
+                                    <span class="custom-radio"></span>
+                                </div>
+                                <label for="gift" class="ms-2 h6 mb-0">Deliver as Gift</label>
+                            </div>
+                        </div>
+
+        
+                            
                     </div>
 
 
