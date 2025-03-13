@@ -4,6 +4,28 @@ include('../includes/header.php');
 include('../includes/navbar.php');
 include('../private/db.php');
 
+if(isset($_GET['category'])){
+    $cat = $_GET['category'];
+    // fetch product start
+    $proquery = "select * from product where catid= $cat";
+    $proresult = mysqli_query($conn,$proquery);
+    if(!$proquery){
+        echo"Wrong Input";
+    }
+    $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
+
+}
+else{
+    // fetch product start
+    $proquery = "select * from product";
+    $proresult = mysqli_query($conn,$proquery);
+    if(!$proquery){
+        echo"Wrong Input";
+    }
+    $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
+
+}
+
 $query = "SELECT c.*, COUNT(p.product_id) AS total_products FROM category c LEFT JOIN product p ON c.catid = p.catid GROUP BY c.catid";
 $result = mysqli_query($conn,$query);
 if(!$result){
@@ -11,13 +33,8 @@ if(!$result){
 }
 $categories = mysqli_fetch_all($result,MYSQLI_ASSOC);
 
-// fetch product start
-$proquery = "select * from product";
-$proresult = mysqli_query($conn,$proquery);
-if(!$proquery){
-    echo"Wrong Input";
-}
-$products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
+
+
 ?>
 
 <?php if (isset($_SESSION['message'])): ?>
@@ -76,11 +93,11 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
                             <span class="hr-line w-100 position-relative d-block align-self-end ms-1"></span>
                         </div>
                         <ul class="widget-nav mt-4">
-                            <li><a href="#" class="d-flex justify-content-between align-items-center">All<span class="fw-bold fs-xs total-count"><?php echo count($categories); ?></span></a></li>
+                            <li><a href="products.php" class="d-flex justify-content-between align-items-center">All<span class="fw-bold fs-xs total-count"><?php echo count($categories); ?></span></a></li>
                         <?php
                             foreach($categories as $category){      
                             ?>
-                                <li><a href="#" class="d-flex justify-content-between align-items-center"><?= $category['catname']?><span class="fw-bold fs-xs total-count"><?= $category['total_products']?></span></a></li>
+                                <li><a href="?category=<?= urlencode($category['catid']) ?>" class="d-flex justify-content-between align-items-center"><?= $category['catname']?><span class="fw-bold fs-xs total-count"><?= $category['total_products']?></span></a></li>
                             <?php 
                             }
                         ?>
