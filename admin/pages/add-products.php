@@ -77,6 +77,7 @@ if ($result) {
                     <option value="Trending">Trending</option>
                     <option value="Best seller">Best seller</option>
                     <option value="New arrived">New arrived</option>
+                    <option value="Hamper">Hamper</option>
                 </select>
             </div>
             <div class="form-group">

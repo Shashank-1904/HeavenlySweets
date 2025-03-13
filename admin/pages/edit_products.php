@@ -84,6 +84,7 @@ $categoryResult = mysqli_query($conn, $categoryQuery);
                     <option value="Normal" <?php echo ($product['status'] == 'Normal') ? 'selected' : ''; ?>>Normal</option>
                     <option value="Best seller" <?php echo ($product['status'] == 'Best seller') ? 'selected' : ''; ?>>Best seller</option>
                     <option value="New arrived" <?php echo ($product['status'] == 'New arrived') ? 'selected' : ''; ?>>New arrived</option>
+                    <option value="New arrived" <?php echo ($product['status'] == 'Hamper') ? 'selected' : ''; ?>>Hamper</option>
                 </select>
             </div>
             <center><button type="submit" class="btn btn-success" name="editproductbtn">Update Product</button></center>
