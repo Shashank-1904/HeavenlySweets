@@ -5,73 +5,90 @@ include('../includes/navbar.php');
 include('../private/db.php');
 
 $query = "select * from category";
-$result = mysqli_query($conn,$query);
-if(!$result){
-    echo"Wrong Query";
+$result = mysqli_query($conn, $query);
+if (!$result) {
+    echo "Wrong Query";
 }
-$categories = mysqli_fetch_all($result,MYSQLI_ASSOC);
+$categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 $query = "select * from offer";
-$offres = mysqli_query($conn,$query);
-if(!$offres){
-    echo"Wrong Query";
+$offres = mysqli_query($conn, $query);
+if (!$offres) {
+    echo "Wrong Query";
 }
 $offer = mysqli_fetch_assoc($offres);
 
+
+$hamperquery = "select * from product WHERE status='Hamper'";
+$hampres = mysqli_query($conn, $hamperquery);
+if (!$hampres) {
+    echo "Wrong Query";
+}
+$hampers = mysqli_fetch_all($hampres, MYSQLI_ASSOC);
+
 // fetch product start
 $proquery = "select * from product WHERE status='Trending'";
-$proresult = mysqli_query($conn,$proquery);
-if(!$proquery){
-    echo"Wrong Input";
+$proresult = mysqli_query($conn, $proquery);
+if (!$proquery) {
+    echo "Wrong Input";
 }
-$products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
+$products = mysqli_fetch_all($proresult, MYSQLI_ASSOC);
 
 // fetch product end
 
 ?>
 <style>
     .background-banner {
-    position: relative;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-}
+        position: relative;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+    }
 
-.glass-effect {
-    background: rgba(255, 255, 255, 0.1); /* Light transparent white */
-    backdrop-filter: blur(3px); /* Apply blur effect */
-    -webkit-backdrop-filter: blur(4px); /* For Safari */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
+    .glass-effect {
+        background: rgba(255, 255, 255, 0.1);
+        /* Light transparent white */
+        backdrop-filter: blur(3px);
+        /* Apply blur effect */
+        -webkit-backdrop-filter: blur(4px);
+        /* For Safari */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 
-.gshop-subtitle, h6, h4, .explore-btn {
-    position: relative;
-    z-index: 2; /* Ensure text is above the glass effect */
-}
+    .gshop-subtitle,
+    h6,
+    h4,
+    .explore-btn {
+        position: relative;
+        z-index: 2;
+        /* Ensure text is above the glass effect */
+    }
 
-.explore-btn {
-    text-decoration: none;
-    background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background for button */
-    padding: 10px 20px;
-    border-radius: 5px;
-}
+    .explore-btn {
+        text-decoration: none;
+        background-color: rgba(255, 255, 255, 0.3);
+        /* Semi-transparent background for button */
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
 
-.explore-btn:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-}
+    .explore-btn:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
 </style>
 
 <?php if (isset($_SESSION['message'])): ?>
-            <div class="toast <?php echo $_SESSION['message']['type']; ?>" id="toast">
-                <span class="toast-text"><?php echo $_SESSION['message']['text']; ?></span>
-                <button class="toast-close" id="closeToast">×</button>
-            </div>
-            <?php unset($_SESSION['message']); // Clear the session message ?>
-        <?php endif;?>
+    <div class="toast <?php echo $_SESSION['message']['type']; ?>" id="toast">
+        <span class="toast-text"><?php echo $_SESSION['message']['text']; ?></span>
+        <button class="toast-close" id="closeToast">×</button>
+    </div>
+    <?php unset($_SESSION['message']); // Clear the session message 
+    ?>
+<?php endif; ?>
 
 <!--hero section start-->
 <section class="gshop-hero pt-120 bg-white position-relative z-1 overflow-hidden">
@@ -137,7 +154,7 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
                         <div class="col-xl-6 col-lg-7">
                             <div class="hero-right text-center position-relative z-1 mt-8 mt-xl-0">
                                 <img src="../assets/img/pexels-abhinavcoca-291528.jpg" alt="fruits"
-                                    class="img-fluid position-absolute end-0 top-50 hero-img" >
+                                    class="img-fluid position-absolute end-0 top-50 hero-img">
                                 <img src="../assets/img/shapes/orange-1.png" alt="orange"
                                     class="position-absolute orange-1 z-1">
                                 <img src="../assets/img/shapes/orange-2.png" alt="orange"
@@ -248,33 +265,33 @@ $products = mysqli_fetch_all($proresult,MYSQLI_ASSOC);
 <?php
 if (!empty($offer)) { // Check if $offer is not empty
 ?>
-<section class="banner-section position-relative z-1 overflow-hidden pt-120 pb-200">
-    <img src="../assets/img/shapes/bg-shape-4.png" alt="Background Shape" class="position-absolute start-0 bottom-0 w-100 z--1">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-xl-7">
-                <div class="banner-box background-banner rounded-2 banner-lg" data-background="../assets/img/banner/cta-banner-2.jpg">
-                    <span class="badge bg-danger mb-2">Top Offer</span>
-                    <h3 class="mb-6 text-dark gshop-title">
-                        <?php echo htmlspecialchars($offer['offersubheading'], ENT_QUOTES, 'UTF-8'); ?><br class="d-none d-sm-block">
-                        <mark class="position-relative text-secondary bg-transparent">
-                            <?php echo htmlspecialchars($offer['offerheading'], ENT_QUOTES, 'UTF-8'); ?>
-                            <img src="../assets/img/shapes/border-line.png" class="position-absolute start-0 border-line w-100" alt="Border Line">
-                        </mark>
-                    </h3>
-                    <a href="./products.php" class="btn btn-secondary btn-md">
-                        Shop Now <span class="ms-2"><i class="fas fa-arrow-right"></i></span>
-                    </a>
+    <section class="banner-section position-relative z-1 overflow-hidden pt-120 pb-200">
+        <img src="../assets/img/shapes/bg-shape-4.png" alt="Background Shape" class="position-absolute start-0 bottom-0 w-100 z--1">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-xl-7">
+                    <div class="banner-box background-banner rounded-2 banner-lg" data-background="../assets/img/banner/cta-banner-2.jpg">
+                        <span class="badge bg-danger mb-2">Top Offer</span>
+                        <h3 class="mb-6 text-dark gshop-title">
+                            <?php echo htmlspecialchars($offer['offersubheading'], ENT_QUOTES, 'UTF-8'); ?><br class="d-none d-sm-block">
+                            <mark class="position-relative text-secondary bg-transparent">
+                                <?php echo htmlspecialchars($offer['offerheading'], ENT_QUOTES, 'UTF-8'); ?>
+                                <img src="../assets/img/shapes/border-line.png" class="position-absolute start-0 border-line w-100" alt="Border Line">
+                            </mark>
+                        </h3>
+                        <a href="javascript:void(0)" class="btn btn-secondary btn-md">
+                            Get this Directly form Store <span class="ms-2"><i class="fas fa-arrow-right"></i></span>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-xl-5">
-                <div class="banner-img rounded-3 overflow-hidden">
-                    <img src="../common_images/offer/coffee flavoured cookies2.jpg" style="height: 400px;" alt="Banner Image" class="img-fluid">
+                <div class="col-xl-5">
+                    <div class="banner-img rounded-3 overflow-hidden">
+                        <img src="../common_images/offer/coffee flavoured cookies2.jpg" style="height: 400px;" alt="Banner Image" class="img-fluid">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 <?php
 }
 ?>
@@ -301,40 +318,40 @@ if (!empty($offer)) { // Check if $offer is not empty
             <div class="row">
                 <!-- Card 1 -->
                 <?php
-                foreach($categories as $category){      
+                foreach ($categories as $category) {
                 ?>
-                <div class="col-md-6 mb-4">
-                    <div class="horizontal-product-card d-sm-flex align-items-center p-3 bg-white rounded-2 gap-4">
-                        <div class="thumbnail position-relative rounded-2 text-center">
-                            <a href="./products.php"><img src="../common_images/category/<?= $category['catimg']?>" alt="product"
-                                    style="height:130px;width:130px;" class="img-fluid"></a>
-                            <div
-                                class="product-overlay position-absolute start-0 top-0 w-100 h-100 d-flex align-items-center justify-content-center gap-2 rounded-2">
-                                <a href="#quickview_modal" data-bs-toggle="modal" class="rounded-btn"><i
-                                        class="fa-solid fa-eye"></i></a>
+                    <div class="col-md-6 mb-4">
+                        <div class="horizontal-product-card d-sm-flex align-items-center p-3 bg-white rounded-2 gap-4">
+                            <div class="thumbnail position-relative rounded-2 text-center">
+                                <a href="./products.php"><img src="../common_images/category/<?= $category['catimg'] ?>" alt="product"
+                                        style="height:130px;width:130px;" class="img-fluid"></a>
+                                <div
+                                    class="product-overlay position-absolute start-0 top-0 w-100 h-100 d-flex align-items-center justify-content-center gap-2 rounded-2">
+                                    <a href="#quickview_modal" data-bs-toggle="modal" class="rounded-btn"><i
+                                            class="fa-solid fa-eye"></i></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-content mt-4 mt-sm-0">
-                            <div class="d-flex align-items-center flex-nowrap star-rating">
-                                <ul class="d-flex align-items-center me-2">
-                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                </ul>
-                                <span class="flex-shrink-0">(5.2k Reviews)</span>
+                            <div class="card-content mt-4 mt-sm-0">
+                                <!-- <div class="d-flex align-items-center flex-nowrap star-rating">
+                                    <ul class="d-flex align-items-center me-2">
+                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <span class="flex-shrink-0">(5.2k Reviews)</span>
+                                </div> -->
+                                <a href="./products.php"
+                                    class="fw-bold text-heading title d-block"><?= $category['catname'] ?></a>
+                                <div class="pricing mt-2">
+                                    <span class="fw-bold h4 me-1 text-muted"><?= $category['catdscr'] ?></span>
+                                </div>
+                                <a href="./products.php" class="fs-xs fw-bold mt-3 d-inline-block explore-btn">Shop
+                                    Now<span class="ms-1"><i class="fa-solid fa-arrow-right"></i></span></a>
                             </div>
-                            <a href="./products.php"
-                                class="fw-bold text-heading title d-block"><?= $category['catname']?></a>
-                            <div class="pricing mt-2">
-                                <span class="fw-bold h4 me-1 text-muted"><?= $category['catdscr']?></span>
-                            </div>
-                            <a href="./products.php" class="fs-xs fw-bold mt-3 d-inline-block explore-btn">Shop
-                                Now<span class="ms-1"><i class="fa-solid fa-arrow-right"></i></span></a>
                         </div>
                     </div>
-                </div>
 
                 <?php
                 }
@@ -366,52 +383,62 @@ if (!empty($offer)) { // Check if $offer is not empty
         <div class="row justify-content-center g-4 mt-5 filter_group">
 
             <?php
-            foreach($products as $product){
+            foreach ($products as $product) {
 
             ?>
                 <div class="col-lg-3 col-md-6 col-sm-10">
-                                    <div class="vertical-product-card rounded-2 position-relative border-0 bg-white bg-white">
-                                        <!-- <span class="offer-badge text-white fw-bold fs-xxs bg-danger position-absolute start-0 top-0">-12% OFF</span> -->
-                                        <div class="thumbnail position-relative text-center p-4">
-                                            <img src="../common_images/product/<?= $product['product_image']; ?>" alt="apple" style="height: 250px;" class="img-fluid">
-                                            <div class="product-btns position-absolute d-flex gap-2 flex-column">
-                                                <a href="#" class="rounded-btn"><i class="fa-regular fa-heart"></i></a>
-                                                <!-- <a href="#quickview_modal" data-bs-toggle="modal" class="rounded-btn quick-view-btn" data-id="<?= $product['product_id']; ?>"> <i class="fa-regular fa-eye"></i></a> -->
-                                                <a href="#quickview_modal" 
-                                                    data-bs-toggle="modal" 
-                                                    class="rounded-btn quick-view-btn" 
-                                                    data-id="<?= $product['product_id']; ?>"
-                                                    data-name="<?= $product['product_name']; ?>"
-                                                    data-price="<?= $product['product_price']; ?>"
-                                                    data-image="../common_images/product/<?= $product['product_image']; ?>"
-                                                    data-description="<?= $product['product_description']; ?>"
-                                                    data-qty="<?= $product['product_qty']; ?>">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                    </a>
-                                            </div>
-                                        </div>
-                                        <div class="card-content">
-                                            <a href="#" class="card-title fw-bold d-block mb-2 tt-line-clamp tt-clamp-2"><?= $product['product_name']; ?></a>
-                                            <div class="d-flex align-items-center flex-nowrap star-rating fs-xxs mb-2">
-                                                <ul class="d-flex align-items-center me-2">
-                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                                </ul>
-                                                <span class="flex-shrink-0">(5.2k Reviews)</span>
-                                            </div>
-                                            <h6 class="price text-danger mb-4">₹ <?= $product['product_price']; ?> / <?= $product['product_qty']; ?></h6> 
-                                            <form method="post" action="../handler/add_cart.php">
-                                                <input type="hidden" name="product_id" value="<?= $product['product_id']?>">
-                                                <input type="hidden" name="product_price" value="<?= $product['product_price']?>">
-                                                <input type="hidden" name="product_qty" value="<?= $product['product_qty']?>">
-                                                <button type="submit" class="btn btn-secondary d-block btn-md rounded-1 w-100" name="addcartbtn">Add to Cart</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="vertical-product-card rounded-2 position-relative border-0 bg-white bg-white">
+                        <!-- <span class="offer-badge text-white fw-bold fs-xxs bg-danger position-absolute start-0 top-0">-12% OFF</span> -->
+                        <div class="thumbnail position-relative text-center p-4">
+                            <img src="../common_images/product/<?= $product['product_image']; ?>" alt="apple" style="height: 250px;" class="img-fluid">
+                            <div class="product-btns position-absolute d-flex gap-2 flex-column">
+                                <a href="#" class="rounded-btn"><i class="fa-regular fa-heart"></i></a>
+                                <!-- <a href="#quickview_modal" data-bs-toggle="modal" class="rounded-btn quick-view-btn" data-id="<?= $product['product_id']; ?>"> <i class="fa-regular fa-eye"></i></a> -->
+                                <a href="#quickview_modal"
+                                    data-bs-toggle="modal"
+                                    class="rounded-btn quick-view-btn"
+                                    data-id="<?= $product['product_id']; ?>"
+                                    data-name="<?= $product['product_name']; ?>"
+                                    data-price="<?= $product['product_price']; ?>"
+                                    data-image="../common_images/product/<?= $product['product_image']; ?>"
+                                    data-description="<?= $product['product_description']; ?>"
+                                    data-qty="<?= $product['product_qty']; ?>">
+                                    <i class="fa-regular fa-eye"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <a href="#" class="card-title fw-bold d-block mb-2 tt-line-clamp tt-clamp-2"><?= $product['product_name']; ?></a>
+                            <?php
+                            $full_stars = floor($product['product_rating']); // Get full stars
+                            $half_star = ($product['product_rating'] - $full_stars) >= 0.5 ? true : false; // Check for half star
+                            $empty_stars = 5 - $full_stars - ($half_star ? 1 : 0); // Remaining empty stars
+                            ?>
+                            <div class="d-flex align-items-center flex-nowrap star-rating">
+                                <ul class="d-flex align-items-center me-2">
+                                    <?php for ($i = 0; $i < $full_stars; $i++) { ?>
+                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                    <?php } ?>
+
+                                    <?php if ($half_star) { ?>
+                                        <li class="text-warning"><i class="fa-solid fa-star-half-alt"></i></li>
+                                    <?php } ?>
+
+                                    <?php for ($i = 0; $i < $empty_stars; $i++) { ?>
+                                        <li class="text-muted"><i class="fa-regular fa-star"></i></li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                            <h6 class="price text-danger mb-4">₹ <?= $product['product_price']; ?> / <?= $product['product_qty']; ?></h6>
+                            <form method="post" action="../handler/add_cart.php">
+                                <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                <input type="hidden" name="product_price" value="<?= $product['product_price'] ?>">
+                                <input type="hidden" name="product_qty" value="<?= $product['product_qty'] ?>">
+                                <button type="submit" class="btn btn-secondary d-block btn-md rounded-1 w-100" name="addcartbtn">Add to Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
             <?php
             }
@@ -421,6 +448,99 @@ if (!empty($offer)) { // Check if $offer is not empty
     </div>
 </section>
 <!--trending products end-->
+
+
+<?php
+if (!empty($hampers)) {
+?>
+    <!--trending products start-->
+    <section class="pt-8 pb-100 bg-white position-relative overflow-hidden z-1 trending-products-area">
+        <img src="../assets/img/shapes/garlic.png" alt="garlic" class="position-absolute garlic z--1"
+            data-parallax='{"y": 100}'>
+        <img src="../assets/img/shapes/carrot.png" alt="carrot" class="position-absolute carrot z--1"
+            data-parallax='{"y": -100}'>
+        <img src="../assets/img/shapes/mashrom.png" alt="mashrom" class="position-absolute mashrom z--1"
+            data-parallax='{"x": 100}'>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-5">
+                    <div class="section-title text-center text-xl-start">
+                        <h3 class="mb-0">Our Exotic Hampers</h3>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row justify-content-center g-4 mt-5 filter_group">
+
+                <?php
+                foreach ($hampers as $hamper) {
+
+                ?>
+                    <div class="col-lg-3 col-md-6 col-sm-10">
+                        <div class="vertical-product-card rounded-2 position-relative border-0 bg-white bg-white">
+                            <!-- <span class="offer-badge text-white fw-bold fs-xxs bg-danger position-absolute start-0 top-0">-12% OFF</span> -->
+                            <div class="thumbnail position-relative text-center p-4">
+                                <img src="../common_images/product/<?= $hamper['product_image']; ?>" alt="apple" style="height: 250px;" class="img-fluid">
+                                <div class="product-btns position-absolute d-flex gap-2 flex-column">
+                                    <a href="#" class="rounded-btn"><i class="fa-regular fa-heart"></i></a>
+                                    <!-- <a href="#quickview_modal" data-bs-toggle="modal" class="rounded-btn quick-view-btn" data-id="<?= $hamper['product_id']; ?>"> <i class="fa-regular fa-eye"></i></a> -->
+                                    <a href="#quickview_modal"
+                                        data-bs-toggle="modal"
+                                        class="rounded-btn quick-view-btn"
+                                        data-id="<?= $hamper['product_id']; ?>"
+                                        data-name="<?= $hamper['product_name']; ?>"
+                                        data-price="<?= $hamper['product_price']; ?>"
+                                        data-image="../common_images/product/<?= $hamper['product_image']; ?>"
+                                        data-description="<?= $hamper['product_description']; ?>"
+                                        data-qty="<?= $hamper['product_qty']; ?>">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <a href="#" class="card-title fw-bold d-block mb-2 tt-line-clamp tt-clamp-2"><?= $hamper['product_name']; ?></a>
+                                <?php
+                            $full_stars = floor($hamper['product_rating']); // Get full stars
+                            $half_star = ($hamper['product_rating'] - $full_stars) >= 0.5 ? true : false; // Check for half star
+                            $empty_stars = 5 - $full_stars - ($half_star ? 1 : 0); // Remaining empty stars
+                            ?>
+                            <div class="d-flex align-items-center flex-nowrap star-rating">
+                                <ul class="d-flex align-items-center me-2">
+                                    <?php for ($i = 0; $i < $full_stars; $i++) { ?>
+                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                    <?php } ?>
+
+                                    <?php if ($half_star) { ?>
+                                        <li class="text-warning"><i class="fa-solid fa-star-half-alt"></i></li>
+                                    <?php } ?>
+
+                                    <?php for ($i = 0; $i < $empty_stars; $i++) { ?>
+                                        <li class="text-muted"><i class="fa-regular fa-star"></i></li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                                <h6 class="price text-danger mb-4">₹ <?= $hamper['product_price']; ?> / <?= $hamper['product_qty']; ?></h6>
+                                <form method="post" action="../handler/add_cart.php">
+                                    <input type="hidden" name="product_id" value="<?= $hamper['product_id'] ?>">
+                                    <input type="hidden" name="product_price" value="<?= $hamper['product_price'] ?>">
+                                    <input type="hidden" name="product_qty" value="<?= $hamper['product_qty'] ?>">
+                                    <button type="submit" class="btn btn-secondary d-block btn-md rounded-1 w-100" name="addcartbtn">Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php
+                }
+                ?>
+
+            </div>
+        </div>
+    </section>
+    <!--trending products end-->
+<?php
+} // Check if $offer is not empty
+?>
 
 <!--banner section start-->
 <!-- <section class="banner-section position-relative z-1 overflow-hidden bg-white pt-2">
@@ -584,11 +704,11 @@ if (!empty($offer)) { // Check if $offer is not empty
 <!--feedback section end-->
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const quickViewButtons = document.querySelectorAll('.quick-view-btn');
-        
+
         quickViewButtons.forEach(button => {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function() {
                 // Fetch data from the clicked button
                 const productId = this.getAttribute('data-id');
                 const productName = this.getAttribute('data-name');

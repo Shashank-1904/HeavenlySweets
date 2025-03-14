@@ -30,7 +30,7 @@ if (!$pendingorderresult) {
     $pendingOrder_count = $pendingorderrow['total']; 
 }
 
-$totalearningquery = "SELECT SUM(total_price) total FROM orders";
+$totalearningquery = "SELECT SUM(total_price) total FROM orders WHERE orderstatus='Delivered'";
 $totalearningresult = mysqli_query($conn, $totalearningquery);
 if (!$totalearningresult) {
     echo "Wrong Query";

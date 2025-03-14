@@ -26,6 +26,17 @@ else{
 
 }
 
+
+$proquery1 = "SELECT * FROM product";
+$proresult1 = mysqli_query($conn, $proquery1);
+
+if ($proresult1) {
+    $productsCount = mysqli_num_rows($proresult1);
+    echo "Total Products: " . $productsCount;
+} else {
+    echo "Query failed: " . mysqli_error($conn);
+}
+
 $query = "SELECT c.*, COUNT(p.product_id) AS total_products FROM category c LEFT JOIN product p ON c.catid = p.catid GROUP BY c.catid";
 $result = mysqli_query($conn,$query);
 if(!$result){
@@ -93,7 +104,7 @@ $categories = mysqli_fetch_all($result,MYSQLI_ASSOC);
                             <span class="hr-line w-100 position-relative d-block align-self-end ms-1"></span>
                         </div>
                         <ul class="widget-nav mt-4">
-                            <li><a href="products.php" class="d-flex justify-content-between align-items-center">All<span class="fw-bold fs-xs total-count"><?php echo count($categories); ?></span></a></li>
+                            <li><a href="products.php" class="d-flex justify-content-between align-items-center">All<span class="fw-bold fs-xs total-count"><?php echo $productsCount; ?></span></a></li>
                         <?php
                             foreach($categories as $category){      
                             ?>
@@ -150,16 +161,26 @@ $categories = mysqli_fetch_all($result,MYSQLI_ASSOC);
                                         </div>
                                         <div class="card-content">
                                             <a href="#" class="card-title fw-bold d-block mb-2 tt-line-clamp tt-clamp-2"><?= $product['product_name']; ?></a>
-                                            <div class="d-flex align-items-center flex-nowrap star-rating fs-xxs mb-2">
-                                                <ul class="d-flex align-items-center me-2">
-                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                                    <li class="text-warning"><i class="fa-solid fa-star"></i></li>
-                                                </ul>
-                                                <span class="flex-shrink-0">(5.2k Reviews)</span>
-                                            </div>
+                                            <?php
+                            $full_stars = floor($product['product_rating']); // Get full stars
+                            $half_star = ($product['product_rating'] - $full_stars) >= 0.5 ? true : false; // Check for half star
+                            $empty_stars = 5 - $full_stars - ($half_star ? 1 : 0); // Remaining empty stars
+                            ?>
+                            <div class="d-flex align-items-center flex-nowrap star-rating">
+                                <ul class="d-flex align-items-center me-2">
+                                    <?php for ($i = 0; $i < $full_stars; $i++) { ?>
+                                        <li class="text-warning"><i class="fa-solid fa-star"></i></li>
+                                    <?php } ?>
+
+                                    <?php if ($half_star) { ?>
+                                        <li class="text-warning"><i class="fa-solid fa-star-half-alt"></i></li>
+                                    <?php } ?>
+
+                                    <?php for ($i = 0; $i < $empty_stars; $i++) { ?>
+                                        <li class="text-muted"><i class="fa-regular fa-star"></i></li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
                                             <h6 class="price text-danger mb-4">₹ <?= $product['product_price']; ?> / <?= $product['product_qty']; ?></h6> 
                                             <form method="post" action="../handler/add_cart.php">
                                                 <input type="hidden" name="product_id" value="<?= $product['product_id']?>">

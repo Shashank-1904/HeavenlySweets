@@ -487,7 +487,15 @@ if(isset($_SESSION['userid'])){
                                         $formattedDate = "$day/$month/$year";
                                     ?>
                                     <tr>
-                                        <td><?= $order['referenceID']?></td>
+                                        <td>
+                                            <?= $order['referenceID']?>
+                                            <?php
+                                            if($order['gift'] == 1)
+                                            {
+                                                echo "(Gift)";
+                                            }
+                                            ?>
+                                        </td>
                                         <td><?= $formattedDate ?></td>
                                         <td><?= $order['payment_type']?></td>
                                         <td class="text-secondary">₹<?= $order['total_price']?></td>
@@ -739,7 +747,14 @@ if(isset($_SESSION['userid'])){
                             <?php
                                 if (isset($trackordersArray)) {
                                     foreach ($trackordersArray as $trackorders) { 
-                                        echo "\nOrder Tracking for #". $trackorders['referenceID']. "\n\n";
+                                        if($trackorders['gift'] == 1)
+                                        {
+                                            echo "\nOrder Tracking of (Gift) for #". $trackorders['referenceID']. "\n\n";
+                                        }
+                                        else
+                                        {
+                                            echo "\nOrder Tracking for #". $trackorders['referenceID']. "\n\n";
+                                        }
                                         $status = $trackorders['orderstatus']; // Current order status
                                         $steps = ["Pending", "Processing", "On the Way", "Delivered"];
                                         $statusInfo = [

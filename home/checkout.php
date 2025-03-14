@@ -174,6 +174,13 @@ else{
                                 ?>
                         </div>
 
+                        <div class="form-check mt-5">
+                            <input class="form-check-input" type="checkbox" value="1" name="gift">
+                            <label class="form-check-label fw-bold" for="gift">
+                                Send as Gift to Friend or Family..!
+                            </label>
+                        </div>
+
                         <h4 class="mt-8">Payment Method</h4>
                         <div
                             class="checkout-radio d-flex align-items-center justify-content-between gap-3 bg-white rounded p-4 mt-4">
@@ -185,20 +192,6 @@ else{
                                 <label for="paypal" class="ms-2 h6 mb-0">Cash on Delivery</label>
                             </div>
                         </div>
-
-                        <div
-                            class="checkout-radio d-flex align-items-center justify-content-between gap-3 bg-white rounded p-4 mt-4">
-                            <div class="radio-left d-inline-flex align-items-center">
-                                <div class="theme-radio">
-                                    <input type="radio" id="gift" name="gift" value="1">
-                                    <span class="custom-radio"></span>
-                                </div>
-                                <label for="gift" class="ms-2 h6 mb-0">Deliver as Gift</label>
-                            </div>
-                        </div>
-
-        
-                            
                     </div>
 
 
